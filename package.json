@@ -1,0 +1,19 @@
+{
+  "name": "capstone-2019",
+  "version": "1.0.0",
+  "description": "박은영, 류다인, 김장현",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eyabc/2019-1-capstone.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eyabc/2019-1-capstone/issues"
+  },
+  "homepage": "https://github.com/eyabc/2019-1-capstone#readme"
+}
