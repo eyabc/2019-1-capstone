@@ -1,0 +1,27 @@
+@charset "utf-8";
+
+// tag reset
+*{margin:0; padding:0}
+body{font-size: 15px; color: #333}
+input, select, textarea, img, button, i{display: inline-block; vertical-align: middle;}
+input[type="text"], input[type="password"]{@extend %input; height: 40px}
+lable{cursor:pointer;}
+textarea{@extend %input; width: calc(100%-22px);}
+ul, li {list-style: none;}
+a{text-decoration: none; color: inherit}
+a:hover{text-decoration: underline}
+legend{height:0; overflow: hidden;}
+fieldset{border: none}
+
+%input { border: 1px solid #bebebe; background: #fff; padding:0 10px; font-size: 15px; font-family: inherit; }
+::-webkit-scrollbar{background-color: #fff;width:.4em;height:.4em;}
+::-webkit-scrollbar-thumb:window-inactive,
+::-webkit-scrollbar-thumb{background:fade-out(#06F, 0.5);border-radius:10px}
+button {outline: none;cursor: pointer;border: none; background: none;	
+	font: {
+		weight:bold;
+		color: #000;
+	}
+}
+p { word-break: break-all;}
+i { display: inline-block}
