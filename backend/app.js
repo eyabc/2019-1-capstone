@@ -24,15 +24,14 @@ app.use(session({
 	secret: 'keyboard cat', 
 	cookie: {maxAge: 60000*30}
 }))
-
+// #19 routes
 const memberRouter = require('./routes/member');
 const categoryRouter = require('./routes/category');
 const chatRouter = require('./routes/chat');
-const member-friendRouter = require('./routes/member-friend');
-const pariticipantRouter = require('./routes/pariticipant');
-
-app.use('/', pariticipantRouter);
-app.use('/', member-friendRouter);
+const memberFriendRouter = require('./routes/member-friend');
+const participantRouter = require('./routes/participant');
+app.use('/', participantRouter);
+app.use('/', memberFriendRouter);
 app.use('/', chatRouter);
 app.use('/', categoryRouter);
 app.use('/', memberRouter);
