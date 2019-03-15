@@ -51,3 +51,23 @@
 		border-bottom: 1px solid #ddd;
 	}
 }
+
+/* #27 footer.vue */
+.site-footer-wrap{
+	bottom: 0;
+	height: 50px;
+	background: #505050;
+	position: fixed;
+	width: 100%;
+
+}
+.Copyright {
+	padding: 10px 0;
+	&>p {
+		text-align: center;
+		color: #fff;
+		font-size: 12px;
+		justify-content: center;
+		align-items: center;
+	}
+}

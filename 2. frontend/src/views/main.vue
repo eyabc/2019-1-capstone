@@ -6,18 +6,19 @@
         <router-view></router-view>
       </div>
     </div>
-    <router-view class="leftAside" name="leftAside" />
-    <router-view class="rightAside" name="rightAside"/>
     <siteFooter />
+    <leftMenu />
   </div>
 </template>
 <script>
   import siteHeader from '@/components/header'
   import siteFooter from '@/components/footer'
+  import leftMenu from '@/components/leftMenu/leftMenu'
   export default {
     components: {
       siteHeader, 
       siteFooter,
+      leftMenu,
     }
   }
 </script>
