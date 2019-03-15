@@ -12,17 +12,18 @@ export default new Router({
   routes: [
   {
     path: '',
-    redirect: '/map'
+    component: 
+    () => import(`${view}/main.vue`),  
   },
   {
-    path: '/map/',
+    path: '/map',
     component: {
-       default: () => import(`${view}/main.vue`),
-       leftAside:() => import(`${view}/leftAside.vue`),
-       rightAside: () => import(`${view}/rightAside.vue`)
-    },
-    children: [
-    ]
-  },
-  ]
+     default: () => import(`${view}/main.vue`),
+     leftAside:() => import(`${view}/leftAside.vue`),
+     rightAside: () => import(`${view}/rightAside.vue`)
+   },
+   children: [
+   ]
+ },
+ ]
 })
