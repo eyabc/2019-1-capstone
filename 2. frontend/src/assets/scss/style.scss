@@ -1,0 +1,53 @@
+/* #26 header.vue */
+.site-header { 
+	height: 60px;
+	background: #FFBB77;
+	position: relative;
+	width: 100%;
+}
+.site-logo {
+	height: 70px;
+	width: 90px;
+}
+.header-search-bar>form{
+	&>input[type="text"] {
+		position: absolute;
+		top: 15px;
+		height: 30px;
+		width: 280px;
+		left: 90px;
+		border: 2px;
+		background: rgba(255,255,255,0.5);
+		padding-right: 30px;
+	}
+	&>input[type="submit"]{
+		display: none
+	}
+}
+.fa-pencil-alt {
+	position: absolute;
+	top: 23px;
+	left: 388px;
+	z-index: 10;
+	cursor: pointer;
+}
+.search-plus-icon:hover {
+	
+}
+.header-search-plus {
+	position: absolute;
+	width: 320px;
+	background:#fff;
+	box-sizing: border-box;
+	border: #ccc 1px solid;
+	top: 45px;
+	left: 90px;
+	&>p>input {
+		box-sizing: border-box;
+		padding-left: 7px;
+		width: 318px;
+		height: 25px;
+		border: none;
+		border-bottom: 1px solid #ddd;
+	}
+}
