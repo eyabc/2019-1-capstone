@@ -1,47 +1,52 @@
-/* #26 header.vue */
-	.site-header { 
+.site {
+
+	/* #26 header.vue */
+	&-wrap {transition: 1s;
+		&.active{
+			margin-left: 300px;
+		}
+	}
+
+	&-header {
 		height: 60px;
 		background: #FFBB77;
-		position: relative;
-		width: 100%;
+		display: flex;
+		align-items: center;
 	}
-	.site-logo {
+
+	&-logo {
 		height: 70px;
 		width: 90px;
 	}
-	.header-search-bar>form{
-		&>input[type="text"] {
-			position: absolute;
-			top: 15px;
+
+}
+
+.header-search {
+	&-bar>form {
+		position: relative;
+
+		>input[type="text"] {
 			height: 30px;
 			width: 280px;
-			left: 90px;
 			border: 2px;
-			background: rgba(255,255,255,0.5);
+			background: rgba(255, 255, 255, 0.5);
 			padding-right: 30px;
 		}
-		&>input[type="submit"]{
+
+		>input[type="submit"] {
 			display: none
 		}
+
 	}
-	.fa-pencil-alt {
-		position: absolute;
-		top: 23px;
-		left: 388px;
-		z-index: 10;
-		cursor: pointer;
-	}
-	.search-plus-icon:hover {
-		
-	}
-	.header-search-plus {
+
+	&-plus {
 		position: absolute;
 		width: 320px;
-		background:#fff;
+		background: #fff;
 		box-sizing: border-box;
 		border: #ccc 1px solid;
-		top: 45px;
-		left: 90px;
+		left: 0;
+
 		&>p>input {
 			box-sizing: border-box;
 			padding-left: 7px;
@@ -50,11 +55,64 @@
 			border: none;
 			border-bottom: 1px solid #ddd;
 		}
+
 	}
 
-/* #84 leftMenu.vue */
-	.left-menu-wrap {
-		position: relative;
-		height: 100%;
-		width: 300px;
+}
+
+.search-plus-icon {
+	position: absolute;
+	z-index: 10;
+	cursor: pointer;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	display: block;
+	text-align: center;
+	width: 30px;
+	height: 30px;
+	line-height: 30px;
+
+	i {
+		vertical-align: middle;
+		line-height: 30px;
 	}
+
+}
+
+/* #27 footer.vue */
+.site-footer-wrap {
+	bottom: 0;
+	height: 50px;
+	background: #505050;
+	position: fixed;
+	width: 100%;
+}
+
+.Copyright {
+	padding: 10px 0;
+
+	&>p {
+		text-align: center;
+		color: #fff;
+		font-size: 12px;
+		justify-content: center;
+		align-items: center;
+	}
+
+}
+
+/* #84 leftMenu.vue */
+.left-menu-wrap {
+	position: fixed;
+	left: -300px;
+	top: 0;
+	bottom: 0;
+	background: #09f;
+	width: 300px;
+	z-index: 999;
+	transition: 1s;
+	&.active {
+		left: 0
+	}
+}
