@@ -1,2 +1,2 @@
-cd %cd%\frontend
+cd %cd%\2. frontend
 yarn serve

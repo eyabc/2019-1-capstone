@@ -1,2 +1,2 @@
-cd %cd%\backend
+cd %cd%\1. backend
 npm start
