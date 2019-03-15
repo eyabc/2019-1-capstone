@@ -14,16 +14,7 @@ export default new Router({
     path: '',
     component: 
     () => import(`${view}/main.vue`),  
-  },
-  {
-    path: '/map',
-    component: {
-     default: () => import(`${view}/main.vue`),
-     leftAside:() => import(`${view}/leftAside.vue`),
-     rightAside: () => import(`${view}/rightAside.vue`)
-   },
-   children: [
-   ]
- },
+  }
+
  ]
 })
