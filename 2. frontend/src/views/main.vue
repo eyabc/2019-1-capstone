@@ -1,13 +1,15 @@
 <template>
   <div class="site-wrap">
-    <siteHeader />
-    <div class="container">
-      <div class="container-innner">
-        <router-view></router-view>
-      </div>
-    </div>
-    <siteFooter />
     <leftMenu />
+    <div>
+      <siteHeader />
+      <div class="container">
+        <div class="container-innner">
+          <router-view></router-view>
+        </div>
+      </div>
+      <siteFooter />
+    </div>
   </div>
 </template>
 <script>
