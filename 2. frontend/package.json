@@ -10,7 +10,8 @@
   "dependencies": {
     "vue": "^2.6.6",
     "vue-router": "^3.0.1",
-    "vuex": "^3.0.1"
+    "vuex": "^3.0.1",
+    "yarn": "^1.13.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.5.1",
