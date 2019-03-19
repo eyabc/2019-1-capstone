@@ -6,7 +6,7 @@
       <form @submit.prevent="search">
         <input type="text" name="place" placeholder="위치를 입력해주세요">
         <input type="submit" name="">
-        <span @mouseenter="hover = true" @mousedown="hoverToggle" class="search-plus-icon"><i class="fas fa-pencil-alt"></i></span>
+        <span @mousedown="hoverToggle" class="search-plus-icon"><i class="fas fa-pencil-alt"></i></span>
         <div class="header-search-plus" v-if="hover" >
           <p><input type="" name="nameInplace" placeholder="현재 위치에서 검색할 그룹 이름"></p>
           <p><input type="" name="nameAll" placeholder="검색할 그룹 이름"></p>

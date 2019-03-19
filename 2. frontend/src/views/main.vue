@@ -1,7 +1,7 @@
 <template>
   <div class="site-wrap">
-    <leftMenu />
-    <div>
+    <leftMenu :leftFold="leftFold"/>
+    <div class="contents-wrap" :class="{'active' : !leftFold}">
       <siteHeader />
       <div class="container">
         <div class="container-innner">
@@ -21,6 +21,15 @@
       siteHeader, 
       siteFooter,
       leftMenu,
+    },
+    data () {
+      return {
+        leftFold: false,
+        rightFold: false,
+      }
+    },
+    methods: {
+
     }
   }
 </script>
