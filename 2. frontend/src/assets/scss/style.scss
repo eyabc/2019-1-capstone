@@ -1,10 +1,14 @@
-.site {
 
+.site {
 	/* #26 header.vue */
 	&-wrap {transition: 1s;
-		&.active{
-			margin-left: 300px;
-		}
+		// #84
+		display: flex;
+		position: fixed;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		top: 0;
 	}
 
 	&-header {
@@ -85,7 +89,7 @@
 	bottom: 0;
 	height: 50px;
 	background: #505050;
-	position: fixed;
+	position: absolute;
 	width: 100%;
 }
 
@@ -104,32 +108,32 @@
 
 /* #84 leftMenu.vue */
 .left-menu-wrap {
-	position: fixed;
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	background: #09f;
-	width: 300px;
-	z-index: 999;
+	resize: horizontal;
+
+	height: 100%;
+	background: #fff;
+	width: 500px;
 	transition: 1s;
+	position: relative;
+	left: 0;
+	box-shadow: 0px 0px 1px;
 	&.active {
-		left: 0
+		left: -500px;
 	}
 }
 .folding {
-	position: fixed;
+	z-index: 10;
+	position: absolute;
+	right: -15px;
+	top: calc(50% - 25px);
 	display: inline-block;
 	cursor: pointer;
-	top: calc(50% - 50px);
 	width: 15px;
 	height: 50px;
 	background: #fff;
-	left: 0;
-	box-shadow: 0px 2px 3px;
+	box-shadow: 0px 0px 2px;
 	box-sizing: border-box;
-	&.active {
-		left: -300px;
-	}
+
 	&-arrow {
 		height: 50px;
 		width: 15px;
@@ -137,4 +141,17 @@
 		justify-content: center;
 		align-items: center;
 	}
+}
+
+// #84
+.contents-wrap {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	margin-left: 0;
+	transition: 1s;
+	&.active{
+		margin-left: -500px;
+	}
+	resize: horizontal;
 }

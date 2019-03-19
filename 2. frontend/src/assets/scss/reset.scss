@@ -1,8 +1,9 @@
 @charset "utf-8";
 
+// 혹은 #app {position: fixed; width: 100%}
 // tag reset
-*{margin:0; padding:0}
-body{font-size: 15px; color: #333}
+*{margin:0; padding:0; }
+body{font-size: 15px; color: #333; height: 100%;}
 input, select, textarea, img, button, i{display: inline-block; vertical-align: middle;}
 input[type="text"], input[type="password"]{@extend %input; height: 40px}
 label{cursor:pointer;}

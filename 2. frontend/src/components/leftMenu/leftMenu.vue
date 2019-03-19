@@ -1,23 +1,25 @@
 <template>
-	<div class="left-menu-wrap">
-		dfsd
-		<span class="folding " @click="foldingToggle">
-			<span class="folding-arrow"  v-if="!folding">></span>
-			<span class="folding-arrow"  v-else><</span>
+	<div class="left-menu-wrap" :class="{'active': !leftFold }">
+		<component :is="$store.state.leftMenu"/>
+		<span class="folding" @click="setFolding(!leftFold)">
+			<span class="folding-arrow" v-if="!leftFold">></span>
+			<span class="folding-arrow" v-else><</span>
 		</span>
 	</div>
 </template>
 <script type="text/javascript">
-  export default {
-  data() {
-    return {
-      folding: false,
-    }
-  },
-  methods: {
-  	foldingToggle () {
-  		this.folding = ! this.folding
-  	}
-  }
-}
+	export default {
+		created() {
+		},
+		data() {
+			return {
+			}
+		},
+		methods: {
+			setFolding (val) {
+				this.$parent.leftFold = val
+			},
+		},
+		props: ['leftFold']
+	}
 </script>
