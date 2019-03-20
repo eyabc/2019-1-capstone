@@ -22,15 +22,17 @@
 			<button class="login-btn btn" type="submit">로그인</button>
 		</form>
 		<p><a href="#" @click.prevent='' class="login-option">비밀 번호를 분실하였습니까?</a></p>
-		<p><a href="#" @click.prevent='' class="login-option">아직 HighFive회원이 아니십니까?</a></p>
+		<p><a href="#" @click.prevent='joinMember' class="login-option">아직 HighFive회원이 아니십니까?</a></p>
 	</div>
 </template>
 <script type="text/javascript">
+	import signup from './signup'
 	export default {
 		methods: {
 			login () {
 
-			}
+			},
+			joinMember () { this.$store.commit('notMember',signup)}
 		}
 	}
 </script>
