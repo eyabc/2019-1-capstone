@@ -8,6 +8,7 @@
 	</div>
 </template>
 <script type="text/javascript">
+	import login from './notMember/login.vue'
 	export default {
 		created() {
 		},
@@ -19,6 +20,7 @@
 			setFolding (val) {
 				this.$parent.leftFold = val
 			},
+
 		},
 		props: ['leftFold']
 	}

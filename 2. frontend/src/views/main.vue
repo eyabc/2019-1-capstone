@@ -22,6 +22,10 @@
       siteFooter,
       leftMenu,
     },
+    async created() {
+        var  session = await this.$fetch('/api');
+        console.log(session)
+    },
     data () {
       return {
         leftFold: false,
@@ -29,7 +33,10 @@
       }
     },
     methods: {
+      async setLeftMenu() {
 
+
+      }
     }
   }
 </script>
