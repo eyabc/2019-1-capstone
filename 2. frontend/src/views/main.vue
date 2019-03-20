@@ -23,8 +23,9 @@
       leftMenu,
     },
     async created() {
-        var  session = await this.$fetch('/api');
-        console.log(session)
+        var session = await this.$fetch('/api');
+        this.$store.commit('member', session);
+        this.setLeftMenu()
     },
     data () {
       return {
@@ -34,7 +35,9 @@
     },
     methods: {
       async setLeftMenu() {
-
+        if(this.$store.getters.member==undefined) {
+          console.log('test')
+        }
 
       }
     }

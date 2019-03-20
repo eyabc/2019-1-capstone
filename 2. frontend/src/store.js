@@ -6,18 +6,23 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     leftMenu: false,
-    member: false,
+    session: null,
   },
   mutations: {
    LeftMenu(state, val) {
     state.leftMenu = val
   },
+  member(state, val) {
+  	state.session = val
+  }
 },
 actions: {
 
 },
 getters: {
-
+	member(state) {
+		return state.session.member
+	}
 }
 
 })
