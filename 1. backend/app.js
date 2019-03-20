@@ -19,10 +19,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-// #19 express-session 설정 ~~~
+// #42 express-session 설정 ~
 app.use(session({
-	secret: 'keyboard cat', 
-	cookie: {maxAge: 60000*30}
+	secret: 'fsdfsdf@#$@#$#sd154165!@!@!#$#$#$', 
+	cookie: {maxAge: 60000*30},
+	saveUninitialized: true,
+	resave: true,
 }))
 // #19 routes
 const memberRouter = require('./routes/member');
@@ -42,6 +44,7 @@ app.use('/', memberRouter);
 app.use(function(req, res, next) {
   next(createError(404));
 });
+
 
 // error handler
 app.use(function(err, req, res, next) {
