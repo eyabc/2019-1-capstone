@@ -16,18 +16,11 @@ router.post('/api/member/signin', async (req, res) => {
 	res.json(resultJSON)
 })
 
-/* #42 test */
+/* #42 session get */
 router.get('/api', (req, res) => {
-	if(req.session.member == undefined){
-		res.json({success: false})
-	} else {
 		res.json({success: true, data: req.session})
 
-	}
 });
 
 
-router.get('/api', function(req,res){
-	console.log(req.session)
-})
 module.exports = router;
