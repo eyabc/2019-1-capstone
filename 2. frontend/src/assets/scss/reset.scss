@@ -1,11 +1,12 @@
 @charset "utf-8";
 
+// 혹은 #app {position: fixed; width: 100%}
 // tag reset
-*{margin:0; padding:0}
-body{font-size: 15px; color: #333}
+*{margin:0; padding:0; }
+body{font-size: 15px; color: #333; height: 100%;}
 input, select, textarea, img, button, i{display: inline-block; vertical-align: middle;}
 input[type="text"], input[type="password"]{@extend %input; height: 40px}
-lable{cursor:pointer;}
+label{cursor:pointer;}
 textarea{@extend %input; width: calc(100%-22px);}
 ul, li {list-style: none;}
 a{text-decoration: none; color: inherit}
@@ -24,4 +25,4 @@ button {outline: none;cursor: pointer;border: none; background: none;
 	}
 }
 p { word-break: break-all;}
-i { display: inline-block}
+i { display: inline-block; vertical-align:middle;}

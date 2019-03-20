@@ -1,68 +1,100 @@
-/* #26 header.vue */
-.site-header { 
-	height: 60px;
-	background: #FFBB77;
-	position: relative;
-	width: 100%;
+.site {
+	/* #26 header.vue */
+	&-wrap {transition: 1s;
+		// #84
+		display: flex;
+		position: fixed;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		top: 0;
+	}
+
+	&-header {
+		height: 60px;
+		background: #FFBB77;
+		display: flex;
+		align-items: center;
+	}
+
+	&-logo {
+		height: 70px;
+		width: 90px;
+	}
+
 }
-.site-logo {
-	height: 70px;
-	width: 90px;
-}
-.header-search-bar>form{
-	&>input[type="text"] {
+
+.header-search {
+	&-bar>form {
+		position: relative;
+
+		>input[type="text"] {
+			height: 30px;
+			width: 280px;
+			border: 2px;
+			background: rgba(255, 255, 255, 0.5);
+			padding-right: 30px;
+		}
+
+		>input[type="submit"] {
+			display: none
+		}
+
+	}
+
+	&-plus {
 		position: absolute;
-		top: 15px;
-		height: 30px;
-		width: 280px;
-		left: 90px;
-		border: 2px;
-		background: rgba(255,255,255,0.5);
-		padding-right: 30px;
+		width: 320px;
+		background: #fff;
+		box-sizing: border-box;
+		border: #ccc 1px solid;
+		left: 0;
+
+		&>p>input {
+			box-sizing: border-box;
+			padding-left: 7px;
+			width: 318px;
+			height: 25px;
+			border: none;
+			border-bottom: 1px solid #ddd;
+		}
+
 	}
-	&>input[type="submit"]{
-		display: none
-	}
+
 }
-.fa-pencil-alt {
+
+.search-plus-icon {
 	position: absolute;
-	top: 23px;
-	left: 388px;
 	z-index: 10;
 	cursor: pointer;
-}
-.search-plus-icon:hover {
-	
-}
-.header-search-plus {
-	position: absolute;
-	width: 320px;
-	background:#fff;
-	box-sizing: border-box;
-	border: #ccc 1px solid;
-	top: 45px;
-	left: 90px;
-	&>p>input {
-		box-sizing: border-box;
-		padding-left: 7px;
-		width: 318px;
-		height: 25px;
-		border: none;
-		border-bottom: 1px solid #ddd;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	display: block;
+	text-align: center;
+	width: 30px;
+	height: 30px;
+	line-height: 30px;
+
+	i {
+		vertical-align: middle;
+		line-height: 30px;
 	}
+
 }
 
 /* #27 footer.vue */
-.site-footer-wrap{
+.site-footer-wrap {
 	bottom: 0;
 	height: 50px;
 	background: #505050;
-	position: fixed;
+	position: absolute;
 	width: 100%;
-
 }
+
 .Copyright {
 	padding: 10px 0;
+
 	&>p {
 		text-align: center;
 		color: #fff;
@@ -70,4 +102,53 @@
 		justify-content: center;
 		align-items: center;
 	}
+
 }
+
+/* #84 leftMenu.vue */
+.left-menu-wrap {
+	height: 100%;
+	background: #fff;
+	width: 500px;
+	transition: 1s;
+	position: relative;
+	left: 0;
+	box-shadow: 0px 0px 1px;
+	&.active {
+		left: -500px;
+	}
+}
+.folding {
+	z-index: 10;
+	position: absolute;
+	right: -15px;
+	top: calc(50% - 25px);
+	display: inline-block;
+	cursor: pointer;
+	width: 15px;
+	height: 50px;
+	background: #fff;
+	box-shadow: 0px 0px 2px;
+	box-sizing: border-box;
+
+	&-arrow {
+		height: 50px;
+		width: 15px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+}
+
+// #84
+.contents-wrap {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	margin-left: 0;
+	transition: 1s;
+	&.active{
+		margin-left: -500px;
+	}
+}
+

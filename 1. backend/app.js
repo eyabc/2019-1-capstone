@@ -19,7 +19,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-// #42 express-session 설정 ~
+// #42 express-session 
 app.use(session({
 	secret: 'fsdfsdf@#$@#$#sd154165!@!@!#$#$#$', 
 	cookie: {maxAge: 60000*30},
@@ -38,7 +38,6 @@ app.use('/', chatRouter);
 app.use('/', categoryRouter);
 app.use('/', memberRouter);
 
-// ~~~ #19
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
