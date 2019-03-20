@@ -107,6 +107,7 @@
 
 /* #84 leftMenu.vue */
 .left-menu-wrap {
+	min-width: 500px;
 	height: 100%;
 	background: #fff;
 	width: 500px;
@@ -114,6 +115,7 @@
 	position: relative;
 	left: 0;
 	box-shadow: 0px 0px 1px;
+	box-sizing: border-box;
 	&.active {
 		left: -500px;
 	}
@@ -152,3 +154,73 @@
 	}
 }
 
+// #42
+.login {
+	&-wrap {
+		position: absolute;
+		top: calc(50% - 185px);
+		left: calc(50% - 175px);
+		width: 350px;
+	}
+	&-logo {
+		text-align: center;
+		font-size : 40px;
+		font-weight: bold;
+		padding-bottom: 50px;
+		color: #FF8000;
+
+	}
+	&-form {
+		
+	}
+	&-option {
+		font-size: 14px; display: flex; text-align: center; display:block; justify-centent: space-between; padding-top: 10px; 
+		a {margin: 15px;}
+
+	}
+	&-btn {
+		margin-top: 15px;
+	}
+
+}
+
+// #42 input 
+::placeholder{color: #aaa;}
+.input-label{position: relative; display: block; $size: 50px;
+	.pre{position: absolute; top:0; left:0; height:$size; width: $size; display: flex; justify-content: center; align-items: center; z-index: 10;}
+	.lbl{position:absolute; top:0; bottom:0; line-height: $size; left:$size; vertical-align: middle; display: block; color:#aaa;}
+	input[type="text"],
+	input[type="password"],
+	input[type="textarea"],
+	textarea,
+	select { height:$size; padding-left: $size; font-size: 15px;-webkit-appearance:none;border: #fff; }
+	select{background:#fff; border-radius: 0; border: 1px solid #fff; }
+	textarea{padding: 15px 0 10px $size;}
+	input:valid+.lbl,
+	textarea:valid+.lbl{display:none}	
+}
+
+.full-width{width:100%;box-sizing:border-box;}
+
+.fields {
+	li {
+		+li{margin-top:15px; }
+	}
+}
+.btn{
+	outline: none;
+	height: 40px;
+	text-align: center;
+	width: 100%;
+	background: #fff;
+	border: 2px solid #fff;
+	text-shadow:0;
+	font: {
+		size: 12px;
+		weight:bold;
+		color: #000;
+	}
+	cursor: pointer;
+	&:focus, &:hover { color: white; background:#FFBB77; transition: .3s; border: #09f;}
+	&:active { letter-spacing: 2px}
+}

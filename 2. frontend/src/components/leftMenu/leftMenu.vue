@@ -8,8 +8,12 @@
 	</div>
 </template>
 <script type="text/javascript">
-	import login from './notMember/login.vue'
+	import notMember from '@/components/leftMenu/notMember/notMember'
+
 	export default {
+		components: {
+			notMember
+		},
 		created() {
 		},
 		data() {

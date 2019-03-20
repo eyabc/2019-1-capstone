@@ -16,6 +16,7 @@
   import siteHeader from '@/components/header'
   import siteFooter from '@/components/footer'
   import leftMenu from '@/components/leftMenu/leftMenu'
+
   export default {
     components: {
       siteHeader, 
@@ -36,7 +37,8 @@
     methods: {
       async setLeftMenu() {
         if(this.$store.getters.member==undefined) {
-          console.log('test')
+          this.$store.commit('leftMenu', 'notMember')
+          console.log(this.$store.state.leftMenu)
         }
 
       }

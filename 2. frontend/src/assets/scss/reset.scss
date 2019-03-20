@@ -5,7 +5,8 @@
 *{margin:0; padding:0; }
 body{font-size: 15px; color: #333; height: 100%;}
 input, select, textarea, img, button, i{display: inline-block; vertical-align: middle;}
-input[type="text"], input[type="password"]{@extend %input; height: 40px}
+
+input[type="text"], input[type="password"]{@extend %input; height: 40px; }
 label{cursor:pointer;}
 textarea{@extend %input; width: calc(100%-22px);}
 ul, li {list-style: none;}
@@ -14,7 +15,7 @@ a:hover{text-decoration: underline}
 legend{height:0; overflow: hidden;}
 fieldset{border: none}
 
-%input { border: 1px solid #bebebe; background: #fff; padding:0 10px; font-size: 15px; font-family: inherit; }
+%input { outline: 1px #FFD6AC solid; border: 1px solid #bebebe; background: #fff; padding:0 10px; font-size: 15px; font-family: inherit; }
 ::-webkit-scrollbar{background-color: #fff;width:.4em;height:.4em;}
 ::-webkit-scrollbar-thumb:window-inactive,
 ::-webkit-scrollbar-thumb{background:fade-out(#06F, 0.5);border-radius:10px}
