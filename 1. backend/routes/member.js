@@ -15,7 +15,7 @@ router.post('/api/member/signin', async (req, res) => {
 	res.json(resultJSON)
 })
 
-router.get('/', function(req,res){
-
+router.get('/api', function(req,res){
+	console.log(req.session)
 })
 module.exports = router;
