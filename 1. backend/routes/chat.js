@@ -15,8 +15,17 @@ router.post('/api/chat', async (req, res) => {
 	res.json(resultJSON)
 })
 
+// #67
+router.post('/api/chat', async (req, res) => {
+	const sql = 'select * from chat where cgidx = ? and category = ?'
+	const resultJSON= {success: true}
+	try {
+		resultJSON[chat] = await execQuery(sql, [req.body.cgidx, req.body.category])
+	} catch (error) {
+		resultJSON.success = false
+	}
+	res.json(resultJSON)
+})
 	
-
-
 
 module.exports = router;
