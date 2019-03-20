@@ -16,6 +16,7 @@
   import siteHeader from '@/components/header'
   import siteFooter from '@/components/footer'
   import leftMenu from '@/components/leftMenu/leftMenu'
+
   export default {
     components: {
       siteHeader, 
@@ -23,8 +24,9 @@
       leftMenu,
     },
     async created() {
-        var  session = await this.$fetch('/api');
-        console.log(session)
+        var session = await this.$fetch('/api');
+        this.$store.commit('member', session);
+        this.setLeftMenu()
     },
     data () {
       return {
@@ -34,7 +36,10 @@
     },
     methods: {
       async setLeftMenu() {
-
+        if(this.$store.getters.member==undefined) {
+          this.$store.commit('leftMenu', 'notMember')
+          console.log(this.$store.state.leftMenu)
+        }
 
       }
     }
