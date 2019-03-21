@@ -9,10 +9,12 @@
 </template>
 <script type="text/javascript">
 	import notMember from '@/components/leftMenu/notMember/notMember'
+	import login from './notMember/login'
+	import signup from './notMember/signup'
 
 	export default {
 		components: {
-			notMember
+			notMember, login, signup
 		},
 		created() {
 		},

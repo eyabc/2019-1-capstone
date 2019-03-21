@@ -1,11 +1,11 @@
 <template>
 	<div class="login-wrap" v-if="!$store.getters.member">
-		<p class="login-logo">HighFive</p>
+		<p class="notMember-logo">HighFive</p>
 		<form class="login-form" @submit.prevent="login">
 			<ul class="fields">
 				<li>
 					<label class="input-label">
-						<span class="pre"><i class="fas fa-user"></i></span>
+						<span class="pre"><i class="fas fa-envelope"></i></span>
 						<input type="text" name="email" class="full-width" required autofocus>
 						<span class="lbl">이메일</span>
 					</label>
@@ -26,13 +26,11 @@
 	</div>
 </template>
 <script type="text/javascript">
-	import signup from './signup'
 	export default {
 		methods: {
 			login () {
-
 			},
-			joinMember () { this.$store.commit('notMember',signup)}
+			joinMember () { this.$store.commit('leftMenu','signup')}
 		}
 	}
 </script>
