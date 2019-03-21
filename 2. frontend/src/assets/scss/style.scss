@@ -162,14 +162,7 @@
 		left: calc(50% - 175px);
 		width: 350px;
 	}
-	&-logo {
-		text-align: center;
-		font-size : 40px;
-		font-weight: bold;
-		padding-bottom: 50px;
-		color: #FF8000;
 
-	}
 	&-form {
 		
 	}
@@ -182,6 +175,17 @@
 		margin-top: 15px;
 	}
 
+}
+// #46 
+.notMember {
+	&-logo {
+		text-align: center;
+		font-size : 40px;
+		font-weight: bold;
+		padding-bottom: 50px;
+		color: #FF8000;
+
+	}
 }
 
 // #42 input 
@@ -212,6 +216,23 @@
 	height: 40px;
 	text-align: center;
 	width: 100%;
+	background: #FFBB77;
+	border: 2px solid #fff;
+	text-shadow:0;
+	font: {
+		size: 12px;
+		weight:bold;
+		color: #000;
+	}
+	cursor: pointer;
+	&:focus, &:hover { background:#FFBB77; transition: .3s; }
+	&:active { letter-spacing: 2px}
+}
+.back-btn {
+	outline: none;
+	height: 40px;
+	text-align: center;
+	width: 100%;
 	background: #fff;
 	border: 2px solid #fff;
 	text-shadow:0;
@@ -221,6 +242,17 @@
 		color: #000;
 	}
 	cursor: pointer;
-	&:focus, &:hover { color: white; background:#FFBB77; transition: .3s; border: #09f;}
+	&:hover { background:#FFBB77; transition: .3s; }
 	&:active { letter-spacing: 2px}
+}
+
+// #46
+.signup {
+	&-wrap {
+		position: absolute;
+		top: calc(50% - 235px);
+		left: calc(50% - 175px);
+		width: 350px;
+		height: 470px;
+	}
 }
