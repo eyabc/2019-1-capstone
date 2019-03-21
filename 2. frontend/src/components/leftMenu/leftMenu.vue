@@ -8,7 +8,12 @@
 	</div>
 </template>
 <script type="text/javascript">
+	import notMember from '@/components/leftMenu/notMember/notMember'
+
 	export default {
+		components: {
+			notMember
+		},
 		created() {
 		},
 		data() {
@@ -19,6 +24,7 @@
 			setFolding (val) {
 				this.$parent.leftFold = val
 			},
+
 		},
 		props: ['leftFold']
 	}

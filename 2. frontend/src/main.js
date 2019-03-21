@@ -10,13 +10,14 @@ Vue.prototype.nl2br = str => {
 	return str.split("\n").join('<br>')
 }
 
-Vue.$http = (url, obj = {}) => {
-	return fetch(url, obj).then(res => res.json()).then(json => {
-		if (json.success) return json
-		else console.log(json.err)
+Vue.prototype.$fetch = (url, obj = {}) => {
+	return new Promise((resolve, reject) => {
+		 fetch(url, obj).then(res => res.json()).then(json => {
+			if (json.success) resolve(json)
+			else reject(json.err)
+		})
 	})
 }
-// await this.fetch('/api/member') ~~~
 
 new Vue({
   router,

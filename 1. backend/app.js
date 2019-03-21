@@ -4,9 +4,13 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-
+const db = require('./db.json')
 // #19
 const session = require('express-session') // https://velopert.com/406 로그인 구현시 사용
+
+// #41
+const MySQLStore = require('express-mysql-session')(session);
+const sessionStore = new MySQLStore(db);
 
 const app = express();
 
@@ -14,16 +18,23 @@ const app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
+// #41
+app.use(session({
+    key: 'session_cookie_name',
+    secret: 'session_cookie_secret',
+    store: sessionStore,
+    resave: false,
+    saveUninitialized: false,
+    expiration: {maxAge: 60000*30},
+}));
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-// #19 express-session 설정 ~~~
-app.use(session({
-	secret: 'keyboard cat', 
-	cookie: {maxAge: 60000*30}
-}))
+// #42 express-session 
+
 // #19 routes
 const memberRouter = require('./routes/member');
 const categoryRouter = require('./routes/category');
@@ -36,12 +47,12 @@ app.use('/', chatRouter);
 app.use('/', categoryRouter);
 app.use('/', memberRouter);
 
-// ~~~ #19
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
 });
+
 
 // error handler
 app.use(function(err, req, res, next) {
