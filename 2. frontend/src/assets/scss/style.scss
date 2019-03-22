@@ -85,10 +85,8 @@
 
 /* #27 footer.vue */
 .site-footer-wrap {
-	bottom: 0;
 	height: 50px;
 	background: #505050;
-	position: absolute;
 	width: 100%;
 }
 
@@ -123,22 +121,23 @@
 .folding {
 	z-index: 10;
 	position: absolute;
-	right: -15px;
-	top: calc(50% - 25px);
-	display: inline-block;
 	cursor: pointer;
 	width: 15px;
 	height: 50px;
 	background: #fff;
-	box-shadow: 0px 0px 2px;
 	box-sizing: border-box;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	
+	&-left {
+		right: -15px;
+		top: calc(50% - 25px);
+	}
+	&-right {
+		left: -15px;
+		top: calc(50% - 25px);
 
-	&-arrow {
-		height: 50px;
-		width: 15px;
-		display: flex;
-		justify-content: center;
-		align-items: center;
 	}
 }
 
@@ -260,6 +259,7 @@
 // #28
 .container {
 	height: calc(100% - 110px);
+	position: relative;
 }
 .map {
 	&-content {
@@ -269,4 +269,20 @@
 	&-wrap {
 		height: 100%;
 	}
+}
+
+// #102
+.right-menu-wrap {
+	position: absolute;
+	min-width: 300px;
+	height: 100%;
+	background: #fff;
+	width: 300px;
+	right: 0;
+	box-sizing: border-box;
+	z-index: 10;
+	&.right-active {
+		right: 0px;
+	}
+	right: -300px;
 }
