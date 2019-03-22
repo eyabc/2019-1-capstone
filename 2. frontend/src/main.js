@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-
+import * as VueGoogleMaps from 'vue2-google-maps'
 
 Vue.config.productionTip = false
 // # 16 ~~
@@ -18,6 +18,15 @@ Vue.prototype.$fetch = (url, obj = {}) => {
 		})
 	})
 }
+
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: 'AIzaSyBWjfwRSMOm94bojXMoZNjvgNM3cfU7yCY',
+
+  },
+
+
+})
 
 new Vue({
   router,

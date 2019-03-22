@@ -1,15 +1,22 @@
 <template>
 	<div class="left-menu-wrap" :class="{'active': !leftFold }">
 		<component :is="$store.state.leftMenu"/>
-		<span class="folding" @click="setFolding(!leftFold)">
-			<span class="folding-arrow" v-if="!leftFold">></span>
-			<span class="folding-arrow" v-else><</span>
+		<span class="folding folding-left" @click="setFolding(!leftFold)">
+			<i v-if="!leftFold" class="fas fa-chevron-right"></i>
+			<i v-else class="fas fa-chevron-left"></i>
+
 		</span>
 	</div>
 </template>
 <script type="text/javascript">
-	import login from './notMember/login.vue'
+	import notMember from '@/components/leftMenu/notMember/notMember'
+	import login from './notMember/login'
+	import signup from './notMember/signup'
+
 	export default {
+		components: {
+			notMember, login, signup
+		},
 		created() {
 		},
 		data() {

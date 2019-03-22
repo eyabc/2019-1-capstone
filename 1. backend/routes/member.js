@@ -16,7 +16,7 @@ router.post('/api/member/signin', async (req, res) => {
 	res.json(resultJSON)
 })
 
-/* #42 session get */
+/* #41 session get */
 router.get('/api', (req, res) => {
 		res.json({success: true, data: req.session})
 
