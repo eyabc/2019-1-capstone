@@ -15,7 +15,6 @@
 						<span class="pre"><i class="fas fa-key"></i></span>
 						<input type="password" name="password" class="full-width" required>
 						<span class="lbl">비밀번호</span>
-						<small v-if="capsLock">capsLock이 켜져있습니다</small>
 					</label>
 				</li>
 			</ul>
