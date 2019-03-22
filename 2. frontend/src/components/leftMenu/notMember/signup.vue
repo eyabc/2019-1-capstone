@@ -1,5 +1,5 @@
 <template>
-	<div class="signup-wrap" v-if="!$store.getters.member">
+	<div class="signup-wrap" v-if="$store.getters.member === null">
 		<p class="notMember-logo">HighFive</p>
 		<form action="/api/signup" method="post" @submit.prevent="signup">
 			<ul class="fields">

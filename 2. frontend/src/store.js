@@ -6,24 +6,24 @@ Vue.use(Vuex)
 export default new Vuex.Store({
 	state: {
 		leftMenu: false,
-		session: null,
 		notMember: false,
 		rightMenu: false,
-		member: null
+		member: JSON.parse(localStorage.getItem('member')) || null
 	},
 	mutations: {
 		leftMenu(state, val) { state.leftMenu = val },
 		rightMenu(state, val) { state.rightMenu = val },
-		session(state, val) { state.session = val },
-		notMember(state, val) { state.notMember = val },
-		member(state, val) { state.notMember = val },
-
+		member(state, val) {
+			localStorage.setItem('member', JSON.stringify(val))
+			state.member = val
+		},
+		notMember(state, val) { state.notMember = val }
 	},
 	actions: {
 
 	},
 	getters: {
-		member(state) { return state.session.member }
+		member(state) { return state.member }
 	}
 
 })

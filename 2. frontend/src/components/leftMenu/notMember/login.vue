@@ -1,7 +1,7 @@
 <template>
-	<div class="login-wrap" v-if="!$store.getters.member">
+	<div class="login-wrap">
 		<p class="notMember-logo">HighFive</p>
-		<form class="login-form" @submit.prevent="login">
+		<form class="login-form" @submit.prevent="login">	
 			<ul class="fields">
 				<li>
 					<label class="input-label">
@@ -39,7 +39,7 @@
 					body: JSON.stringify(data)
 				});
 				if (json.member) {
-					this.$store.commit('member', json['member'])
+					this.$store.commit('member', json.member)
 				} else {
 					alert("아이디 혹은 비밀번호가 틀렸습니다.")
 				}

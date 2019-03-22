@@ -24,11 +24,11 @@ router.post('/api/member/signin', async (req, res) => {
 })
 
 /* #41 session get */
-router.get('/api', (req, res) => {
-	const sql = 'select * from member where email = ? and password = ?'
-	const resultJSON = { success: true }
-	res.json({success: true, data: req.session})
-});
+// router.get('/api', (req, res) => {
+// 	const sql = 'select data from sessions where email = ? and password = ?'
+// 	const resultJSON = { success: true }
+// 	res.json({success: true, data: req.session})
+// });
 
 
 module.exports = router;
