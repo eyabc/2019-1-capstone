@@ -25,7 +25,7 @@
     },
     async created() {
         var session = await this.$fetch('/api');
-        this.$store.commit('member', session);
+        this.$store.commit('session', session);
         this.setLeftMenu()
     },
     data () {
