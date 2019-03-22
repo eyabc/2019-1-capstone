@@ -21,7 +21,7 @@
       siteHeader, 
       siteFooter,
       leftMenu,
-      GoogleMapLoader
+      GoogleMapLoader,
     },
     async created() {
         var session = await this.$fetch('/api');
@@ -31,7 +31,6 @@
     data () {
       return {
         leftFold: false,
-        rightFold: false,
       }
     },
     methods: {
