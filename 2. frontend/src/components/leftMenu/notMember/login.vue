@@ -27,7 +27,22 @@
 <script type="text/javascript">
 	export default {
 		methods: {
-			login () {
+			async login (e) {
+				const frm = e.target
+				var data = {
+					email: frm.email.value,
+					password: frm.password.value
+				}
+				var json = await this.$fetch('/api/member/signin', {
+					method: 'post',
+					headers: {'Content-Type':'application/json'},
+					body: JSON.stringify(data)
+				});
+				if (json.member) {
+					this.$store.commit('member', json['member'])
+				} else {
+					alert("아이디 혹은 비밀번호가 틀렸습니다.")
+				}
 			},
 			joinMember () { this.$store.commit('leftMenu','signup')}
 		}

@@ -9,12 +9,15 @@ export default new Vuex.Store({
 		session: null,
 		notMember: false,
 		rightMenu: false,
+		member: null
 	},
 	mutations: {
 		leftMenu(state, val) { state.leftMenu = val },
 		rightMenu(state, val) { state.rightMenu = val },
-		member(state, val) { state.session = val },
+		session(state, val) { state.session = val },
 		notMember(state, val) { state.notMember = val },
+		member(state, val) { state.notMember = val },
+
 	},
 	actions: {
 
