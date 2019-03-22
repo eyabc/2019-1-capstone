@@ -256,17 +256,3 @@
 		height: 470px;
 	}
 }
-
-// #28
-.container {
-	height: calc(100% - 110px);
-}
-.map {
-	&-content {
-		width: 100%;
-		height: 100%;
-	}
-	&-wrap {
-		height: 100%;
-	}
-}
