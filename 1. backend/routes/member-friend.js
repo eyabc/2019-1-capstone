@@ -25,4 +25,18 @@ router.delete('/api/member-friend', async (req, res) => {
 	}
 	res.json(resultJON)
 })
+
+
+// #59
+router.delete('/api/member-friend',async (req, res) => {
+	const sql = 'insert into member-friend (midx, friend, Favorites) value(?,?,?)'
+	const resultJON = {success: true}
+	try {
+		await execQuery(sql, [req.body.midx, req.body.friend, req.body.Favorites])
+	} catch (error){
+		resultJON.success = false
+	}
+	res.json(resultJON)
+})
+
 module.exports = router;
