@@ -22,7 +22,7 @@ Vue.prototype.$fetch = (url, obj = {}) => {
 Vue.use(VueGoogleMaps, {
   load: {
     key: 'AIzaSyBWjfwRSMOm94bojXMoZNjvgNM3cfU7yCY',
-
+	libraries: 'places',
   },
 
 
