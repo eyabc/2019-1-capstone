@@ -24,8 +24,6 @@ Vue.use(VueGoogleMaps, {
     key: 'AIzaSyBWjfwRSMOm94bojXMoZNjvgNM3cfU7yCY',
 	libraries: 'places',
   },
-
-
 })
 
 new Vue({
