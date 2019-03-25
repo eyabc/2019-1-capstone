@@ -1,6 +1,10 @@
 <template>
 	<div class="login-wrap" v-if="!$store.getters.member">
+<<<<<<< HEAD
 		<p class="notMember-logo">HighFive</p>
+=======
+		<p class="notMember-logo">{{this.$store.getters.title}}</p>
+>>>>>>> 0f7db18e45ace759633ce13b9ad53bc2ae4cb585
 		<form class="login-form" @submit.prevent="login">
 			<ul class="fields">
 				<li>
@@ -15,7 +19,6 @@
 						<span class="pre"><i class="fas fa-key"></i></span>
 						<input type="password" name="password" class="full-width" required>
 						<span class="lbl">비밀번호</span>
-						<small v-if="capsLock">capsLock이 켜져있습니다</small>
 					</label>
 				</li>
 			</ul>

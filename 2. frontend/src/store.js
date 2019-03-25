@@ -8,9 +8,12 @@ export default new Vuex.Store({
 		leftMenu: false,
 		session: null,
 		notMember: false,
+		rightMenu: false,
+		title: "CEO"
 	},
 	mutations: {
 		leftMenu(state, val) { state.leftMenu = val },
+		rightMenu(state, val) { state.rightMenu = val },
 		member(state, val) { state.session = val },
 		notMember(state, val) { state.notMember = val },
 	},
@@ -18,7 +21,8 @@ export default new Vuex.Store({
 
 	},
 	getters: {
-		member(state) { return state.session.member }
+		member(state) { return state.session.member },
+		title(state) { return state.title}
 	}
 
 })

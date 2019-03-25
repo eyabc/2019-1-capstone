@@ -4,9 +4,7 @@
     <div class="contents-wrap" :class="{'active' : !leftFold}">
       <siteHeader />
       <div class="container">
-        <div class="container-innner">
-          <router-view></router-view>
-        </div>
+        <GoogleMapLoader />
       </div>
       <siteFooter />
     </div>
@@ -16,12 +14,14 @@
   import siteHeader from '@/components/header'
   import siteFooter from '@/components/footer'
   import leftMenu from '@/components/leftMenu/leftMenu'
-
+  import GoogleMapLoader from '@/components/map/GoogleMapLoader'
+  
   export default {
     components: {
       siteHeader, 
       siteFooter,
       leftMenu,
+      GoogleMapLoader,
     },
     async created() {
         var session = await this.$fetch('/api');
@@ -31,7 +31,6 @@
     data () {
       return {
         leftFold: false,
-        rightFold: false,
       }
     },
     methods: {

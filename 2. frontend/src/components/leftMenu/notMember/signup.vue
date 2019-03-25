@@ -1,6 +1,10 @@
 <template>
 	<div class="signup-wrap" v-if="!$store.getters.member">
+<<<<<<< HEAD
 		<p class="notMember-logo">HighFive</p>
+=======
+		<p class="notMember-logo">{{this.$store.getters.title}}</p>
+>>>>>>> 0f7db18e45ace759633ce13b9ad53bc2ae4cb585
 		<form action="/api/signup" method="post" @submit.prevent="signup">
 			<ul class="fields">
 				<li>
