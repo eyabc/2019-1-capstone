@@ -3,7 +3,7 @@
 		<rightMenu />
 		<GmapMap class='map-wrap' ref="mapRef" 
 		:center="{lat:currentLocation.lat, lng:currentLocation.lng}" 
-		:zoom="17"
+		:zoom="16"
 		:options="{fullscreenControl: false}"
 		>
 	</GmapMap>
@@ -31,7 +31,6 @@
    		 			this.city = json.city
    		 			this.country = json.country
    		 			this.geolocation()
-   		 			this.setCountry ()
    		 		})
 
    		 	})
@@ -62,15 +61,14 @@
    					}
    				});
    			},
-   			setCountry () {
+            // #28 미완성
+   			setCountry (country) {
    				let geocoder = new google.maps.Geocoder();
-   				let location = this.city;
-   				console.log(this.country)
-   				geocoder.geocode({ 'address': location }, function(results, status){
+   				geocoder.geocode({ 'address': country }, function(results, status){
    					if (status == google.maps.GeocoderStatus.OK) {
-   						map.setCenter(results[0].geometry.location);
+   						// this.setCenter(results[0].geometry.location);
    					} else {
-   						alert("Could not find location: " + location);
+   						alert("Could not find location: " + country);
    					}
    				});
    			}
