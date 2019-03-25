@@ -8,9 +8,6 @@
     >
 
   </GmapMap>
-  <div class="search-myLocation">
-    <input type="text" v-model="searchAddressInput" v-on:change="searchLocation()"></input>
-  </div>
 </div>
 </template>
 <script>
@@ -66,7 +63,7 @@
         });
       },
     }
-    
+
             // #28 미완성
           //   setCountry (country) {
           //     let geocoder = new google.maps.Geocoder();
