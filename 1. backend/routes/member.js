@@ -47,10 +47,15 @@ router.post('/api/member/signup/email', async (req, res) => {
 /* # 46 회원가입  */ 
 router.post('/api/member/signup', async (req, res) => {
 	const sql = 'insert into member (email, password, nickname, place, lat, lng) values(?,?,?,?,?,?)'
-	const resultJSON = { success: true }
-	const data = req.body
+	const resultJSON = { success: true, msg: false }
+	const data = req.body.data
 	try {
-		await execQuery(sql, [data.email, data.password, data.nickname, data.place, data.lat, data.lng])
+		const chk = await execQuery(`select email from member where email = ?`, [data.email])
+		if(chk.length === 0) {
+			await execQuery(sql, [data.email, data.password, data.nickname, data.place, data.lat, data.lng])
+		} else {
+			resultJSON.msg = true
+		}
 	} catch (err) {
 		resultJSON.success = false
 		resultJSON.err = err.stack

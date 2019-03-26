@@ -26,7 +26,7 @@
 					<label class="input-label">
 						<span class="pre"><i class="fas fa-key"></i></span>
 						<input type="password" name="password-re" class="full-width" required
-						v-model="data.password_re"						>
+						v-model="password_re">
 						<span class="lbl">비밀번호 재확인</span>
 						<p class="check-show">{{ statusPassword_re }}</p>
 					</label>
@@ -56,11 +56,10 @@
 	export default {
 		data () {
 			return {
-				password: '',
+				password_re: '',
 				data: {
 					email: '',
 					password: '',
-					password_re: '',
 					nickname: '',
 					place: '',
 					lat: '',
@@ -92,14 +91,19 @@
 				return password === '' || password.match(regex) ? '특수문자, 문자, 숫자 포함 형태의 8~15자리 이내' : '비밀번호 형식이 틀렸습니다.'
 			},
 			statusPassword_re () {
-				const password_re = this.data.password_re
+				const password_re = this.password_re
 				return password_re === '' ? '' : password_re === this.data.password ? '비밀번호가 일치합니다.' : '비밀번호가 일치하지 않습니다.'
 			},
 
 		},
 
 		mounted () {
+			eventBus.initLocation(this)
 			eventBus.initSearchBox(this.$refs.place)
+			this.$on('getLocation', location => {
+				this.data.lat = location.lat
+				this.data.lng = location.lng
+			})
 		},
 		methods: {
 			goLogin () { this.$store.commit('leftMenu', 'login')},
@@ -110,20 +114,18 @@
 				} else {
 					const frm = e.target
 					const data = this.data
-					const json = this.$fetch('/api/member/signup', {
+					this.$fetch('/api/member/signup', {
 						method: 'post',
 						headers: {'Content-Type':'application/json'},
-						body: JSON.stringify({ email })
+						body: JSON.stringify({ data })
 					}).then(json => {
-						this.overlapEmailResult = !json.email ? '이미 사용중인 이메일입니다.' : ''
+						if(json.msg === false) {
+							alert('회원가입 완료')
+							this.$store.commit("leftMenu", 'login')
+						} else {
+							alert('회원가입 실패')
+						}
 					})
-					if(json.success){
-						alert('회원가입이 완료되었습니다.')
-
-						this.$store.commit('leftMenu', 'login')
-					} else {
-						alert('회원가입 오류')
-					}
 				}
 			},
 			overlapEmail (email) {
