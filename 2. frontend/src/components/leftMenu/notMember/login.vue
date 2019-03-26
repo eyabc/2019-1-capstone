@@ -39,6 +39,7 @@
 					body: JSON.stringify(data)
 				});
 				if (json.member) {
+					this.$store.state.leftMenuWidth = 800
 					this.$store.commit('member', json.member)
 				} else {
 					alert("아이디 혹은 비밀번호가 틀렸습니다.")

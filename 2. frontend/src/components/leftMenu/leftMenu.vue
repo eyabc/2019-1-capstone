@@ -1,10 +1,14 @@
 <template>
-	<div class="left-menu-wrap" :class="{'active': !leftFold }">
-		<component :is="$store.state.leftMenu"/>
+	<div class="left-menu-wrap"
+		 :style="{
+		 	'min-width': $store.state.leftMenuWidth + 'px',
+		 	'width': $store.state.leftMenuWidth + 'px',
+		 	'left': !leftFold ? -$store.state.leftMenuWidth + 'px' : 0
+		 }">
+		<component :is="$store.state.leftMenu" />
 		<span class="folding folding-left" @click="setFolding(!leftFold)">
 			<i v-if="!leftFold" class="fas fa-chevron-right"></i>
 			<i v-else class="fas fa-chevron-left"></i>
-
 		</span>
 	</div>
 </template>
