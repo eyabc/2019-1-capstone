@@ -1,7 +1,10 @@
 <template>
   <div class="site-wrap">
     <leftMenu :leftFold="leftFold"/>
-    <div class="contents-wrap" :class="{'active' : !leftFold}">
+    <div class="contents-wrap"
+          :style="{
+            'margin-left': !leftFold ? -$store.state.leftMenuWidth + 'px' : 0
+          }">
       <siteHeader />
       <div class="container">
         <GoogleMapLoader />
@@ -27,6 +30,7 @@
        // var member = await this.$fetch('/api');
        // this.$store.commit('member', member);
         this.setLeftMenu()
+        this.$store.commit('setLeftMenuWidth', this.$store.getters.member ? 800 : 500)
     },
     data () {
       return {

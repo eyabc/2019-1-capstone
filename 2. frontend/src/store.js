@@ -6,6 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
 	state: {
 		leftMenu: false,
+		leftMenuWidth: 500,
 		notMember: false,
 		rightMenu: false,
 		member: JSON.parse(localStorage.getItem('member')) || null,
@@ -18,7 +19,8 @@ export default new Vuex.Store({
 			localStorage.setItem('member', JSON.stringify(val))
 			state.member = val
 		},
-		notMember(state, val) { state.notMember = val }
+		notMember(state, val) { state.notMember = val },
+		setLeftMenuWidth(state, val) {state.leftMenuWidth = val },
 	},
 	actions: {
 
