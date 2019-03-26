@@ -354,3 +354,56 @@ $left-width: 500px;
 	color: #666;
 	margin: 10px;
 }
+
+.ismember {
+	&-header {
+		height: 120px;
+		&-search {
+			height: 60px;
+			background: #fff;
+			width: 100%;
+			>form{position:relative;width:50%;
+				>input[type="submit"] {
+					display: none
+				}
+			}
+			&-label {
+				display:block;
+				width:100%;
+				>input[type="text"] {
+					height: 30px;
+					margin: 15px;
+					width: calc(100% - 75px);
+					padding-right: 30px;
+				}
+			}
+			&-more {
+				position: absolute;
+				top: calc(100% - 15px);
+				left: 15px;
+				right: 15px;
+				input {
+					width: calc(100% - 3px);
+					height: 30px;
+					box-sizing: border-box;
+				}
+			}
+			&-icon {
+				position: absolute;
+				right: 15px;
+				top: 15px;
+				bottom: 15px;	
+				padding: 0 15px;
+				line-height: 28px;
+			}
+		}
+		&-navigation {
+			height: 60px;
+			background: #FFBB77;
+		}
+	}
+	&-content {
+		height: 700px;
+		background: #09f;
+	}
+}
