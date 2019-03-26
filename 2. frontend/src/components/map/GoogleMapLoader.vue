@@ -1,7 +1,7 @@
 <template>
   <div class="map-content" >
     <rightMenu />
-    <GmapMap  ref="mapRef" id="map"  class='map-wrap'
+      <GmapMap  ref="mapRef" id="map"  class='map-wrap'
     :center="{lat:currentLocation.lat, lng:currentLocation.lng}" ></GmapMap>
   </div>
 </template>

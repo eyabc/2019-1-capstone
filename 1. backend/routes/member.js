@@ -3,7 +3,7 @@ var express = require('express');
 var router = express.Router();
 
 
-// #41 
+/* #41 */  
 router.post('/api/member/signin', async (req, res) => {
 	const sql = 'select * from member where email = ? and password = ?'
 	const resultJSON = {success: true}
@@ -22,5 +22,5 @@ router.get('/api', (req, res) => {
 
 });
 
-
+/* # 46 회원가입 */ 
 module.exports = router;
