@@ -8,7 +8,7 @@ export default new Vuex.Store({
 		leftMenu: false,
 		notMember: false,
 		rightMenu: false,
-		member: JSON.parse(localStorage.getItem('member')) || null
+		member: JSON.parse(localStorage.getItem('member')) || null,
 		title: "CEO"
 	},
 	mutations: {
@@ -24,7 +24,7 @@ export default new Vuex.Store({
 
 	},
 	getters: {
-		member(state) { return state.member }
+		member(state) { return state.member },
 		title(state) { return state.title}
 	}
 

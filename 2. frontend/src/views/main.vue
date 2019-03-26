@@ -36,8 +36,7 @@
     methods: {
       async setLeftMenu() {
         if(this.$store.getters.member === null) {
-          this.$store.commit('leftMenu', 'notMember')
-          console.log(this.$store.state.leftMenu)
+          this.$store.commit('leftMenu', 'login')
         }
 
       }
