@@ -1,10 +1,6 @@
 <template>
 	<div class="login-wrap" v-if="!$store.getters.member">
-<<<<<<< HEAD
-		<p class="notMember-logo">HighFive</p>
-=======
 		<p class="notMember-logo">{{this.$store.getters.title}}</p>
->>>>>>> 0f7db18e45ace759633ce13b9ad53bc2ae4cb585
 		<form class="login-form" @submit.prevent="login">
 			<ul class="fields">
 				<li>

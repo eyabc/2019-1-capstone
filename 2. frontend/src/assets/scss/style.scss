@@ -340,9 +340,8 @@
 	margin-left: 12px;
 	padding: 0 11px 0 13px;
 	text-overflow: ellipsis;
-	width: 300px;
-	height: 40px;
-	margin-top: 10px;
+	width:300px; height: 40px;
+	margin-top: 10px
 }
 
 #pac-input:focus {
@@ -358,4 +357,7 @@
 }
 #target {
 	width: 345px;
+}
+.map-search-bar {
+
 }

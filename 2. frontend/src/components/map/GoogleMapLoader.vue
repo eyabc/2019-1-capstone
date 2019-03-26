@@ -1,7 +1,7 @@
 <template>
   <div class="map-content" >
     <rightMenu />
-    <input id="pac-input" class="controls" type="text" placeholder="위치를 입력해주세요">
+    <input id="pac-input" class="controls map-search-bar" type="text" placeholder="위치를 입력해주세요">
     <GmapMap  ref="mapRef" id="map"  class='map-wrap'
     :center="{lat:currentLocation.lat, lng:currentLocation.lng}" ></GmapMap>
   </div>
@@ -35,8 +35,6 @@
       return {
         currentLocation : { lat : 0, lng : 0},
         searchAddressInput: '',
-        city: '',
-        country: '',
         map: '',
         marker: '', 
       }
