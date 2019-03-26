@@ -1,8 +1,7 @@
 <template>
 	<div class="site-footer-wrap">
 		<div class="Copyright">
-			<p>Copyright © 2019 HighFive</p>
-			<p>Member - 박은영, 류다인, 김장현</p>
+			<p>Copyright © 2019 team CEO made by 박은영</p>
 		</div>
 	</div>
 </template>
