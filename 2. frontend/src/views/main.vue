@@ -30,7 +30,7 @@
        // var member = await this.$fetch('/api');
        // this.$store.commit('member', member);
         this.setLeftMenu()
-        this.$store.commit('setLeftMenuWidth', this.$store.getters.member ? 800 : 500)
+        this.$store.commit('setLeftMenuWidth', this.$store.getters.member ? 700 : 500)
     },
     data () {
       return {

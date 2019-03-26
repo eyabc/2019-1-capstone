@@ -3,18 +3,19 @@ var express = require('express');
 var router = express.Router();
 
 
-/* #41 */  
+/* #41 로그인 */  
 router.post('/api/member/signin', async (req, res) => {
 	const sql = 'select * from member where email = ? and password = ?'
 	const resultJSON = { success: true }
-	var member
+	let member
+	const data = req.body
 	try {
-		member =  await execQuery(sql, [req.body.email, req.body.password])
-
+		member =  await execQuery(sql, [data.email, data.password])
 		if(!member.length){
 			resultJSON.member = false
 		} else {
-			req.session.member = resultJSON['member']  = member[0]
+			// req.session.member = resultJSON['member']  = member[0]
+			resultJSON['member']  = member[0]
 		}
 	} catch (err) {
 		resultJSON.success = false
