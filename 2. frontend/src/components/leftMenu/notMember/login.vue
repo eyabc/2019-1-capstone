@@ -41,6 +41,7 @@
 				if (json.member) {
 					this.$store.state.leftMenuWidth = 800
 					this.$store.commit('member', json.member)
+					this.$store.commit('leftMenu', 'isMember')
 				} else {
 					alert("아이디 혹은 비밀번호가 틀렸습니다.")
 				}
