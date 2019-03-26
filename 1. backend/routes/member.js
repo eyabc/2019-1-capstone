@@ -6,21 +6,29 @@ var router = express.Router();
 /* #41 */  
 router.post('/api/member/signin', async (req, res) => {
 	const sql = 'select * from member where email = ? and password = ?'
-	const resultJSON = {success: true}
+	const resultJSON = { success: true }
+	var member
 	try {
-		req.session.member = resultJSON['member'] = (await execQuery(sql, [req.body.email, req.body.password]))[0]
-	} catch (error) {
+		member =  await execQuery(sql, [req.body.email, req.body.password])
+
+		if(!member.length){
+			resultJSON.member = false
+		} else {
+			req.session.member = resultJSON['member']  = member[0]
+		}
+	} catch (err) {
 		resultJSON.success = false
+		resultJSON.err = err
 	}
-	console.log(resultJSON)
 	res.json(resultJSON)
 })
 
 /* #41 session get */
-router.get('/api', (req, res) => {
-		res.json({success: true, data: req.session})
-
-});
+// router.get('/api', (req, res) => {
+// 	const sql = 'select data from sessions where email = ? and password = ?'
+// 	const resultJSON = { success: true }
+// 	res.json({success: true, data: req.session})
+// });
 
 /* # 46 회원가입 */ 
 module.exports = router;

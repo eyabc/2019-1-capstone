@@ -24,8 +24,8 @@
       GoogleMapLoader,
     },
     async created() {
-        var session = await this.$fetch('/api');
-        this.$store.commit('member', session);
+       // var member = await this.$fetch('/api');
+       // this.$store.commit('member', member);
         this.setLeftMenu()
     },
     data () {
@@ -35,7 +35,7 @@
     },
     methods: {
       async setLeftMenu() {
-        if(this.$store.getters.member==undefined) {
+        if(this.$store.getters.member === null) {
           this.$store.commit('leftMenu', 'notMember')
           console.log(this.$store.state.leftMenu)
         }

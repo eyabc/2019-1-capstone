@@ -20,12 +20,20 @@ app.set('view engine', 'jade');
 
 // #41
 app.use(session({
-    key: 'session_cookie_name',
-    secret: 'session_cookie_secret',
-    store: sessionStore,
-    resave: false,
-    saveUninitialized: false,
-    expiration: {maxAge: 60000*30},
+  key: 'session_cookie_name',
+  secret: 'session_cookie_secret',
+  store: sessionStore,
+  resave: false,
+  saveUninitialized: false,
+  expiration: {maxAge: 60000*30},
+  schema: {
+    tableName: 'sessions',
+    columnNames: {
+      session_id: 'session_id',
+      expires: 'expires',
+      member: 'idx'
+    }
+  },
 }));
 
 app.use(logger('dev'));
