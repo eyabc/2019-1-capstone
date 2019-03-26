@@ -341,23 +341,12 @@
 	margin-left: 12px;
 	padding: 0 11px 0 13px;
 	text-overflow: ellipsis;
-	width: 300px;
-	height: 40px;
-	margin-top: 10px;
+	width:300px; height: 40px;
+	margin-top: 10px
 } */
 
-
-#pac-input:focus {
-	border-color: #4d90fe;
-}
-
-#title {
-	color: #fff;
-	background-color: #4d90fe;
-	font-size: 25px;
-	font-weight: 500;
-	padding: 6px 12px;
-}
-#target {
-	width: 345px;
+.check-show {
+	font-size: 12px;
+	color: #666;
+	margin: 10px;
 }
