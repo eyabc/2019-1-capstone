@@ -16,10 +16,12 @@
 	import notMember from '@/components/leftMenu/notMember/notMember'
 	import login from './notMember/login'
 	import signup from './notMember/signup'
+	import isMember from './isMember/isMember'
+
 
 	export default {
 		components: {
-			notMember, login, signup
+			notMember, login, signup, isMember
 		},
 		created() {
 		},
