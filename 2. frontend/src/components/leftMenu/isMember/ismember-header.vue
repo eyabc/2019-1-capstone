@@ -8,7 +8,7 @@
 				</label>
 				<input type="submit">
 				<div class="ismember-header-search-more" v-if="hover" >
-					<p><input type="text" name="nameInplace" placeholder="닉네임"></p>
+					<p><input type="text" name="nameInplace" placeholder="닉네임" :class="{ active: $store.getters.isMember }"></p>
 					<p><input type="text" name="nameAll" placeholder="이메일"></p>
 					<p><input type="text" name="theme" placeholder="그룹"></p>
 					<p><input type="text" name="theme" placeholder="카테고리"></p>
@@ -16,16 +16,23 @@
 			</form>
 		</div>
 		<ul class = "ismember-header-navigation">
-			<li><i class="fas fa-user-friends"></i></li>
-			<li><i class="fas fa-comment"></i></li>
-			<li><i class="fas fa-users"></i></li>
-			<li><i class="fas fa-user-alt"></i></li>
-			<li><i class="fas fa-cog"></i></li>
+			<li><a href="#" @click.prevent="setIsMember('friends')"><i class="fas fa-user-friends"></i></a></li>
+			<li><a href="#"><i class="fas fa-comment"></i></a></li>
+			<li><a href="#"><i class="fas fa-users"></i></a></li>
+			<li><a href="#"><i class="fas fa-user-alt"></i></a></li>
+			<li><a href="#"><i class="fas fa-cog"></i></a></li>
 		</ul>
-	<div>
+	</div>
 </template>
 <script type="text/javascript">
+
 	export default {
+		components: {
+			isMember: false
+		},
+		created () {
+			this.isMember = this.$store.getters.isMember
+		},
 		data() {
 			return {
 				hover: false
@@ -34,7 +41,16 @@
 		methods : {
 			hoverToggle() {
 				this.hover = !this.hover
+			},
+			setIsMember(compo) {
+				this.$store.commit('isMember', compo)
 			}
 		}
 	}
 </script>
+<style type="">
+a:hover {
+	text-decoration: none!important;
+	cursor: pointer;
+}
+</style>
