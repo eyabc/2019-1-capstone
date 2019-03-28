@@ -9,12 +9,14 @@ export default new Vuex.Store({
 		leftMenuWidth: 500,
 		notMember: false,
 		rightMenu: false,
+		isMember: false,
 		member: JSON.parse(localStorage.getItem('member')) || null,
-		title: "CEO"
+		title: "CEO",
 	},
 	mutations: {
 		leftMenu(state, val) { state.leftMenu = val },
 		rightMenu(state, val) { state.rightMenu = val },
+		isMember(state, val) { state.isMember = val },
 		member(state, val) {
 			localStorage.setItem('member', JSON.stringify(val))
 			state.member = val

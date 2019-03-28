@@ -21,7 +21,7 @@
 			<button class="login-btn btn" type="submit">로그인</button>
 		</form>
 		<p><a href="#" @click.prevent='' class="login-option">비밀 번호를 분실하였습니까?</a></p>
-		<p><a href="#" @click.prevent='joinMember' class="login-option">아직 HighFive회원이 아니십니까?</a></p>
+		<p><a href="#" @click.prevent='joinMember' class="login-option">아직 {{this.$store.getters.title}} 회원이 아니십니까?</a></p>
 	</div>
 </template>
 <script type="text/javascript">
@@ -41,6 +41,7 @@
 				if (json.member) {
 					this.$store.state.leftMenuWidth = 800
 					this.$store.commit('member', json.member)
+					this.$store.commit('leftMenu', 'isMember')
 				} else {
 					alert("아이디 혹은 비밀번호가 틀렸습니다.")
 				}

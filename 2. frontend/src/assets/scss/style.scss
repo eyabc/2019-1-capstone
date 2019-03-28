@@ -18,8 +18,8 @@
 	}
 
 	&-logo {
-		height: 70px;
-		width: 90px;
+		height: 50px;
+		padding: 15px;
 	}
 
 }
@@ -353,4 +353,77 @@ $left-width: 500px;
 	font-size: 12px;
 	color: #666;
 	margin: 10px;
+}
+
+.ismember {
+	&-header {
+		height: 120px;
+		&-search {
+			height: 60px;
+			background: #fff;
+			width: 100%;
+			>form{position:relative;width:50%;
+				>input[type="submit"] {
+					display: none
+				}
+			}
+			&-label {
+				display:block;
+				width:100%;
+				>input[type="text"] {
+					height: 30px;
+					margin: 15px;
+					width: calc(100% - 75px);
+					padding-right: 30px;
+				}
+			}
+			&-more {
+				position: absolute;
+				top: calc(100% - 15px);
+				left: 15px;
+				right: 15px;
+				input {
+					width: calc(100% - 3px);
+					height: 30px;
+					box-sizing: border-box;
+				}
+			}
+			&-icon {
+				position: absolute;
+				right: 15px;
+				top: 15px;
+				bottom: 15px;	
+				padding: 0 15px;
+				line-height: 28px;
+			}
+		}
+		&-navigation {
+			height: 50px;
+			background: #FFBB77;
+			display: flex;
+			>li {
+				>i {
+					display: flex;
+					line-height: 50px;
+					font-size: 23px;
+
+					justify-content: center;
+					align-items: center;
+					width:90px;
+				}
+				:hover {
+					transition: .3s;
+					border-bottom: 4px solid #FF8000;
+				}
+				&:active {
+					transition: .3s;
+					border-bottom: 4px solid #FF8000;
+				}
+			}
+		}
+	}
+	&-content {
+		height: 700px;
+		background: #09f;
+	}
 }
