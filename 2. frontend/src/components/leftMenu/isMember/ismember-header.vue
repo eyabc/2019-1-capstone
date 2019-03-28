@@ -15,7 +15,13 @@
 				</div>
 			</form>
 		</div>
-		<div class="ismember-header-navigation">navi</div>
+		<ul class = "ismember-header-navigation">
+			<li><i class="fas fa-user-friends"></i></li>
+			<li><i class="fas fa-comment"></i></li>
+			<li><i class="fas fa-users"></i></li>
+			<li><i class="fas fa-user-alt"></i></li>
+			<li><i class="fas fa-cog"></i></li>
+		</ul>
 	</div>
 </template>
 <script type="text/javascript">
