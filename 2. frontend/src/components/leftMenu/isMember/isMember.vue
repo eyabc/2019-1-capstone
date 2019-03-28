@@ -10,6 +10,5 @@
 		components: {
 			isMemberHeader
 		},
-
 	}
 </script>

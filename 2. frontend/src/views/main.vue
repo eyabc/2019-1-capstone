@@ -31,8 +31,8 @@
        // this.$store.commit('member', member);
        this.setLeftMenu()
        this.$store.commit('setLeftMenuWidth', this.$store.getters.member ? 700 : 500)
-     },
-     data () {
+    },
+    data () {
       return {
         leftFold: false,
       }

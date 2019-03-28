@@ -22,7 +22,7 @@
 			<li><i class="fas fa-user-alt"></i></li>
 			<li><i class="fas fa-cog"></i></li>
 		</ul>
-	</div>
+	<div>
 </template>
 <script type="text/javascript">
 	export default {
