@@ -439,6 +439,12 @@ $left-width: 500px;
 		cursor: pointer;
 		display: flex;
 		height: 70px;
+			transition: 1s;
+		&:hover {
+			font-weight: bold;
+			background: #eee;
+			transition: .5s;
+		}
 	}
 	&-small-img {
 		width: 50px;

@@ -2,8 +2,8 @@
 	<div class="profile-wrap">
 		<img class="profile-small-img"src="./default-avatar.png" alt="img" />
 		<div class="profile-info">
-			<p class="profile-nickname">{{info.nickname}}</p>
-			<p class="profile-message">{{info.profile_message}}</p>
+			<p class="profile-nickname">{{info.name}}</p>
+			<p class="profile-message">{{info.description}}</p>
 		</div>
 	</div>
 </template>

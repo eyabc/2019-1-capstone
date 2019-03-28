@@ -1,6 +1,6 @@
 <template>
 	<div class="login-wrap" v-if="!$store.getters.member">
-		<p class="notMember-logo">{{this.$store.getters.title}}</p>
+		<p class="notMember-logo">{{$store.getters.title}}</p>
 		<form class="login-form" @submit.prevent="login">
 			<ul class="fields">
 				<li>
@@ -21,7 +21,7 @@
 			<button class="login-btn btn" type="submit">로그인</button>
 		</form>
 		<p><a href="#" @click.prevent='' class="login-option">비밀 번호를 분실하였습니까?</a></p>
-		<p><a href="#" @click.prevent='joinMember' class="login-option">아직 {{this.$store.getters.title}} 회원이 아니십니까?</a></p>
+		<p><a href="#" @click.prevent='joinMember' class="login-option">아직 {{$store.getters.title}} 회원이 아니십니까?</a></p>
 	</div>
 </template>
 <script type="text/javascript">
