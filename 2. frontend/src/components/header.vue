@@ -1,7 +1,7 @@
 <!-- #26 -->
 <template>
   <div class="site-header">
-    <h3 class="logo"><router-link to="/"><img class="site-logo" src="../assets/image/Logo.png" alt='Logo'></router-link></h3>
+    <h3 class="logo"><router-link to="/"></router-link></h3>
     <div class="header-search-bar">
       <form @submit.prevent="search">
         <input type="text" id="pac-input" name="place" placeholder="위치를 입력해주세요">
