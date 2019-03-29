@@ -5,7 +5,7 @@ const execQuery = require('../db.js')
 /* #54 getFrineds*/
 router.get('/api/friend/:midx', async (req, res) => {
 	const sql = `select A.midx, A.friend, A.favorite, A.request, 
-						B.nickname, B.profile_message, B.email, B.info_visibility, B.one_chat_available, B.profile_img, B.place, B.lat, B.lng
+						B.nickname, B.profile_message, B.email, B.profile_img
 					from member_friend A 
 					JOIN member B 
 					on A.friend = B.idx

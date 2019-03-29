@@ -5,13 +5,14 @@
 	</div>
 </template>
 <script type="text/javascript">
-	import isMemberHeader from './ismember-header'
-	import friends from './friends/friends'
-
-
+	import isMemberHeader from '@/components/leftMenu/isMember/ismember-header'
+	import friends from '@/components/leftMenu/isMember/friends/friends'
+	import friendInfo from '@/components/leftMenu/isMember/friends/friend-info'
 	export default {
 		components: {
-			isMemberHeader, friends
+			isMemberHeader,
+			friends,
+			friendInfo,
 		},
 		created () {
 			this.$store.commit('getFriends')
