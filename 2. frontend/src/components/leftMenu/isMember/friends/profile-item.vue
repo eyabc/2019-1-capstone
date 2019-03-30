@@ -1,5 +1,5 @@
 <template>
-	<div class="profile-wrap">
+	<div class="profile-wrap" @click="goInfo">
 		<img class="profile-small-img"src="./default-avatar.png" alt="img" />
 		<div class="profile-info">
 			<p class="profile-nickname">{{info.nickname}}</p>
@@ -9,6 +9,19 @@
 </template>
 <script type="text/javascript">
 	export default {
-		props: ['info', 'index']
-	}
+		methods: {
+			goInfo () {
+				if (!this.info.midx) {
+					this.$store.commit("isMember", 'myInfo')
+				} else {
+					this.$store.commit('tempData', { idx: this.info.friend})
+					this.$store.commit('tempIdx', { index: this.index })
+					this.$store.commit("isMember", 'friendInfo')
+
+			}
+		}
+	},
+	props: ['info', 'index']
+
+}
 </script>

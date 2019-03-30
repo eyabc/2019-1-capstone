@@ -1,0 +1,12 @@
+{
+	"auth": "authority"
+	"cg":"category"
+	"chat":"chat"
+	"G":"chat_group"
+	"F":"friend"
+	"participant":"group_participant"
+	"M":"member"
+	"":""
+	"":""
+	"":""
+}

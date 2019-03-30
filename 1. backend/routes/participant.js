@@ -11,9 +11,9 @@ router.get('/api/group/:midx', async (req, res) => {
 					on A.cgidx = B.idx
 					where midx = ?
 					order by name asc`
-	const resultJSON = { success: true, group: []}
+	const resultJSON = { success: true, data: []}
 	try {
-		resultJSON.group = await execQuery(sql, [req.params.midx])
+		resultJSON.data = await execQuery(sql, [req.params.midx])
 	} catch (err) {
 		resultJSON.success = false
 		resultJSON.err = err.stack

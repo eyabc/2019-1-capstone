@@ -6,15 +6,21 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
 	state: {
-		leftMenu: false,
-		leftMenuWidth: 500,
-		notMember: false,
-		rightMenu: false,
-		isMember: 'friends',
 		member: JSON.parse(localStorage.getItem('member')) || null,
 		title: "CEO",
+		
+		leftMenu: false,
+		leftMenuWidth: 500,
+		
+		rightMenu: false,
+
+		notMember: false,
+		
+		isMember: 'friends',
 		friend: [],
 		group: [],
+		tempData: {},
+		tempIdx: []
 		
 	},
 	mutations: {
@@ -30,24 +36,42 @@ export default new Vuex.Store({
 		friend(state, val) {
 			state.friend = val
 		},
+		tempData(state, val) {
+			state.tempData = val
+		},		
+		tempIdx(state, val) {
+			state.tempIdx = val
+		},
+		tempInit(state) {
+			state.tempData = null
+			staet.tempIdx = null
+		},
 		async getFriends (state) {
 			const data  = state.member.idx
 			var json = await $fetch(`/api/friend/${data}`)
-			if(json.success) {
-				state.friend = json.friend
-			} else {
-				console.log("fails get friends")
-			}
+			state.friend = json.data
+		},
+		async getFrendInfo (state) {
+			const data  = state.tempData.idx
+			var json = await $fetch(`/api/member/${data}`)
+			state.tempData = json.data
+		},
+		async deleteFriend (state) {
+			var json = await $fetch(`/api/friend/${state.member.idx}/${state.tempData.idx}`, {
+				method: 'delete',
+				headers: {'Content-Type':'application/json'},
+			})
+			const index = state.tempIdx.index
+			state.friend.splice(index,index+1)
+			this.tempInit() 
 		},
 		async getGroups (state) {
 			const data  = state.member.idx
 			var json = await $fetch(`/api/group/${data}`)
-			if(json.success) {
-				state.group = json.group
-			} else {
-				console.log("fails get groups")
-			}
+			state.group = json.data
 		},
+
+
 
 	},
 	actions: {
@@ -57,7 +81,8 @@ export default new Vuex.Store({
 		member(state) { return state.member },
 		title(state) { return state.title},
 		isMember(state) {return state.isMember},
-		friend(state) { return state.friend}
+		friend(state) { return state.friend},
+		tempData(state) {return state.tempData}
 
 	}
 
