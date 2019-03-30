@@ -10,11 +10,11 @@
 			</div>
 		</div><br/>
 		<ul class="friend-info-btn">
-			<li><a href="#">대화하기</a></li>
-			<li><a href="#">그룹보기</a></li>
-			<li><a href="#">위치정보조회</a></li>
-			<li><a href="#">즐겨찾기 추가</a></li>
-			<li><a href="#">친구삭제</a></li>
+			<li><a href="#" @click.prevent="">대화하기</a></li>
+			<li><a href="#" @click.prevent="">그룹보기</a></li>
+			<li><a href="#" @click.prevent="">위치정보조회</a></li>
+			<li><a href="#" @click.prevent="">즐겨찾기 추가</a></li>
+			<li><a href="#" @click.prevent="deleteFriend">친구삭제</a></li>
 		</ul>
 	</div>
 </template>
@@ -35,7 +35,12 @@
 			this.$store.commit('getFrendInfo')
 		},
 		methods: {
-
+			deleteFriend () {
+				if(confirm("친구목록에서 삭제하시겠습니까?")){
+					this.$store.commit('deleteFriend')
+					this.$store.commit('isMember', 'friends')
+				}
+			}
 		}
 	}
 </script>

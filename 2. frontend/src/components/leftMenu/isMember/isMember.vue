@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<isMemberHeader class="ismember-header"/>
-		<component v-if="$store.state.friend.length && $store.state.group.length" :is="$store.state.isMember" class="ismember-content"/>
+		<component :is="$store.state.isMember" class="ismember-content"/>
 	</div>
 </template>
 <script type="text/javascript">

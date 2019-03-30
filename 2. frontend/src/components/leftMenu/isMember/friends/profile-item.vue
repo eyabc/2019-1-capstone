@@ -14,7 +14,8 @@
 				if (!this.info.midx) {
 					this.$store.commit("isMember", 'myInfo')
 				} else {
-					this.$store.state.tempData = this.info.friend
+					this.$store.commit('tempData', { idx: this.info.friend})
+					this.$store.commit('tempIdx', { index: this.index })
 					this.$store.commit("isMember", 'friendInfo')
 
 			}

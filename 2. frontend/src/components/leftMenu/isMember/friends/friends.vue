@@ -20,17 +20,18 @@
 		components: {
 			friendItem, groupItem
 		},
-		async created() {
-
-			this.friend = this.$store.state.friend
-			this.group = this.$store.state.group
+		computed: {
+			friend () {
+				return this.$store.state.friend
+			},
+			group () {
+				return this.$store.state.group
+			}
 		},
 		data() {
 			return {
 				default_img: './default-avatar.png',
 				myself: this.$store.getters.member,
-				friend: [],
-				group: [],
 			}
 		},
 		methods: {

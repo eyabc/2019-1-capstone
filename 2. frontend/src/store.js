@@ -19,8 +19,8 @@ export default new Vuex.Store({
 		isMember: 'friends',
 		friend: [],
 		group: [],
-		tempData: null,
-		tempData2: []
+		tempData: {},
+		tempIdx: []
 		
 	},
 	mutations: {
@@ -36,21 +36,41 @@ export default new Vuex.Store({
 		friend(state, val) {
 			state.friend = val
 		},
+		tempData(state, val) {
+			state.tempData = val
+		},		
+		tempIdx(state, val) {
+			state.tempIdx = val
+		},
+		tempInit(state) {
+			state.tempData = null
+			staet.tempIdx = null
+		},
 		async getFriends (state) {
 			const data  = state.member.idx
 			var json = await $fetch(`/api/friend/${data}`)
-			state.friend = json.friend
+			state.friend = json.data
 		},
 		async getFrendInfo (state) {
-			const data  = state.tempData
+			const data  = state.tempData.idx
 			var json = await $fetch(`/api/member/${data}`)
 			state.tempData = json.data
+		},
+		async deleteFriend (state) {
+			var json = await $fetch(`/api/friend/${state.member.idx}/${state.tempData.idx}`, {
+				method: 'delete',
+				headers: {'Content-Type':'application/json'},
+			})
+			const index = state.tempIdx.index
+			state.friend.splice(index,index+1)
+			this.tempInit() 
 		},
 		async getGroups (state) {
 			const data  = state.member.idx
 			var json = await $fetch(`/api/group/${data}`)
-			state.group = json.group
+			state.group = json.data
 		},
+
 
 
 	},

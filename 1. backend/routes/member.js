@@ -70,7 +70,7 @@ router.get('/api/member/:friend', async (req, res) => {
 	const sql = `SELECT A.request,
 				B.idx, B.email, B.place_visibility, B.info_visibility, B.one_chat_available, B.nickname, B.profile_img, B.profile_message, B.place, B.lat, B.lng   
 				FROM member B LEFT
-				JOIN member_friend A
+				JOIN friend A
 				ON A.friend = B.idx
 				WHERE A.friend = ? 
 				`

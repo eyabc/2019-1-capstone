@@ -9,5 +9,4 @@ const exec = (sql, arr) => new Promise((resolve, reject) => {
 		conn.end()
 	})
 })
-
 module.exports = exec
