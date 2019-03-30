@@ -28,6 +28,10 @@
 				return this.$store.state.group
 			}
 		},
+		created () {
+				this.$store.commit('getFriends')
+				this.$store.commit('getGroups')
+		},
 		data() {
 			return {
 				default_img: './default-avatar.png',

@@ -16,11 +16,11 @@
 			</form>
 		</div>
 		<ul class = "ismember-header-navigation">
-			<li><a href="#" @click.prevent="setIsMember('friends')"><i class="fas fa-user-friends"></i></a></li>
-			<li><a href="#"><i class="fas fa-comment"></i></a></li>
-			<li><a href="#"><i class="fas fa-users"></i></a></li>
-			<li><a href="#"><i class="fas fa-user-alt"></i></a></li>
-			<li><a href="#"><i class="fas fa-cog"></i></a></li>
+			<li :class="{ active:friend }"><a href="#" @click.prevent="setIsMember('friends')" ><i class="fas fa-user-friends"></i></a></li>
+			<li :class=""><a href="#"><i class="fas fa-comment"></i></a></li>
+			<li :class=""><a href="#"><i class="fas fa-users"></i></a></li>
+			<li :class=""><a href="#"><i class="fas fa-user-alt"></i></a></li>
+			<li :class=""><a href="#"><i class="fas fa-cog"></i></a></li>
 		</ul>
 	</div>
 </template>
@@ -28,14 +28,16 @@
 
 	export default {
 		components: {
-			isMember: false
+			isMember: false,
 		},
 		created () {
 			this.isMember = this.$store.getters.isMember
 		},
 		data() {
 			return {
-				hover: false
+				hover: false,
+				friend: true,
+				
 			}
 		},
 		methods : {
@@ -43,7 +45,10 @@
 				this.hover = !this.hover
 			},
 			setIsMember(compo) {
+				this.$store.commit('getFriends')
+				this.$store.commit('getGroups')
 				this.$store.commit('isMember', compo)
+
 			}
 		}
 	}

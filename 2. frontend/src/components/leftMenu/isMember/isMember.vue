@@ -17,8 +17,7 @@
 			myInfo,
 		},
 		created () {
-			this.$store.commit('getFriends')
-			this.$store.commit('getGroups')
+
 		},
 		methods: {
 
