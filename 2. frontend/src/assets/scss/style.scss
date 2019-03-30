@@ -357,6 +357,10 @@ $left-width: 500px;
 }
 
 .ismember {
+	&-content {
+		position: relative;
+		top: 120px;
+	}
 	&-header {
 		position:fixed;
 		width: 100%;
@@ -426,20 +430,16 @@ $left-width: 500px;
 			}
 		}
 	}
-	&-content {
-	}
+
 }
-.friends-wrap {
-	position: relative;
-	top: 120px;
-}
+
 
 .profile {
 	&-wrap {
 		cursor: pointer;
 		display: flex;
 		height: 70px;
-			transition: 1s;
+		transition: 1s;
 		&:hover {
 			font-weight: bold;
 			background: #eee;
@@ -473,4 +473,59 @@ $left-width: 500px;
 .contour {
 	margin: 2px;
 	border: 1px dashed #ccc;
+}
+
+.friend-info {
+	&-wrap {
+		margin: 10px 20px;
+	}
+	&-short {
+		display: flex;
+		height: 140px;
+		overflow: hidden;
+
+	}
+	&-small-img {
+		max-height: 120px;
+		max-width: 120px;
+		border-radius: 20px;
+		margin: 10px 15px 10px 0px;
+	}
+	&-desc {
+		margin-top: 20px;
+		>p { padding: 5px 0;
+			height: 30px;
+		}
+		>hr {
+			margin: 3px 0;
+			border-color: #FF8000;
+		}
+	}
+	&-nickname {
+		font-size: 20px;
+		font-weight: bold;
+	}
+	&-message{
+		font-size: 15px;
+	}
+	&-btn {
+		display: flex;
+		>li {
+		}
+		>li>a {
+			display: inline-block;
+			padding: 10px;
+			margin: 10px 8px;
+			width: 115px;
+			border: dashed 1px #FFBB77;		
+			height: 40px;
+			text-align: center;
+			border-radius: 7px;
+			font-weight:bold;
+			&:hover, .active {
+				background: #FFBB77;
+			}
+
+		}
+	}
 }

@@ -8,11 +8,13 @@
 	import isMemberHeader from '@/components/leftMenu/isMember/ismember-header'
 	import friends from '@/components/leftMenu/isMember/friends/friends'
 	import friendInfo from '@/components/leftMenu/isMember/friends/friend-info'
+	import myInfo from '@/components/leftMenu/isMember/my-info/my-info'
 	export default {
 		components: {
 			isMemberHeader,
 			friends,
 			friendInfo,
+			myInfo,
 		},
 		created () {
 			this.$store.commit('getFriends')

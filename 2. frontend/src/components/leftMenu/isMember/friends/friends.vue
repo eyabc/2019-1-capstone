@@ -21,10 +21,9 @@
 			friendItem, groupItem
 		},
 		async created() {
+
 			this.friend = this.$store.state.friend
 			this.group = this.$store.state.group
-			console.log(this.group)
-
 		},
 		data() {
 			return {

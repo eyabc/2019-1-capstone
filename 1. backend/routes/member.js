@@ -64,4 +64,24 @@ router.post('/api/member/signup', async (req, res) => {
 	res.json(resultJSON)
 })
 
+
+/* # 132 get friend infomation */
+router.get('/api/member/:friend', async (req, res) => {
+	const sql = `SELECT A.request,
+				B.idx, B.email, B.place_visibility, B.info_visibility, B.one_chat_available, B.nickname, B.profile_img, B.profile_message, B.place, B.lat, B.lng   
+				FROM member B LEFT
+				JOIN member_friend A
+				ON A.friend = B.idx
+				WHERE A.friend = ? 
+				`
+	const resultJSON = { success: true, data: false }
+	try {
+		resultJSON.data = (await execQuery(sql, [req.params.friend]))[0]
+	} catch (err) {
+		resultJSON.success = false
+		resultJSON.err = err.stack
+	}
+	res.json(resultJSON)
+})
+
 module.exports = router;
