@@ -515,6 +515,10 @@ $left-width: 500px;
 		height: 140px;
 		overflow: hidden;
 	}
+	&-set {
+		display: flex;
+		height: 140px;
+	}
 	&-small-img {
 		max-height: 120px;
 		max-width: 120px;

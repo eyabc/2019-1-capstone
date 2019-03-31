@@ -1,6 +1,6 @@
 <template>
 	<div class="member-info-wrap" @click="">		
-		<form class="member-info-short">
+		<form class="member-info-set" method="post" @submit.prevent='setMember'>
 			<div id="image-set-img">
 				<a class="image-set-small-img image-set-img-item " @click="toggleShow" :class="{ none : imgDataUrl !=='' }" >프로필 사진 선택 <br/> jpg/png </a>
 				<img class="image-set-small-img " :src="imgDataUrl" >
@@ -9,19 +9,62 @@
 				@crop-upload-success="cropUploadSuccess"
 				@crop-upload-fail="cropUploadFail"
 				v-model="show"
-				:width="400"
-				:height="400"
+				:width="500"
+				:height="500"
 				lang-type="en"
 				imgBgc="#000"
 				img-format="png" ></my-upload>
 			</div>
 			<!-- <img class="image-set-small-img"src="./default-avatar.png" alt="img" /> -->
 			<div class="member-info-desc">
-				<h3 class="member-info-nickname">fdfd</h3><hr/>
-				<p class="member-info-message"></p>
-				<p class="member-info-place"></p>
+				<ul class="fields">
+				<li>
+					<label class="input-label">
+						<span class="pre"><i class="fas fa-envelope"></i></span>
+						<input type="text" class="full-width"
+						
+						required />
+						<span class="lbl">이메일</span>
+						<p class="check-show">{{  }}</p>
+					</label>
+				</li>
+				<li>
+					<label class="input-label">
+						<span class="pre"><i class="fas fa-key"></i></span>
+						<input type="password" name="password" class="full-width" required
+						>
+						<span class="lbl">비밀번호</span>
+						<p class="check-show">{{  }}</p>
+					</label>
+				</li>
+				<li>
+					<label class="input-label">
+						<span class="pre"><i class="fas fa-key"></i></span>
+						<input type="password" name="password-re" class="full-width" required
+						>
+						<span class="lbl">비밀번호 재확인</span>
+						<p class="check-show">{{  }}</p>
+					</label>
+				</li>
+				<li>
+					<label class="input-label">
+						<span class="pre"><i class="fas fa-user"></i></span>
+						<input type="text" name="email" class="full-width" required >
+						<span class="lbl">닉네임</span>
+					</label>
+				</li>
+				<li>
+					<label class="input-label">
+						<span class="pre"><i class="fas fa-map-marker-alt"></i></span>
+						<input type="text"  name="place" ref="place" class="full-width" required placeholder="위치를 입력해주세요" @keydown.enter.prevent=""> 
+						<p class="check-show">{{  }}</p>
+					</label>
+				</li>
+				<input class="login-btn btn" type="submit" value="완료">
+				<input class="login-btn back-btn" type="button" value="로그인 페이지로 이동" @click.prevent="">
+			</ul>
 			</div>
-		</form><br/>
+		</form>
 		<ul class="member-info-btn">
 			<li><a href="#" @click.prevent="">대기 친구</a></li>
 			<li><a href="#" @click.prevent="">대기 그룹</a></li>
@@ -45,6 +88,9 @@
 			'my-upload': myUpload
 		},
 		methods: {
+			setMember() {
+
+			},
 			toggleShow() {
 				this.show = !this.show;
 			},
