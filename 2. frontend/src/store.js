@@ -33,18 +33,12 @@ export default new Vuex.Store({
 		},
 		notMember(state, val) { state.notMember = val },
 		setLeftMenuWidth(state, val) {state.leftMenuWidth = val },
-		friend(state, val) {
-			state.friend = val
-		},
-		tempData(state, val) {
-			state.tempData = val
-		},		
-		tempIdx(state, val) {
-			state.tempIdx = val
-		},
+		friend(state, val) { state.friend = val },
+		tempData(state, val) { state.tempData = val },		
+		tempIdx(state, val) { state.tempIdx = val },
 		tempInit(state) {
 			state.tempData = null
-			staet.tempIdx = null
+			state.tempIdx = null
 		},
 		async getFriends (state) {
 			const data  = state.member.idx
@@ -56,6 +50,20 @@ export default new Vuex.Store({
 			var json = await $fetch(`/api/member/${data}`)
 			state.tempData = json.data
 		},
+		async getGroups (state) {
+			const data  = state.member.idx
+			var json = await $fetch(`/api/group/${data}`)
+			state.group = json.data
+		},
+		async setFavorite (state, val) {
+			const data = val
+			var json = await $fetch(`/api/friend/favorite/${state.member.idx}/${state.tempData.idx}`, {
+				method: 'put',
+				headers: {'Content-Type':'application/json'},
+				body: JSON.stringify(data)
+			})
+			state.tempData.favorite = val.favorite
+		},
 		async deleteFriend (state) {
 			var json = await $fetch(`/api/friend/${state.member.idx}/${state.tempData.idx}`, {
 				method: 'delete',
@@ -64,11 +72,6 @@ export default new Vuex.Store({
 			const index = state.tempIdx.index
 			state.friend.splice(index,index+1)
 			this.tempInit() 
-		},
-		async getGroups (state) {
-			const data  = state.member.idx
-			var json = await $fetch(`/api/group/${data}`)
-			state.group = json.data
 		},
 
 

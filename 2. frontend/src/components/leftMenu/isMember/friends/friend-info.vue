@@ -6,16 +6,17 @@
 				<h3 class="friend-info-nickname">{{memberData.nickname}}</h3><hr/>
 				<p class="friend-info-message">{{ memberData.profile_message }}</p>
 				<p class="friend-info-place" v-if="memberData.place_visibility === 0">{{ memberData.place }}</p>
-				<p>{{memberData}}</p>
 			</div>
 		</div><br/>
 		<ul class="friend-info-btn">
 			<li><a href="#" @click.prevent="">대화하기</a></li>
 			<li><a href="#" @click.prevent="">그룹보기</a></li>
 			<li><a href="#" @click.prevent="">위치정보조회</a></li>
-			<li><a href="#" @click.prevent="">즐겨찾기 추가</a></li>
+			<li><a href="#" @click.prevent="setFavorite" :class="{ active : memberData.favorite === 1 }">즐겨찾기 {{favorite}}</a></li>
 			<li><a href="#" @click.prevent="deleteFriend">친구삭제</a></li>
 		</ul>
+		<p>{{memberData}}</p>
+		
 	</div>
 </template>
 <script type="text/javascript">
@@ -23,12 +24,18 @@
 		data () {
 			return {
 				data : {},
-				favorite: "추가"
 			}
 		},
 		computed: {
 			memberData () {
 				return this.$store.getters.tempData
+			},
+			favorite () {
+				if(this.memberData.favorite === 1) {
+					return "해제"
+				} else {
+					return "추가"
+				}
 			}
 		},
 		created() {
@@ -40,6 +47,11 @@
 					this.$store.commit('deleteFriend')
 					this.$store.commit('isMember', 'friends')
 				}
+			},
+			setFavorite () {
+				var data
+				this.memberData.favorite === 1 ? data = {favorite: 0} : data = {favorite: 1}
+				this.$store.commit('setFavorite', data)
 			}
 		}
 	}
