@@ -67,7 +67,7 @@ router.post('/api/member/signup', async (req, res) => {
 
 /* # 132 get friend infomation */
 router.get('/api/member/:friend', async (req, res) => {
-	const sql = `SELECT A.request,
+	const sql = `SELECT A.request, A.favorite,
 				B.idx, B.email, B.place_visibility, B.info_visibility, B.one_chat_available, B.nickname, B.profile_img, B.profile_message, B.place, B.lat, B.lng   
 				FROM member B LEFT
 				JOIN friend A

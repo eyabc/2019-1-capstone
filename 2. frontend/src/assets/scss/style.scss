@@ -522,7 +522,7 @@ $left-width: 500px;
 			text-align: center;
 			border-radius: 7px;
 			font-weight:bold;
-			&:hover, .active {
+			&:hover, &.active {
 				background: #FFBB77;
 			}
 
