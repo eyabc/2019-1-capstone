@@ -16,7 +16,6 @@
 			<li><a href="#" @click.prevent="deleteFriend">친구삭제</a></li>
 		</ul>
 		<p>{{memberData}}</p>
-		
 	</div>
 </template>
 <script type="text/javascript">
