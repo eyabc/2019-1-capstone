@@ -16,7 +16,6 @@
 			<li><a href="#" @click.prevent="deleteFriend">친구삭제</a></li>
 		</ul>
 		<p>{{memberData}}</p>
-		
 	</div>
 </template>
 <script type="text/javascript">
@@ -39,7 +38,6 @@
 					return "추가"
 				}
 			},
-
 		},
 		created() {
 			this.$store.commit('getFrendInfo')
@@ -65,7 +63,6 @@
 			},
 			setChat () {
 				if(this.memberData.one_chat_available == 1){
-
 				}
 			}
 		}
