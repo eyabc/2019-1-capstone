@@ -58,7 +58,8 @@
 			},
 			showMap () {
 				const location = { lat:this.memberData.lat , lng: this.memberData.lng}
-			//	eventBus.setLocation(location)
+				const data = { nickname:this.memberData.nickname , place: this.memberData.place }
+				eventBus.setLocation(location, data)
 			}
 		}
 	}

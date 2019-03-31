@@ -57,9 +57,30 @@ const bus = new Vue({
 	initLocation (target) {
 		this.locationTarget = target
 	},
-	setLocation(Location) {
+	setLocation(Location, data) {
+		this.map.setZoom(18);
 		this.map.setCenter({lat: Location.lat, lng: Location.lng}); 
-		// this.map.setZoom({zoom:17})
+		var marker = new google.maps.Marker({
+			position: Location,
+			map: this.map,
+			title: "hle"
+		});
+		var contentString = '<div id="content">'+
+		'<div id="siteNotice">'+
+		'</div>'+
+		'<h3 id="firstHeading" class="firstHeading">'+data.nickname+'</h3>'+
+		'<div id="bodyContent">'+
+		'<p>'+data.place+'</p>'+
+		'</div>'+
+		'</div>';
+		var infowindow = new google.maps.InfoWindow({
+			content: contentString
+		});
+		infowindow.open(this.map, marker);
+		marker.addListener('click', function() {
+			infowindow.open(this.map, marker);
+		});
+
 	},
 }
 })
