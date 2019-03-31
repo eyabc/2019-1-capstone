@@ -474,7 +474,38 @@ $left-width: 500px;
 	margin: 2px;
 	border: 1px dashed #ccc;
 }
-
+.image-set {
+	&-small-img {
+		max-height: 120px;
+		max-width: 120px;
+		height: 120px;
+		width: 120px;
+		border-radius: 20px;
+		margin: 10px 15px 10px 0px;
+		position: absolute;
+		top:0;
+	}
+	&-img {
+		position: relative;
+	}
+	&-img-item {
+		background:#eee;
+		display: flex;
+		justify-content: center;
+		text-align: center;
+		align-items: center;
+		font-size: 12px;
+		transition: 0.5s;
+		position: relative;
+		z-index: 10;
+		&.none {
+			opacity: 0;
+			&:hover {
+				opacity: 0.7;
+			}
+		}
+	}
+}
 .member-info {
 	&-wrap {
 		margin: 0px 20px;
@@ -483,13 +514,25 @@ $left-width: 500px;
 		display: flex;
 		height: 140px;
 		overflow: hidden;
-
 	}
 	&-small-img {
 		max-height: 120px;
 		max-width: 120px;
+		height: 120px;
+		width: 120px;
 		border-radius: 20px;
 		margin: 10px 15px 10px 0px;
+	}
+	&-img {
+	}
+	&-img-item {
+		background:#eee;
+		display: flex;
+		justify-content: center;
+		text-align: center;
+		align-items: center;
+		font-size: 12px;
+		transition: 0.5s;
 	}
 	&-desc {
 		margin-top: 20px;
@@ -532,4 +575,5 @@ $left-width: 500px;
 
 		}
 	}
+
 }
