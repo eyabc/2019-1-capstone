@@ -1,14 +1,14 @@
 <template>
-	<div class="friend-info-wrap" @click="">
-		<div class="friend-info-short">
-			<img class="friend-info-small-img"src="./default-avatar.png" alt="img" />
-			<div class="friend-info-desc">
-				<h3 class="friend-info-nickname">{{memberData.nickname}}</h3><hr/>
-				<p class="friend-info-message">{{ memberData.profile_message }}</p>
-				<p class="friend-info-place" v-if="memberData.place_visibility === 1">{{ memberData.place }}</p>
+	<div class="member-info-wrap" @click="">
+		<div class="member-info-short">
+			<img class="member-info-small-img"src="./default-avatar.png" alt="img" />
+			<div class="member-info-desc">
+				<h3 class="member-info-nickname">{{memberData.nickname}}</h3><hr/>
+				<p class="member-info-message">{{ memberData.profile_message }}</p>
+				<p class="member-info-place" v-if="memberData.place_visibility === 1">{{ memberData.place }}</p>
 			</div>
 		</div><br/>
-		<ul class="friend-info-btn">
+		<ul class="member-info-btn">
 			<li><a href="#" @click.prevent="setChat" :class="{ ban : memberData.one_chat_available === 0 }">대화하기</a></li>
 			<li><a href="#" @click.prevent="">그룹보기</a></li>
 			<li><a href="#" @click.prevent="showMap" :class="{ ban : memberData.place_visibility === 0 }">위치정보조회</a></li>
@@ -65,7 +65,7 @@
 			},
 			setChat () {
 				if(this.memberData.one_chat_available == 1){
-					
+
 				}
 			}
 		}
