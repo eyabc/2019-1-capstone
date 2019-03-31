@@ -15,8 +15,8 @@
 			<li><a href="#" @click.prevent="setFavorite" :class="{ active : memberData.favorite === 1 }">즐겨찾기 {{favorite}}</a></li>
 			<li><a href="#" @click.prevent="deleteFriend">친구삭제</a></li>
 		</ul>
-				<p>{{memberData}}</p>
-
+		<p>{{memberData}}</p>
+		
 	</div>
 </template>
 <script type="text/javascript">
@@ -52,7 +52,6 @@
 				var data
 				this.memberData.favorite === 1 ? data = {favorite: 0} : data = {favorite: 1}
 				this.$store.commit('setFavorite', data)
-
 			}
 		}
 	}
