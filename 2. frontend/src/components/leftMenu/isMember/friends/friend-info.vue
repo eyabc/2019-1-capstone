@@ -11,7 +11,7 @@
 		<ul class="friend-info-btn">
 			<li><a href="#" @click.prevent="">대화하기</a></li>
 			<li><a href="#" @click.prevent="">그룹보기</a></li>
-			<li><a href="#" @click.prevent="">위치정보조회</a></li>
+			<li><a href="#" @click.prevent="showMap">위치정보조회</a></li>
 			<li><a href="#" @click.prevent="setFavorite" :class="{ active : memberData.favorite === 1 }">즐겨찾기 {{favorite}}</a></li>
 			<li><a href="#" @click.prevent="deleteFriend">친구삭제</a></li>
 		</ul>
@@ -20,6 +20,8 @@
 	</div>
 </template>
 <script type="text/javascript">
+	import eventBus from '@/eventBus'
+
 	export default {
 		data () {
 			return {
@@ -36,7 +38,8 @@
 				} else {
 					return "추가"
 				}
-			}
+			},
+
 		},
 		created() {
 			this.$store.commit('getFrendInfo')
@@ -52,6 +55,10 @@
 				var data
 				this.memberData.favorite === 1 ? data = {favorite: 0} : data = {favorite: 1}
 				this.$store.commit('setFavorite', data)
+			},
+			showMap () {
+				const location = { lat:this.memberData.lat , lng: this.memberData.lng}
+			//	eventBus.setLocation(location)
 			}
 		}
 	}
