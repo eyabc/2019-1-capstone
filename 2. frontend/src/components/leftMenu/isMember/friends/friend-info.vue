@@ -5,13 +5,13 @@
 			<div class="friend-info-desc">
 				<h3 class="friend-info-nickname">{{memberData.nickname}}</h3><hr/>
 				<p class="friend-info-message">{{ memberData.profile_message }}</p>
-				<p class="friend-info-place" v-if="memberData.place_visibility === 0">{{ memberData.place }}</p>
+				<p class="friend-info-place" v-if="memberData.place_visibility === 1">{{ memberData.place }}</p>
 			</div>
 		</div><br/>
 		<ul class="friend-info-btn">
-			<li><a href="#" @click.prevent="">대화하기</a></li>
+			<li><a href="#" @click.prevent="setChat" :class="{ ban : memberData.one_chat_available === 0 }">대화하기</a></li>
 			<li><a href="#" @click.prevent="">그룹보기</a></li>
-			<li><a href="#" @click.prevent="showMap">위치정보조회</a></li>
+			<li><a href="#" @click.prevent="showMap" :class="{ ban : memberData.place_visibility === 0 }">위치정보조회</a></li>
 			<li><a href="#" @click.prevent="setFavorite" :class="{ active : memberData.favorite === 1 }">즐겨찾기 {{favorite}}</a></li>
 			<li><a href="#" @click.prevent="deleteFriend">친구삭제</a></li>
 		</ul>
@@ -57,9 +57,16 @@
 				this.$store.commit('setFavorite', data)
 			},
 			showMap () {
-				const location = { lat:this.memberData.lat , lng: this.memberData.lng}
-				const data = { nickname:this.memberData.nickname , place: this.memberData.place }
-				eventBus.setLocation(location, data)
+				if(this.memberData.place_visibility === 1){
+					const location = { lat:this.memberData.lat , lng: this.memberData.lng}
+					const data = { nickname:this.memberData.nickname , place: this.memberData.place }
+					eventBus.setLocation(location, data)
+				}
+			},
+			setChat () {
+				if(this.memberData.one_chat_available == 1){
+					
+				}
 			}
 		}
 	}

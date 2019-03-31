@@ -525,6 +525,10 @@ $left-width: 500px;
 			&:hover, &.active {
 				background: #FFBB77;
 			}
+			&.ban {
+				cursor: not-allowed;
+				background: #ddd;
+			}
 
 		}
 	}
