@@ -5,7 +5,7 @@
       <li><a href="#" @click.prevent=""># 공개 설정</a></li>
       <li><a href="#" @click.prevent="back">수정 취소</a></li>
     </ul>
-    <form class="member-info-set" method="post" @submit.prevent='setMember'>
+    <form class="member-info-set" method="post" @submit.prevent="setMember">
       <div id="image-set-img">
         <a class="image-set-small-img image-set-img-item " @click="toggleShow" :class="{ none : imgDataUrl !=='' }" >프로필 사진 선택 <br/> jpg/png </a>
         <img class="image-set-small-img img" :src="imgDataUrl" >
@@ -51,25 +51,25 @@
           <li>
             <label class="input-label">
               <span class="pre"><i class="fas fa-key"></i></span>
-              <input type="password" name="password" class="full-width" placeholder="현재 비밀번호를 입력해야 정보를 수정할 수 있습니다." required>
+              <input type="password" name="p_password" class="full-width" placeholder="현재 비밀번호를 입력해야 정보를 수정할 수 있습니다." required>
             </label>
           </li>
           <li>
             <label class="input-label">
               <span class="pre"><i class="fas fa-key"></i></span>
-              <input type="password" name="password" class="full-width" placeholder="새 비밀번호">
+              <input type="password" name="n_password" class="full-width" placeholder="새 비밀번호">
             </label>
           </li>
           <li>
             <label class="input-label">
               <span class="pre"><i class="fas fa-key"></i></span>
-              <input type="password" name="password-re" class="full-width" required placeholder="새 비밀번호 재확인">
+              <input type="password" name="n_password_re" class="full-width"  placeholder="새 비밀번호 재확인">
             </label>
           </li>
           <li>
             <label class="input-label">
               <span class="pre"><i class="fas fa-user"></i></span>
-              <input type="text" name="email" class="full-width" required :value="member.nickname">
+              <input type="text" name="nickname" class="full-width" required :value="member.nickname">
               <span class="lbl">닉네임</span>
             </label>
           </li>
@@ -121,10 +121,40 @@ export default {
     this.member.profile_img === '' ? this.imgDataUrl = '' : this.member.profile_img  
   },
   methods: {
-    setMember() {
-
+    setMember (e) {
+      const frm = e.target
+      let password = frm.n_password.value
+      /* 현재 패스워드와 입력된 현재 패스워드 검사 */
+      if (this.member.password !== frm.p_password.value) {
+        alert("현재 비밀번호와 일치하지 않습니다.")
+        frm.p_password.value = ''
+        frm.p_password.focus()
+        return 
+      } 
+      if (frm.n_password.value === '') {
+        password = frm.p_password.value
+      }
+      if (frm.n_password.value !== frm.n_password_re.value) {
+        alert("새 비밀번호가 일치하지 않습니다.")
+        frm.n_password_re.value = ''
+        frm.n_password_re.focus()
+        return 
+      }
+      const data = {
+        profile_img: this.imgDataUrl,
+        one_chat_available: this.$refs.oneChat.checked*1,
+        place_visibility: this.$refs.showPlace.checked*1,
+        password:password,
+        nickname:frm.nickname.value,
+        place:frm.place.value,
+        lat:this.member.lat,
+        lng:this.member.lng
+      }
+      frm.n_password_re.value = ''
+      frm.n_password.value = ''
+      this.$store.commit('putMember', data)
     },
-    toggleShow() {
+    toggleShow () {
       this.show = !this.show;
     },
     initImage () {
