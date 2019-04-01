@@ -34,7 +34,7 @@
           <li>
             <span>위치 공개</span>
             <span class="checks etrans">
-              <input type="checkbox" id="cb2" ref="showPlace"name="visibility_place"> 
+              <input type="checkbox" id="cb2" ref="showPlace" name="visibility_place"> 
               <label for="cb2"></label>
             </span>
           </li>
@@ -76,8 +76,11 @@
           <li>
             <label class="input-label">
               <span class="pre"><i class="fas fa-map-marker-alt"></i></span>
-              <input type="text"  name="place" ref="place" class="full-width" required placeholder="위치를 입력해주세요" @keydown.enter.prevent="" :value="member.place"> 
-              <p class="check-show">{{  }}</p>
+              <input type="text"  name="place" ref="place" 
+              class="full-width" required placeholder="위치를 입력해주세요" 
+              @keydown.enter.prevent="placeSubmit" v-model="member.place"
+              > 
+              <p class="check-show">{{ member.place }}</p>
             </label>
           </li>
           <input class="login-btn btn" type="submit" value="수정 완료">
@@ -89,20 +92,26 @@
 <script type="text/javascript">
 import 'babel-polyfill'; // es6 shim
 import myUpload from 'vue-image-crop-upload';
+import eventBus from '@/eventBus'
 
 export default {
   data() {
     return {
       show: false,
       imgDataUrl: '', // the datebase64 url of created image
-      member: this.$store.state.member
+      member: this.$store.state.member,
     }
   },
   components: {
     'my-upload': myUpload
   },
   mounted() {
-    console.log(this.member.place_visibility)
+    eventBus.initLocation(this)
+    eventBus.initSearchBox(this.$refs.place)
+    this.$on('getLocation', location => {
+      this.member.lat = location.lat
+      this.member.lng = location.lng
+    })
     if(this.member.one_chat_available === 1){ 
       this.$refs.oneChat.checked = true
     }  
@@ -124,6 +133,8 @@ export default {
     back () {
       this.$store.commit('isMember', 'myInfo')
     },
+    placeSubmit (e) { this.member.place=e.target.value },
+
 /**
 * crop success
 *
