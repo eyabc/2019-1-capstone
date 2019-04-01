@@ -18,6 +18,12 @@ const app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
+// #142 https openssl key
+const options = {
+  key: fs.readFileSync('./keys/private.pem'),
+  cert: fs.readFileSync('./keys/public.pem')
+};
+
 // #41
 app.use(session({
   key: 'session_cookie_name',
