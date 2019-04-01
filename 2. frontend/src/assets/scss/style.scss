@@ -253,7 +253,20 @@ $left-width: 500px;
 	&:hover { background:#FFBB77; transition: .3s; }
 	&:active { letter-spacing: 2px}
 }
-
+.dashed-btn {
+	border: dashed 1px #FFBB77;		
+	border-radius: 7px;
+	text-align: center;
+	transition: 0.5s;
+	&:hover, &.active {
+		background: #FFBB77;
+		transition: 0.3s;
+	}
+	&.ban {
+		cursor: not-allowed;
+		background: #ddd;
+	}
+}
 // #46 
 .signup {
 	&-wrap {
@@ -599,7 +612,9 @@ $left-width: 500px;
 		}
 	}
 }
+.btn {
 
+}
 .visibility {
 	display: flex;
 	margin-top: 0;
@@ -648,10 +663,13 @@ input[id="cb1"], input[id="cb2"]  {
 	 background: #fff; 
 	 border: 1px solid #FFBB77; border-radius : 3px; 
 
-} 
+	} 
 
-.checks input[type="checkbox"]:checked + label:before { 
+	.checks input[type="checkbox"]:checked + label:before { 
 	/* 체크박스를 체크했을때 */ 
 	content: '\2714'; 	/* 체크표시 유니코드 사용 */ 
 	color: #000;
+}
+.img-reset-btn {
+
 }
