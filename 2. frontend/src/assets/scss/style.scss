@@ -201,7 +201,12 @@ $left-width: 500px;
 	input[type="password"],
 	input[type="textarea"],
 	textarea,
-	select { height:$size; padding-left: $size; font-size: 15px;-webkit-appearance:none;border: #fff; }
+	select { 
+		height:$size; padding-left: $size; font-size: 15px;-webkit-appearance:none;border: #fff; 
+		&.input-disabled {
+			background: #FFEEDE;
+		}
+	}
 	select{background:#fff; border-radius: 0; border: 1px solid #fff; }
 	textarea{padding: 15px 0 10px $size;}
 	input:valid+.lbl,
@@ -209,7 +214,6 @@ $left-width: 500px;
 }
 
 .full-width{width:100%;box-sizing:border-box;}
-
 .fields {
 	li {
 		+li{margin-top:15px; }
@@ -476,17 +480,22 @@ $left-width: 500px;
 }
 .image-set {
 	&-small-img {
-		max-height: 120px;
-		max-width: 120px;
-		height: 120px;
-		width: 120px;
+		height: 150px;
+		width: 150px;
 		border-radius: 20px;
-		margin: 10px 15px 10px 0px;
+		margin-top: 15px;
+		margin-left: 10px;
 		position: absolute;
 		top:0;
+		&.img {
+			top: 60px;
+		}
+
 	}
 	&-img {
 		position: relative;
+
+
 	}
 	&-img-item {
 		background:#eee;
@@ -519,16 +528,19 @@ $left-width: 500px;
 		display: flex;
 		height: 140px;
 	}
+	
 	&-small-img {
-		max-height: 120px;
-		max-width: 120px;
 		height: 120px;
 		width: 120px;
 		border-radius: 20px;
 		margin: 10px 15px 10px 0px;
+		& img {
+			display: flex;
+			justify-content: center;
+			text-align: center;
+		}
 	}
-	&-img {
-	}
+
 	&-img-item {
 		background:#eee;
 		display: flex;
@@ -540,6 +552,13 @@ $left-width: 500px;
 	}
 	&-desc {
 		margin-top: 20px;
+		width: 100%;
+
+		&.re-width {
+			width: 70%;
+			margin: 20px auto;
+
+		}
 		>p { padding: 5px 0;
 			height: 30px;
 		}
@@ -579,5 +598,60 @@ $left-width: 500px;
 
 		}
 	}
+}
 
+.visibility {
+	display: flex;
+	margin-top: 0;
+	justify-content: space-around;
+	padding-bottom: 10px;
+	>li {
+		width: 50%;
+		>span { display:inline-block; padding: 10px;}
+	}
+}
+
+/*input[id="cb1"] + label, input[id="cb2"] + label {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	border: 2px solid #FFBB77;
+	cursor: pointer;
+	border-radius: 5px;
+}
+
+input[id="cb1"]:checked + label, input[id="cb2"]:checked + label {
+	background-color: #FFBB77;
+}
+input[id="cb1"], input[id="cb2"]  {
+	display: none;
+}*/
+.checks input[type="checkbox"] { 
+	/* 실제 체크박스는 화면에서 숨김 */ 
+	display:none;
+} 
+.checks input[type="checkbox"] + label { 
+	display: inline-block; 
+	position: relative; 
+	cursor: pointer; 
+	-webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; 
+} 
+.checks input[type="checkbox"] + label:before {
+	 /* 가짜 체크박스 */ 
+	 content: ' '; 
+	 display: inline-block; 
+	 width: 21px;  /* 체크박스의 너비를 지정 */ 
+	 height: 21px;  /* 체크박스의 높이를 지정 */ 
+	 line-height: 21px;  /* 세로정렬을 위해 높이값과 일치 */
+	 margin: -2px 8px 0 0; 
+	 text-align: center; vertical-align: middle;
+	 background: #fff; 
+	 border: 1px solid #FFBB77; border-radius : 3px; 
+
+} 
+
+.checks input[type="checkbox"]:checked + label:before { 
+	/* 체크박스를 체크했을때 */ 
+	content: '\2714'; 	/* 체크표시 유니코드 사용 */ 
+	color: #000;
 }
