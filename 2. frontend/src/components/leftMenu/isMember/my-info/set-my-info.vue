@@ -42,6 +42,15 @@
         <ul class="fields">
           <li>
             <label class="input-label">
+              <span class="pre"><i class="fas fa-sticky-note"></i></span>
+              <input type="text"  name="profile_message" 
+              class="full-width" required placeholder="프로필 메세지" v-model="message" ref="message" 
+              > 
+              <p class="check-show">{{ message }}</p>
+            </label>
+          </li>
+          <li>
+            <label class="input-label">
               <span class="pre"><i class="fas fa-envelope"></i></span>
               <input type="text" class="full-width input-disabled" disabled :value="member.email"/>
               <span class="lbl"></span>
@@ -78,9 +87,9 @@
               <span class="pre"><i class="fas fa-map-marker-alt"></i></span>
               <input type="text"  name="place" ref="place" 
               class="full-width" required placeholder="위치를 입력해주세요" 
-              @keydown.enter.prevent="placeSubmit" v-model="member.place"
+              @keydown.enter.prevent="placeSubmit" v-model="place" 
               > 
-              <p class="check-show">{{ member.place }}</p>
+              <p class="check-show">{{ place }}</p>
             </label>
           </li>
           <input class="login-btn btn" type="submit" value="수정 완료">
@@ -99,11 +108,18 @@ export default {
     return {
       show: false,
       imgDataUrl: '', // the datebase64 url of created image
-      member: this.$store.state.member,
+      member: this.$store.getters.member,
+      place: '',
+      message: '',
     }
   },
   components: {
     'my-upload': myUpload
+  },
+  computed: {
+    messages () {
+      return this.member.profile_message
+    }
   },
   mounted() {
     eventBus.initLocation(this)
@@ -119,6 +135,8 @@ export default {
       this.$refs.showPlace.checked = true
     }
     this.member.profile_img === '' ? this.imgDataUrl = '' : this.member.profile_img  
+    this.message = this.member.profile_message
+    this.place = this.member.place
   },
   methods: {
     setMember (e) {
@@ -146,9 +164,10 @@ export default {
         place_visibility: this.$refs.showPlace.checked*1,
         password:password,
         nickname:frm.nickname.value,
-        place:frm.place.value,
+        place:this.place,
         lat:this.member.lat,
-        lng:this.member.lng
+        lng:this.member.lng,
+        profile_message: this.message
       }
       frm.n_password_re.value = ''
       frm.n_password.value = ''
@@ -163,7 +182,7 @@ export default {
     back () {
       this.$store.commit('isMember', 'myInfo')
     },
-    placeSubmit (e) { this.member.place=e.target.value },
+    placeSubmit (e) { this.place=e.target.value },
 
 /**
 * crop success

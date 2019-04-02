@@ -103,12 +103,13 @@ router.put('/api/member/:idx', async (req, res) => {
 				place_visibility = ?,
 				password = ?,
 				nickname = ?,
-				place = ?, lat = ?, lng = ?
+				place = ?, lat = ?, lng = ?,
+				profile_message = ? 
 				WHERE idx = ? 
 	`
 	const resultJSON = { success: true }
 	try {
-		await execQuery(sql, [req.body.profile_img, req.body.one_chat_available, req.body.place_visibility, req.body.password, req.body.nickname, req.body.place, req.body.lat, req.body.lng, req.params.idx])
+		await execQuery(sql, [req.body.profile_img, req.body.one_chat_available, req.body.place_visibility, req.body.password, req.body.nickname, req.body.place, req.body.lat, req.body.lng, req.body.profile_message, req.params.idx])
 	} catch (err) {
 		resultJSON.success = false
 		resultJSON.err = err.stack
