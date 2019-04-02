@@ -374,9 +374,11 @@ $left-width: 500px;
 }
 
 .ismember {
+	height: 100%;
 	&-content {
 		position: relative;
 		top: 120px;
+		height: 100%;
 	}
 	&-header {
 		position:fixed;
@@ -660,7 +662,39 @@ $left-width: 500px;
 	&-footer {
 		position: fixed;
 		bottom: 0;
-		height: 50px;
-		background: #000;
+		height: 100px;
+		background: #FFBB77;
+		width: 700px;
+	}
+	&-menu {
+		height: calc(100% - 210px);
+		background: #09f;
+		width: 50%;
+		position: absolute;
+		right: 0;
+		margin-right: -50%;
+		transition: .3s;
+		&.active {
+			transition: .3s;
+			margin-right: 0;
+		}
+	}
+	&-content {
+		position: absolute;
+		width: 100%;
+		background: #eee;
+		transition: .3s;
+		height: calc(100% - 210px);
+		&.active {
+			transition: .3s;
+			width: 50%;
+		}
+	}
+}
+.group {
+	&-wrap {
+		position: relative;
+		height: 100%;
+		top: -10px;
 	}
 }

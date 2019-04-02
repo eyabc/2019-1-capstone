@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="ismember">
 		<isMemberHeader class="ismember-header"/>
 		<component :is="$store.state.isMember" class="ismember-content"/>
 	</div>

@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="group-wrap">
 		<chatMenu />
 		<chatContent />
 		<chatFooter />
