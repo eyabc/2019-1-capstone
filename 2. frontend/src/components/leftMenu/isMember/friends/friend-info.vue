@@ -65,7 +65,8 @@
 			},
 			setChat () {
 				if(this.memberData.one_chat_available == 1){
-
+					this.$store.commit('isMember', 'chat')
+					this.$store.commit('compChat', 'groupIn')
 				}
 			}
 		}

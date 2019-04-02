@@ -8,15 +8,14 @@ export default new Vuex.Store({
 	state: {
 		member: JSON.parse(localStorage.getItem('member')) || null,
 		title: "CEO",
-		
-		leftMenu: false,
 		leftMenuWidth: 500,
 		
+		leftMenu: false,
 		rightMenu: false,
-
 		notMember: false,
-		
 		isMember: 'friends',
+		compChat: false,
+
 		friend: [],
 		group: [],
 		tempData: {},
@@ -27,6 +26,7 @@ export default new Vuex.Store({
 		leftMenu(state, val) { state.leftMenu = val },
 		rightMenu(state, val) { state.rightMenu = val },
 		isMember(state, val) { state.isMember = val },
+		compChat(state, val) { state.compChat = val },
 		member(state, val) {
 			localStorage.setItem('member', JSON.stringify(val))
 			state.member = val

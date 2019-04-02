@@ -16,10 +16,10 @@
 			</form>
 		</div>
 		<ul class = "ismember-header-navigation">
-			<li :class="{ active:friend }"><a href="#" @click.prevent="setIsMember('friends')" ><i class="fas fa-user-friends"></i></a></li>
-			<li :class=""><a href="#"><i class="fas fa-comment"></i></a></li>
+			<li :class="{ active: $store.state.isMember  === 'friends' }"><a href="#" @click.prevent="getFriend" ><i class="fas fa-user-friends"></i></a></li>
+			<li :class="{ active: $store.state.isMember === 'chat' }"><a href="#" @click.prevent="getChat('chat')"><i class="fas fa-comment"></i></a></li>
 			<li :class=""><a href="#"><i class="fas fa-users"></i></a></li>
-			<li :class=""><a href="#"><i class="fas fa-user-alt"></i></a></li>
+			<!-- <li :class=""><a href="#"><i class="fas fa-user-alt"></i></a></li> -->
 			<li :class=""><a href="#"><i class="fas fa-cog"></i></a></li>
 		</ul>
 	</div>
@@ -36,22 +36,24 @@
 		data() {
 			return {
 				hover: false,
-				friend: true,
-				
 			}
 		},
 		methods : {
-			hoverToggle() {
+			hoverToggle () {
 				this.hover = !this.hover
 			},
-			setIsMember(compo) {
-				this.$store.commit('getFriends')
-				this.$store.commit('getGroups')
-				this.$store.commit('isMember', compo)
+			getFriend () {
+			//	this.active = false
+			this.$store.commit('getFriends')
+			this.$store.commit('getGroups')
+			this.$store.commit('isMember', 'friends')
 
-			}
+		},
+		getChat () {
+			this.$store.commit('isMember', 'chat')
 		}
 	}
+}
 </script>
 <style type="">
 a:hover {

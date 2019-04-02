@@ -10,13 +10,12 @@
 	import friendInfo from '@/components/leftMenu/isMember/friends/friend-info'
 	import myInfo from '@/components/leftMenu/isMember/my-info/my-info'
 	import setMyInfo from '@/components/leftMenu/isMember/my-info/set-my-info'
+	import chat from '@/components/leftMenu/chat/chat-main'
 	export default {
 		components: {
 			isMemberHeader,
-			friends,
-			friendInfo,
-			myInfo,
-			setMyInfo
+			friends, friendInfo, myInfo, setMyInfo,
+			chat,
 		},
 		created () {
 
