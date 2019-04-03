@@ -1,3 +1,3 @@
 <template>
-	<div class="chat-menu" :class="{active}"">menu</div>
+	<div class="chat-menu" :class="{active}">menu</div>
 </template>
