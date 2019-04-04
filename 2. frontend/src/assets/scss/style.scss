@@ -208,7 +208,7 @@ $left-width: 500px;
 		}
 	}
 	select{background:#fff; border-radius: 0; border: 1px solid #fff; }
-	textarea{padding: 15px 0 10px $size;}
+	textarea{padding: 15px 0 10px $size; resize: none; height: 200px;}
 	input:valid+.lbl,
 	textarea:valid+.lbl{display:none}	
 }
@@ -726,4 +726,7 @@ $left-width: 500px;
 		height: 100%;
 		top: -10px;
 	}
+}
+.create-group {
+	margin: 0 10px;
 }

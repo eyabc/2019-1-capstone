@@ -51,6 +51,8 @@
 		},
 		getChat () {
 			this.$store.commit('isMember', 'chat')
+			this.$store.commit('compChat', 'chatList')
+
 		}
 	}
 }
