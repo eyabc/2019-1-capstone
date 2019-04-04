@@ -665,6 +665,35 @@ $left-width: 500px;
 		height: 100px;
 		background: #FFBB77;
 		width: 700px;
+		& input[type="submit"] {
+			border: none;
+			position: absolute;
+			top: 5px;
+			width: 55px;
+			height: 30px;
+			border-radius: 3px;
+			background: #505050;
+			color: #fff;
+			right: 5px;
+			cursor: pointer;
+		}
+	}
+	&-input {
+		position: relative;
+        padding: 3px;
+        border-radius: 3px;
+        border: 1px solid #fff;
+        z-index: 1;
+        width: 90%;
+        font-weight: bold;
+        outline: none;
+		left: 5px;
+		resize: none;
+		// overflow-y: hidden;
+		line-height: 1.6;
+		height: auto;
+		max-height: 100px;
+		margin-top: 5px;
 	}
 	&-menu {
 		height: calc(100% - 210px);
