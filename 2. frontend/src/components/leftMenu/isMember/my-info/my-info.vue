@@ -1,5 +1,5 @@
 <template>
-	<div class="member-info-wrap" @click="">		
+	<div class="member-info-wrap fixed" @click="">		
 		<div class="member-info-short">
 		<img class="member-info-small-img"src="./default-avatar.png" alt="img" />
 		<div class="member-info-desc">
@@ -8,7 +8,7 @@
 			<p class="member-info-place">{{myData.place}}</p>
 		</div>
 	</div><br/>
-	<ul class="member-info-btn">
+	<ul class="member-info-btn fixed">
 		<li><a href="#" @click.prevent="">대기 친구</a></li>
 		<li><a href="#" @click.prevent="">대기 그룹</a></li>
 		<li><a href="#" @click.prevent="showMap" >위치정보조회</a></li>

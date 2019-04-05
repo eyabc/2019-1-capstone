@@ -16,7 +16,7 @@
 			</form>
 		</div>
 		<ul class = "ismember-header-navigation">
-			<li :class="{ active: $store.state.isMember  === 'friends' }"><a href="#" @click.prevent="getFriend" ><i class="fas fa-user-friends"></i></a></li>
+			<li :class="{ active: $store.state.isMember  === 'friends' }"><a href="#" @click="getFriend" ><i class="fas fa-user-friends"></i></a></li>
 			<li :class="{ active: $store.state.isMember === 'chat' }"><a href="#" @click.prevent="getChat('chat')"><i class="fas fa-comment"></i></a></li>
 			<li :class=""><a href="#"><i class="fas fa-users"></i></a></li>
 			<!-- <li :class=""><a href="#"><i class="fas fa-user-alt"></i></a></li> -->

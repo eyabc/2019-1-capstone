@@ -110,6 +110,7 @@ $left-width: 500px;
 .left {
 	&-menu-wrap {
 		// min-width: $left-width;
+		z-index:11;
 		height: 100%;
 		background: #fff;
 		// width: $left-width;
@@ -372,22 +373,27 @@ $left-width: 500px;
 	color: #666;
 	margin: 10px;
 }
-
+::-webkit-scrollbar {
+	display: none;
+}
 .ismember {
 	height: 100%;
+
+	overflow:auto;
 	&-content {
 		position: relative;
 		top: 120px;
 		height: 100%;
 	}
 	&-header {
+		z-index: 1000;
 		position:fixed;
 		width: 100%;
 		height: 120px;
 		&-search {
+			width: 700px;
 			height: 60px;
 			background: #fff;
-			width: 50%;
 			>form{position:relative;width:50%;
 				>input[type="submit"] {
 					display: none
@@ -424,6 +430,7 @@ $left-width: 500px;
 			}
 		}
 		&-navigation {
+			width: 700px;
 			height: 50px;
 			background: #FFBB77;
 			display: flex;
@@ -680,13 +687,13 @@ $left-width: 500px;
 	}
 	&-input {
 		position: relative;
-        padding: 3px;
-        border-radius: 3px;
-        border: 1px solid #fff;
-        z-index: 1;
-        width: 90%;
-        font-weight: bold;
-        outline: none;
+		padding: 3px;
+		border-radius: 3px;
+		border: 1px solid #fff;
+		z-index: 1;
+		width: 90%;
+		font-weight: bold;
+		outline: none;
 		left: 5px;
 		resize: none;
 		// overflow-y: hidden;
@@ -726,7 +733,32 @@ $left-width: 500px;
 		height: 100%;
 		top: -10px;
 	}
+	&-friend-search{
+	}
+	&-visibility {
+		padding: 10px 0;
+		display: flex;
+		font-size: 15px;
+		font-weight: bold;
+		justify-content: space-around;
+		align-items: center;
+		label {
+			text-align: left;
+			cursor: default;
+		}
+		a {
+			display: inline-block;
+			width: 100px;
+			height: 40px;
+			margin: 0;
+			line-height: 40px;
+			text-align: center;
+		}
+	}
 }
 .create-group {
 	margin: 0 10px;
+}
+.fixed {
+	position: fixed;
 }

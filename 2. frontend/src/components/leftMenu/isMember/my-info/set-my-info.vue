@@ -128,13 +128,13 @@ export default {
       this.member.lat = location.lat
       this.member.lng = location.lng
     })
-    if(this.member.one_chat_available === 1){ 
-      this.$refs.oneChat.checked = true
-    }  
-    if(this.member.place_visibility === 1) {
-      this.$refs.showPlace.checked = true
-    }
-    this.member.profile_img === '' ? this.imgDataUrl = '' : this.member.profile_img  
+      if(this.member.one_chat_available === 1){ 
+        this.$refs.oneChat.checked = true
+      }  
+      if(this.member.place_visibility === 1) {
+        this.$refs.showPlace.checked = true
+      
+}   this.member.profile_img === '' ? this.imgDataUrl = '' : this.member.profile_img  
     this.message = this.member.profile_message
     this.place = this.member.place
   },

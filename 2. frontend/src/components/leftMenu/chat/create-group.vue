@@ -36,45 +36,38 @@
 						</label>
 					</li>
 					<li>
-						<ul class="visibility">
-							<li>
-								<span>공개 여부</span>
-								<span class="dashed-btn"><a href="#" @click.prevent="initImage">전체 공개</a></span>
-								<span class="dashed-btn"><a href="#" @click.prevent="initImage">지정 공개</a></span>
-								<span class="checks etrans">
-									<input type="checkbox" id="cb1" ref="oneChat" name="visibility_oneChat">
-									<label for="cb1"></label>
-								</span>
-							</li>
-							<li>
-								<span>위치 공개</span>
-								<span class="checks etrans">
-									<input type="checkbox" id="cb2" ref="showPlace" name="visibility_place"> 
-									<label for="cb2"></label>
-								</span>
-							</li>
-						</ul> 
-					</li>
-
-					<li>
-						<label class="input-label">
-							<span class="pre"><i class="fas fa-key"></i></span>
-							<input type="password" name="n_password" class="full-width" placeholder="새 비밀번호">
-						</label>
-					</li>
-					<li>
-						<label class="input-label">
-							<span class="pre"><i class="fas fa-key"></i></span>
-							<input type="password" name="n_password_re" class="full-width"  placeholder="새 비밀번호 재확인">
+						<div class="group-visibility">
+							<label>공개 여부</label>
+							<span class="dashed-btn"><a href="#" ref="public">전체 공개</a></span>
+							<span class="dashed-btn"><a href="#" ref="private">지정 공개</a></span><br/>
+						</div> 
+						<label class="group-friend-search">
+							<input type="text" name="friends" class="full-width" placeholder="친구 검색">
 						</label>
 					</li>
 					<li>
 						<label class="input-label">
 							<span class="pre"><i class="fas fa-user"></i></span>
-							<input type="text" name="nickname" class="full-width" required :value="member.nickname">
-							<span class="lbl">닉네임</span>
+							<input type="text" name="nickname" class="full-width" required>
+							<span class="lbl">관리자</span>
 						</label>
 					</li>
+					<li>
+						<div class="group-visibility">
+							<label>권한</label>
+							<span class="dashed-btn"><a href="#" ref="public">읽기</a></span>
+							<span class="dashed-btn"><a href="#" ref="private">읽기/쓰기</a></span><br/>
+							<span class="dashed-btn"><a href="#" ref="private">참여 허가 필요</a></span><br/>
+						</div> 
+					</li>
+					<li>
+						<label class="input-label">
+							<span class="pre"><i class="fas fa-key"></i></span>
+							<input type="text" name="n_password" class="full-width" placeholder="비밀번호">
+						</label>
+					</li>
+
+
 					<li>
 						<label class="input-label">
 							<span class="pre"><i class="fas fa-map-marker-alt"></i></span>
@@ -83,6 +76,13 @@
 							@keydown.enter.prevent="placeSubmit" v-model="place" 
 							> 
 							<p class="check-show">{{ place }}</p>
+						</label>
+					</li>
+					<li>
+						<label class="input-label">
+							<span class="pre"><i class="fas fa-user"></i></span>
+							<input type="text" name="nickname" class="full-width" required>
+							<span class="lbl">검색 태그</span>
 						</label>
 					</li>
 					<input class="login-btn btn" type="submit" value="수정 완료">
@@ -101,7 +101,6 @@ export default {
 		return {
 			show: false,
       imgDataUrl: '', // the datebase64 url of created image
-      member: this.$store.getters.member,
       place: '',
       message: '',
   }
@@ -121,15 +120,13 @@ mounted() {
 		this.member.lat = location.lat
 		this.member.lng = location.lng
 	})
+
 	if(this.member.one_chat_available === 1){ 
 		this.$refs.oneChat.checked = true
 	}  
 	if(this.member.place_visibility === 1) {
 		this.$refs.showPlace.checked = true
 	}
-	this.member.profile_img === '' ? this.imgDataUrl = '' : this.member.profile_img  
-	this.message = this.member.profile_message
-	this.place = this.member.place
 },
 methods: {
 	setMember (e) {
