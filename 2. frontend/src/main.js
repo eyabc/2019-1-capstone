@@ -19,6 +19,16 @@ Vue.use(VueGoogleMaps, {
 		libraries: 'places',
 	},
 })
+/* #69 tag lib */
+import vSelectPage from 'v-selectpage';
+Vue.use(vSelectPage, {
+    // server side data loader
+    dataLoad: function(vue, data, params){
+        return new Promise((resolve, reject)=>{
+            axios.post(url, params).then(resp=>resolve(resp),resp=>reject(resp));
+        });
+    }
+});
 
 new Vue({
 	router,

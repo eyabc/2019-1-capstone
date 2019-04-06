@@ -75,6 +75,21 @@ export default new Vuex.Store({
 			localStorage.setItem('member', JSON.stringify(state.member))
 			alert('정보 수정이 완료되었습니다.')
 		},
+
+		async insertGroup (state, data) {
+			console.log(state.group)
+
+			var json = await $fetch(`/api/group`, {
+				method: 'POST',
+				headers: {'Content-Type':'application/json'},
+				body: JSON.stringify(data)
+			})
+			
+			state.group.splice(state.group.length - 1, 0, data.data)
+			alert('그룹 생성이 완료되었습니다.')
+			state.isMember = 'chat'
+			state.compChat = 'groupIn'
+		},
 		async deleteFriend (state) {
 			var json = await $fetch(`/api/friend/${state.member.idx}/${state.tempData.idx}`, {
 				method: 'delete',

@@ -580,6 +580,9 @@ $left-width: 500px;
 		font-size: 12px;
 		transition: 0.5s;
 	}
+	&-etc {
+		font-size: 12px;
+	}
 	&-desc {
 		margin-top: 20px;
 		width: 100%;
@@ -589,8 +592,8 @@ $left-width: 500px;
 			margin: 20px auto;
 
 		}
-		>p { padding: 5px 0;
-			height: 30px;
+		>p { 
+			height: 25px;
 		}
 		>hr {
 			margin: 3px 0;
@@ -602,7 +605,7 @@ $left-width: 500px;
 		font-weight: bold;
 	}
 	&-message{
-		font-size: 15px;
+		font-size: 14px;
 	}
 	&-btn {
 		display: flex;
@@ -678,6 +681,48 @@ $left-width: 500px;
 	color: #000;
 }
 
+
+.visibility {
+	display: flex;
+	margin-top: 0;
+	justify-content: space-around;
+	padding-bottom: 10px;
+	>li {
+		width: 50%;
+		>span { display:inline-block; padding: 10px;}
+	}
+}
+
+.checks input[type="checkbox"] { 
+	/* 실제 체크박스는 화면에서 숨김 */ 
+	display:none;
+} 
+.checks input[type="checkbox"] + label { 
+	display: inline-block; 
+	position: relative; 
+	cursor: pointer; 
+	-webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; 
+} 
+.checks input[type="checkbox"] + label:before {
+	 /* 가짜 체크박스 */ 
+	 content: ' '; 
+	 display: inline-block; 
+	 width: 21px;  /* 체크박스의 너비를 지정 */ 
+	 height: 21px;  /* 체크박스의 높이를 지정 */ 
+	 line-height: 21px;  /* 세로정렬을 위해 높이값과 일치 */
+	 margin: -2px 8px 0 0; 
+	 text-align: center; vertical-align: middle;
+	 background: #fff; 
+	 border: 1px solid #FFBB77; border-radius : 3px; 
+
+	} 
+
+	.checks input[type="checkbox"]:checked + label:before { 
+	/* 체크박스를 체크했을때 */ 
+	content: '\2714'; 	/* 체크표시 유니코드 사용 */ 
+	color: #000;
+}
+
 .chat {
 	&-footer {
 		position: fixed;
@@ -690,7 +735,7 @@ $left-width: 500px;
 			position: absolute;
 			top: 5px;
 			width: 55px;
-			height: 32px;
+			height: 30px;
 			border-radius: 3px;
 			background: #505050;
 			color: #fff;
@@ -704,7 +749,7 @@ $left-width: 500px;
 		border-radius: 3px;
 		border: 1px solid #fff;
 		z-index: 1;
-		width: 89%;
+		width: 90%;
 		font-weight: bold;
 		outline: none;
 		left: 5px;
@@ -751,15 +796,13 @@ $left-width: 500px;
 	}
 	&-visibility {
 		display: flex;
+		font-size: 15px;
 		font-weight: bold;
 		justify-content: space-around;
 		align-items: center;
-		font-size: 13px;
-
 		label {
 			text-align: left;
 			cursor: default;
-
 		}
 		a {
 			display: inline-block;
@@ -776,4 +819,7 @@ $left-width: 500px;
 }
 .fixed {
 	position: fixed;
+}
+.select-box {
+	margin: 10px 0;
 }
