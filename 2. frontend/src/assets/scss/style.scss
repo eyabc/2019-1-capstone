@@ -267,6 +267,13 @@ $left-width: 500px;
 		cursor: not-allowed;
 		background: #ddd;
 	}
+	&.title {
+		height: 35px;
+		line-height: 35px;
+		font-size: 14px;
+		font-weight: bold;
+		width: 120px;
+	}
 }
 // #46 
 .signup {
@@ -395,6 +402,7 @@ $left-width: 500px;
 			height: 60px;
 			background: #fff;
 			>form{position:relative;width:50%;
+				width: 300px;
 				>input[type="submit"] {
 					display: none
 				}
@@ -422,10 +430,10 @@ $left-width: 500px;
 			}
 			&-icon {
 				position: absolute;
-				right: 15px;
+				right: -15px;
 				top: 15px;
 				bottom: 15px;	
-				padding: 0 15px;
+				padding: 0px;
 				line-height: 28px;
 			}
 		}
@@ -510,7 +518,7 @@ $left-width: 500px;
 		position: absolute;
 		top:0;
 		&.img {
-			top: 60px;
+			top: 62px;
 		}
 
 	}
@@ -598,15 +606,15 @@ $left-width: 500px;
 	}
 	&-btn {
 		display: flex;
-		>li {
-		}
+
 		>li>a {
 			display: inline-block;
+			font-size: 14px;
 			padding: 10px;
 			margin: 10px 8px;
-			width: 115px;
+			width: 90px;
 			border: dashed 1px #FFBB77;		
-			height: 40px;
+			height: 20px;
 			text-align: center;
 			border-radius: 7px;
 			font-weight:bold;
@@ -617,6 +625,11 @@ $left-width: 500px;
 				cursor: not-allowed;
 				background: #ddd;
 			}
+			&.title {
+				font-size: 14px;
+				font-weight: bold;
+				width: auto;
+			}
 
 		}
 	}
@@ -624,6 +637,48 @@ $left-width: 500px;
 .btn {
 
 }
+.visibility {
+	display: flex;
+	margin-top: 0;
+	justify-content: space-around;
+	padding-bottom: 10px;
+	>li {
+		width: 50%;
+		>span { display:inline-block; padding: 10px;}
+	}
+}
+
+.checks input[type="checkbox"] { 
+	/* 실제 체크박스는 화면에서 숨김 */ 
+	display:none;
+} 
+.checks input[type="checkbox"] + label { 
+	display: inline-block; 
+	position: relative; 
+	cursor: pointer; 
+	-webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; 
+} 
+.checks input[type="checkbox"] + label:before {
+	 /* 가짜 체크박스 */ 
+	 content: ' '; 
+	 display: inline-block; 
+	 width: 21px;  /* 체크박스의 너비를 지정 */ 
+	 height: 21px;  /* 체크박스의 높이를 지정 */ 
+	 line-height: 21px;  /* 세로정렬을 위해 높이값과 일치 */
+	 margin: -2px 8px 0 0; 
+	 text-align: center; vertical-align: middle;
+	 background: #fff; 
+	 border: 1px solid #FFBB77; border-radius : 3px; 
+
+	} 
+
+	.checks input[type="checkbox"]:checked + label:before { 
+	/* 체크박스를 체크했을때 */ 
+	content: '\2714'; 	/* 체크표시 유니코드 사용 */ 
+	color: #000;
+}
+
+
 .visibility {
 	display: flex;
 	margin-top: 0;

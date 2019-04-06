@@ -1,7 +1,7 @@
 <template>
 	<div class="create-group">
 		<ul class="member-info-btn">
-			<li><a href="#"># 새 그룹 추가</a></li>
+			<li class=""><a class="title" href="#"># 새 그룹 추가</a></li>
 		</ul>
 		<form class="member-info-set" method="post" @submit.prevent="setMember">
 			<div id="image-set-img">
@@ -179,6 +179,6 @@ cropUploadFail(status, field){
 </script>
 <style>
 .width1 {
-	width: 110px;
+	width: auto;
 }
 </style>
