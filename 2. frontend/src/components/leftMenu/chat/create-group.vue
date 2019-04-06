@@ -5,8 +5,8 @@
 		</ul>
 		<form class="member-info-set" method="post" @submit.prevent="setMember">
 			<div id="image-set-img">
-				<a class="image-set-small-img image-set-img-item " @click="toggleShow" :class="{ none : imgDataUrl !=='' }" >그룹 대표 사진 선택 <br/> jpg/png </a>
-				<img class="image-set-small-img img" :src="imgDataUrl" >
+				<a class="image-set-small-img image-set-img-item " @click="toggleShow" :class="{ none : data.imgDataUrl !=='' }" >그룹 대표 사진 선택 <br/> jpg/png </a>
+				<img class="image-set-small-img img" :src="data.imgDataUrl" >
 				<my-upload field="img" 
 				@crop-success="cropSuccess"
 				@crop-upload-success="cropUploadSuccess"
@@ -25,73 +25,73 @@
 					<li>
 						<label class="input-label">
 							<span class="pre"><i class="fas fa-tag"></i></span>
-							<input type="text"  name="name" 
+							<input type="text"  name="groupName" 
 							class="full-width" required placeholder="그룹 이름"> 
 						</label>
 					</li>
 					<li>
 						<label class="input-label">
 							<span class="pre"><i class="fas fa-sticky-note"></i></span>
-							<textarea name="description" class="full-width" placeholder="그룹 설명" required></textarea>
+							<textarea name="description" class="full-width" placeholder="그룹 설명"></textarea>
 						</label>
 					</li>
 					<li>
 						<div class="group-visibility">
 							<label>공개 여부</label>
-							<span class="dashed-btn"><a href="#" ref="public">전체 공개</a></span>
-							<span class="dashed-btn"><a href="#" ref="private">지정 공개</a></span><br/>
+							<span class="dashed-btn width1" :class="{active:data.visibility===1}"><a href="#" ref="public" @click.prevent="setData('visibility',1)">전체 공개</a></span>
+							<span class="dashed-btn width1" :class="{active:data.visibility===2}"><a href="#" ref="private"  @click.prevent="setData('visibility',2)">친구 공개</a></span><br/>
 						</div> 
-						<label class="group-friend-search">
+						<label class="group-friend-search" v-if="data.visibility===2">
 							<input type="text" name="friends" class="full-width" placeholder="친구 검색">
 						</label>
 					</li>
 					<li>
 						<label class="input-label">
-							<span class="pre"><i class="fas fa-user"></i></span>
+							<span class="pre"><i class="fas fa-users-cog"></i></span>
 							<input type="text" name="nickname" class="full-width" required>
 							<span class="lbl">관리자</span>
 						</label>
 					</li>
 					<li>
 						<div class="group-visibility">
-							<label>권한</label>
-							<span class="dashed-btn"><a href="#" ref="public">읽기</a></span>
-							<span class="dashed-btn"><a href="#" ref="private">읽기/쓰기</a></span><br/>
-							<span class="dashed-btn"><a href="#" ref="private">참여 허가 필요</a></span><br/>
-						</div> 
-					</li>
-					<li>
-						<label class="input-label">
-							<span class="pre"><i class="fas fa-key"></i></span>
-							<input type="text" name="n_password" class="full-width" placeholder="비밀번호">
-						</label>
-					</li>
+							<label>참여자 초기 권한</label>
+							<span class="dashed-btn width1" :class="{active:data.authority===1}"><a href="#" ref="public" @click.prevent="setData('authority',1)">읽기</a></span>
+							<span class="dashed-btn width1" :class="{active:data.authority===2}"><a href="#" ref="private" @click.prevent="setData('authority',2)"">읽기/쓰기</a></span><br/>
+							<span class="dashed-btn width1" :class="{active:data.permission===1}"><a href="#" ref="private" @click.prevent="setData('permission',1)" >참여 허가 필요</a></span><br/>
+							</div> 
+							</li>
+							<li>
+							<label class="input-label">
+								<span class="pre"><i class="fas fa-key"></i></span>
+								<input type="text" name="n_password" class="full-width" placeholder="비밀번호">
+							</label>
+						</li>
 
 
-					<li>
-						<label class="input-label">
-							<span class="pre"><i class="fas fa-map-marker-alt"></i></span>
-							<input type="text"  name="place" ref="place" 
-							class="full-width" required placeholder="위치를 입력해주세요" 
-							@keydown.enter.prevent="placeSubmit" v-model="place" 
-							> 
-							<p class="check-show">{{ place }}</p>
-						</label>
-					</li>
-					<li>
-						<label class="input-label">
-							<span class="pre"><i class="fas fa-user"></i></span>
-							<input type="text" name="nickname" class="full-width" required>
-							<span class="lbl">검색 태그</span>
-						</label>
-					</li>
-					<input class="login-btn btn" type="submit" value="수정 완료">
-				</ul>
-			</div>
-		</form>
-	</div>
-</template>
-<script type="text/javascript">
+						<li>
+							<label class="input-label">
+								<span class="pre"><i class="fas fa-map-marker-alt"></i></span>
+								<input type="text"  name="place" ref="place" 
+								class="full-width" required placeholder="위치를 입력해주세요" 
+								@keydown.enter.prevent="placeSubmit" v-model="data.place" 
+								> 
+								<p class="check-show">{{ data.place }}</p>
+							</label>
+						</li>
+						<li>
+							<label class="input-label">
+								<span class="pre"><i class="fas fa-hashtag"></i></span>
+								<input type="text" name="nickname" class="full-width" required>
+								<span class="lbl">검색 태그</span>
+							</label>
+						</li>
+						<input class="login-btn btn" type="submit" value="수정 완료">
+					</ul>
+				</div>
+			</form>
+		</div>
+	</template>
+	<script type="text/javascript">
 import 'babel-polyfill'; // es6 shim
 import myUpload from 'vue-image-crop-upload';
 import eventBus from '@/eventBus'
@@ -100,9 +100,16 @@ export default {
 	data() {
 		return {
 			show: false,
-      imgDataUrl: '', // the datebase64 url of created image
-      place: '',
-      message: '',
+			data: {
+				visibility: 0,
+				authority: 0,
+				permission: 0,
+      			imgDataUrl: '', // the datebase64 url of created image
+      			place: '',
+      			lat: '',
+      			lng: '',
+   			   },
+     		message: '',
   }
 },
 components: {
@@ -117,62 +124,21 @@ mounted() {
 	eventBus.initLocation(this)
 	eventBus.initSearchBox(this.$refs.place)
 	this.$on('getLocation', location => {
-		this.member.lat = location.lat
-		this.member.lng = location.lng
+		this.data.lat = location.lat
+		this.data.lng = location.lng
 	})
-
-	if(this.member.one_chat_available === 1){ 
-		this.$refs.oneChat.checked = true
-	}  
-	if(this.member.place_visibility === 1) {
-		this.$refs.showPlace.checked = true
-	}
 },
 methods: {
-	setMember (e) {
-		const frm = e.target
-		let password = frm.n_password.value
-		/* 현재 패스워드와 입력된 현재 패스워드 검사 */
-		if (this.member.password !== frm.p_password.value) {
-			alert("현재 비밀번호와 일치하지 않습니다.")
-			frm.p_password.value = ''
-			frm.p_password.focus()
-			return 
-		} 
-		if (frm.n_password.value === '') {
-			password = frm.p_password.value
-		}
-		if (frm.n_password.value !== frm.n_password_re.value) {
-			alert("새 비밀번호가 일치하지 않습니다.")
-			frm.n_password_re.value = ''
-			frm.n_password_re.focus()
-			return 
-		}
-		const data = {
-			profile_img: this.imgDataUrl,
-			one_chat_available: this.$refs.oneChat.checked*1,
-			place_visibility: this.$refs.showPlace.checked*1,
-			password:password,
-			nickname:frm.nickname.value,
-			place:this.place,
-			lat:this.member.lat,
-			lng:this.member.lng,
-			profile_message: this.message
-		}
-		frm.n_password_re.value = ''
-		frm.n_password.value = ''
-		this.$store.commit('putMember', data)
+	setData (data, num) {
+		this.data[data] = num === this.data[data] ? 0 : num
 	},
 	toggleShow () {
 		this.show = !this.show;
 	},
 	initImage () {
-		this.imgDataUrl = ''
+		this.data.imgDataUrl = ''
 	},
-	back () {
-		this.$store.commit('isMember', 'myInfo')
-	},
-	placeSubmit (e) { this.place=e.target.value },
+	placeSubmit (e) { this.data.place=e.target.value },
 
 /**
 * crop success
@@ -182,7 +148,7 @@ methods: {
 */
 cropSuccess(imgDataUrl, field){
 	console.log('-------- crop success --------');
-	this.imgDataUrl = imgDataUrl;
+	this.data.imgDataUrl = imgDataUrl;
 	console.log(imgDataUrl)
 },
 /**
@@ -212,9 +178,7 @@ cropUploadFail(status, field){
 }
 </script>
 <style>
-.dashed-btn {
-	width: 150px;
-	margin-left: 10px;
-	font-size: 12px;
+.width1 {
+	width: 110px;
 }
 </style>

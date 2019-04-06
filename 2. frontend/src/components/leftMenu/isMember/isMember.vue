@@ -1,5 +1,5 @@
 <template>
-	<div class="ismember">
+	<div class="ismember" ref="scrolls">
 		<isMemberHeader class="ismember-header"/>
 		<component :is="$store.state.isMember" class="ismember-content"/>
 	</div>
@@ -18,7 +18,8 @@
 			chat,
 		},
 		created () {
-
+		},
+		mounted() {
 		},
 		methods: {
 
