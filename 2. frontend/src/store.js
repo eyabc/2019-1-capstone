@@ -8,15 +8,14 @@ export default new Vuex.Store({
 	state: {
 		member: JSON.parse(localStorage.getItem('member')) || null,
 		title: "CEO",
-		
-		leftMenu: false,
 		leftMenuWidth: 500,
 		
+		leftMenu: false,
 		rightMenu: false,
-
 		notMember: false,
-		
 		isMember: 'friends',
+		compChat: false,
+
 		friend: [],
 		group: [],
 		tempData: {},
@@ -27,6 +26,7 @@ export default new Vuex.Store({
 		leftMenu(state, val) { state.leftMenu = val },
 		rightMenu(state, val) { state.rightMenu = val },
 		isMember(state, val) { state.isMember = val },
+		compChat(state, val) { state.compChat = val },
 		member(state, val) {
 			localStorage.setItem('member', JSON.stringify(val))
 			state.member = val
@@ -63,6 +63,17 @@ export default new Vuex.Store({
 				body: JSON.stringify(data)
 			})
 			state.tempData.favorite = val.favorite
+		},
+		async putMember (state, val) {
+			const data = val
+			var json = await $fetch(`/api/member/${state.member.idx}`, {
+				method: 'put',
+				headers: {'Content-Type':'application/json'},
+				body: JSON.stringify(data)
+			})
+			Object.assign(state.member, data)
+			localStorage.setItem('member', JSON.stringify(state.member))
+			alert('정보 수정이 완료되었습니다.')
 		},
 		async deleteFriend (state) {
 			var json = await $fetch(`/api/friend/${state.member.idx}/${state.tempData.idx}`, {

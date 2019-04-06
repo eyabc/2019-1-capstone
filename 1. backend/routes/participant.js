@@ -5,7 +5,7 @@ const execQuery = require('../db.js')
 /* #54 getGroups*/
 router.get('/api/group/:midx', async (req, res) => {
 	const sql = `select A.midx, A.cgidx, A.authority, A.favorite, 
-						B.name, B.image, B.themeidx, B.location, B.manager, B.default_authority, B.description
+						B.name, B.image, B.tag, B.location, B.manager, B.default_authority, B.description
 					from group_participant A 
 					JOIN chatting_group B 
 					on A.cgidx = B.idx

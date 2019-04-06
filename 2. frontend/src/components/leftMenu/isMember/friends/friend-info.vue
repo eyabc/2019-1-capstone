@@ -1,6 +1,6 @@
 <template>
 	<div class="member-info-wrap" @click="">
-		<div class="member-info-short">
+		<div class="member-info-short ">
 			<img class="member-info-small-img"src="./default-avatar.png" alt="img" />
 			<div class="member-info-desc">
 				<h3 class="member-info-nickname">{{memberData.nickname}}</h3><hr/>
@@ -65,7 +65,8 @@
 			},
 			setChat () {
 				if(this.memberData.one_chat_available == 1){
-
+					this.$store.commit('isMember', 'chat')
+					this.$store.commit('compChat', 'groupIn')
 				}
 			}
 		}

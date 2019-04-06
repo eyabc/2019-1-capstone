@@ -95,4 +95,26 @@ router.get('/api/member/:friend', async (req, res) => {
 	res.json(resultJSON)
 })
 
+/* #80 update my information  */
+router.put('/api/member/:idx', async (req, res) => {
+	const sql = `UPDATE member SET 
+				profile_img = ?,
+				one_chat_available = ?,
+				place_visibility = ?,
+				password = ?,
+				nickname = ?,
+				place = ?, lat = ?, lng = ?,
+				profile_message = ? 
+				WHERE idx = ? 
+	`
+	const resultJSON = { success: true }
+	try {
+		await execQuery(sql, [req.body.profile_img, req.body.one_chat_available, req.body.place_visibility, req.body.password, req.body.nickname, req.body.place, req.body.lat, req.body.lng, req.body.profile_message, req.params.idx])
+	} catch (err) {
+		resultJSON.success = false
+		resultJSON.err = err.stack
+	}
+	res.json(resultJSON)
+})
+
 module.exports = router;

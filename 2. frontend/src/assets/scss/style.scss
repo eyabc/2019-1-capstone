@@ -110,6 +110,7 @@ $left-width: 500px;
 .left {
 	&-menu-wrap {
 		// min-width: $left-width;
+		z-index:11;
 		height: 100%;
 		background: #fff;
 		// width: $left-width;
@@ -201,15 +202,19 @@ $left-width: 500px;
 	input[type="password"],
 	input[type="textarea"],
 	textarea,
-	select { height:$size; padding-left: $size; font-size: 15px;-webkit-appearance:none;border: #fff; }
+	select { 
+		height:$size; padding-left: $size; font-size: 15px;-webkit-appearance:none;border: #fff; 
+		&.input-disabled {
+			background: #FFEEDE;
+		}
+	}
 	select{background:#fff; border-radius: 0; border: 1px solid #fff; }
-	textarea{padding: 15px 0 10px $size;}
+	textarea{padding: 15px 0 10px $size; resize: none; height: 200px;}
 	input:valid+.lbl,
 	textarea:valid+.lbl{display:none}	
 }
 
 .full-width{width:100%;box-sizing:border-box;}
-
 .fields {
 	li {
 		+li{margin-top:15px; }
@@ -249,7 +254,27 @@ $left-width: 500px;
 	&:hover { background:#FFBB77; transition: .3s; }
 	&:active { letter-spacing: 2px}
 }
-
+.dashed-btn {
+	border: dashed 1px #FFBB77;		
+	border-radius: 7px;
+	text-align: center;
+	transition: 0.5s;
+	&:hover, &.active {
+		background: #FFBB77;
+		transition: 0.3s;
+	}
+	&.ban {
+		cursor: not-allowed;
+		background: #ddd;
+	}
+	&.title {
+		height: 35px;
+		line-height: 35px;
+		font-size: 14px;
+		font-weight: bold;
+		width: 120px;
+	}
+}
 // #46 
 .signup {
 	&-wrap {
@@ -355,21 +380,29 @@ $left-width: 500px;
 	color: #666;
 	margin: 10px;
 }
-
+::-webkit-scrollbar {
+	display: none;
+}
 .ismember {
+	height: 100%;
+
+	overflow:auto;
 	&-content {
 		position: relative;
 		top: 120px;
+		height: 100%;
 	}
 	&-header {
+		z-index: 1000;
 		position:fixed;
 		width: 100%;
 		height: 120px;
 		&-search {
+			width: 700px;
 			height: 60px;
 			background: #fff;
-			width: 50%;
 			>form{position:relative;width:50%;
+				width: 300px;
 				>input[type="submit"] {
 					display: none
 				}
@@ -397,14 +430,15 @@ $left-width: 500px;
 			}
 			&-icon {
 				position: absolute;
-				right: 15px;
+				right: -15px;
 				top: 15px;
 				bottom: 15px;	
-				padding: 0 15px;
+				padding: 0px;
 				line-height: 28px;
 			}
 		}
 		&-navigation {
+			width: 700px;
 			height: 50px;
 			background: #FFBB77;
 			display: flex;
@@ -474,7 +508,43 @@ $left-width: 500px;
 	margin: 2px;
 	border: 1px dashed #ccc;
 }
+.image-set {
+	&-small-img {
+		height: 150px;
+		width: 150px;
+		border-radius: 20px;
+		margin-top: 15px;
+		margin-left: 10px;
+		position: absolute;
+		top:0;
+		&.img {
+			top: 62px;
+		}
 
+	}
+	&-img {
+		position: relative;
+
+
+	}
+	&-img-item {
+		background:#eee;
+		display: flex;
+		justify-content: center;
+		text-align: center;
+		align-items: center;
+		font-size: 12px;
+		transition: 0.5s;
+		position: relative;
+		z-index: 10;
+		&.none {
+			opacity: 0;
+			&:hover {
+				opacity: 0.7;
+			}
+		}
+	}
+}
 .member-info {
 	&-wrap {
 		margin: 0px 20px;
@@ -483,16 +553,42 @@ $left-width: 500px;
 		display: flex;
 		height: 140px;
 		overflow: hidden;
-
 	}
+	&-set {
+		display: flex;
+		height: 140px;
+	}
+	
 	&-small-img {
-		max-height: 120px;
-		max-width: 120px;
+		height: 120px;
+		width: 120px;
 		border-radius: 20px;
 		margin: 10px 15px 10px 0px;
+		& img {
+			display: flex;
+			justify-content: center;
+			text-align: center;
+		}
+	}
+
+	&-img-item {
+		background:#eee;
+		display: flex;
+		justify-content: center;
+		text-align: center;
+		align-items: center;
+		font-size: 12px;
+		transition: 0.5s;
 	}
 	&-desc {
 		margin-top: 20px;
+		width: 100%;
+
+		&.re-width {
+			width: 70%;
+			margin: 20px auto;
+
+		}
 		>p { padding: 5px 0;
 			height: 30px;
 		}
@@ -510,15 +606,15 @@ $left-width: 500px;
 	}
 	&-btn {
 		display: flex;
-		>li {
-		}
+
 		>li>a {
 			display: inline-block;
+			font-size: 14px;
 			padding: 10px;
 			margin: 10px 8px;
-			width: 115px;
+			width: 90px;
 			border: dashed 1px #FFBB77;		
-			height: 40px;
+			height: 20px;
 			text-align: center;
 			border-radius: 7px;
 			font-weight:bold;
@@ -529,7 +625,155 @@ $left-width: 500px;
 				cursor: not-allowed;
 				background: #ddd;
 			}
+			&.title {
+				font-size: 14px;
+				font-weight: bold;
+				width: auto;
+			}
 
 		}
 	}
+}
+.btn {
+
+}
+.visibility {
+	display: flex;
+	margin-top: 0;
+	justify-content: space-around;
+	padding-bottom: 10px;
+	>li {
+		width: 50%;
+		>span { display:inline-block; padding: 10px;}
+	}
+}
+
+.checks input[type="checkbox"] { 
+	/* 실제 체크박스는 화면에서 숨김 */ 
+	display:none;
+} 
+.checks input[type="checkbox"] + label { 
+	display: inline-block; 
+	position: relative; 
+	cursor: pointer; 
+	-webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; 
+} 
+.checks input[type="checkbox"] + label:before {
+	 /* 가짜 체크박스 */ 
+	 content: ' '; 
+	 display: inline-block; 
+	 width: 21px;  /* 체크박스의 너비를 지정 */ 
+	 height: 21px;  /* 체크박스의 높이를 지정 */ 
+	 line-height: 21px;  /* 세로정렬을 위해 높이값과 일치 */
+	 margin: -2px 8px 0 0; 
+	 text-align: center; vertical-align: middle;
+	 background: #fff; 
+	 border: 1px solid #FFBB77; border-radius : 3px; 
+
+	} 
+
+	.checks input[type="checkbox"]:checked + label:before { 
+	/* 체크박스를 체크했을때 */ 
+	content: '\2714'; 	/* 체크표시 유니코드 사용 */ 
+	color: #000;
+}
+
+.chat {
+	&-footer {
+		position: fixed;
+		bottom: 0;
+		height: 100px;
+		background: #FFBB77;
+		width: 700px;
+		& input[type="submit"] {
+			border: none;
+			position: absolute;
+			top: 5px;
+			width: 55px;
+			height: 32px;
+			border-radius: 3px;
+			background: #505050;
+			color: #fff;
+			right: 5px;
+			cursor: pointer;
+		}
+	}
+	&-input {
+		position: relative;
+		padding: 3px;
+		border-radius: 3px;
+		border: 1px solid #fff;
+		z-index: 1;
+		width: 89%;
+		font-weight: bold;
+		outline: none;
+		left: 5px;
+		resize: none;
+		// overflow-y: hidden;
+		line-height: 1.6;
+		height: auto;
+		max-height: 100px;
+		margin-top: 5px;
+	}
+	&-menu {
+		height: calc(100% - 210px);
+		background: #09f;
+		width: 50%;
+		position: absolute;
+		right: 0;
+		margin-right: -50%;
+		transition: .3s;
+		&.active {
+			transition: .3s;
+			margin-right: 0;
+		}
+	}
+	&-content {
+		position: absolute;
+		width: 100%;
+		background: #eee;
+		transition: .3s;
+		height: calc(100% - 210px);
+		&.active {
+			transition: .3s;
+			width: 50%;
+		}
+	}
+}
+.group {
+	&-wrap {
+		position: relative;
+		height: 100%;
+		top: -10px;
+	}
+	&-friend-search{
+		input {	margin-top: 10px; }
+	}
+	&-visibility {
+		display: flex;
+		font-weight: bold;
+		justify-content: space-around;
+		align-items: center;
+		font-size: 13px;
+
+		label {
+			text-align: left;
+			cursor: default;
+
+		}
+		a {
+			display: inline-block;
+			width: 100px;
+			height: 35px;
+			margin: 0;
+			line-height: 35px;
+			text-align: center;
+		}
+	}
+}
+.create-group {
+	margin: 0 10px;
+}
+.fixed {
+	position: fixed;
 }
