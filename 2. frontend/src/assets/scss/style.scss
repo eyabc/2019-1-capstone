@@ -580,6 +580,9 @@ $left-width: 500px;
 		font-size: 12px;
 		transition: 0.5s;
 	}
+	&-etc {
+		font-size: 12px;
+	}
 	&-desc {
 		margin-top: 20px;
 		width: 100%;
@@ -589,8 +592,8 @@ $left-width: 500px;
 			margin: 20px auto;
 
 		}
-		>p { padding: 5px 0;
-			height: 30px;
+		>p { 
+			height: 25px;
 		}
 		>hr {
 			margin: 3px 0;
@@ -602,7 +605,7 @@ $left-width: 500px;
 		font-weight: bold;
 	}
 	&-message{
-		font-size: 15px;
+		font-size: 14px;
 	}
 	&-btn {
 		display: flex;
@@ -816,4 +819,7 @@ $left-width: 500px;
 }
 .fixed {
 	position: fixed;
+}
+.select-box {
+	margin: 10px 0;
 }

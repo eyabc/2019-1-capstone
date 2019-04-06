@@ -4,8 +4,10 @@
 			<img class="member-info-small-img"src="./default-avatar.png" alt="img" />
 			<div class="member-info-desc">
 				<h3 class="member-info-nickname">{{memberData.nickname}}</h3><hr/>
-				<p class="member-info-message">{{ memberData.profile_message }}</p>
-				<p class="member-info-place" v-if="memberData.place_visibility === 1">{{ memberData.place }}</p>
+				<p class="member-info-etc">{{ memberData.profile_message }}</p>
+				<p class="member-info-etc" v-if="memberData.place_visibility === 1">{{ memberData.place }}</p>
+				<p class="member-info-etc">가입 날짜 : {{ memberData.reg_date }}</p>
+
 			</div>
 		</div><br/>
 		<ul class="member-info-btn">

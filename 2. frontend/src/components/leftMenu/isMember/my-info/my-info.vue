@@ -5,7 +5,8 @@
 		<div class="member-info-desc">
 			<h3 class="member-info-nickname">{{myData.nickname}}</h3><hr/>
 			<p class="member-info-message">{{myData.profile_message}}</p>
-			<p class="member-info-place">{{myData.place}}</p>
+			<p class="member-info-etc">{{myData.place}}</p>
+			<p class="member-info-etc">가입 날짜 : {{myData.reg_date}}</p>
 		</div>
 	</div><br/>
 	<ul class="member-info-btn fixed">
