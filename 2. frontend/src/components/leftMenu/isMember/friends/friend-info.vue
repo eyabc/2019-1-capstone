@@ -67,8 +67,9 @@
 			},
 			setChat () {
 				if(this.memberData.one_chat_available == 1){
-					this.$store.commit('isMember', 'chat')
-					this.$store.commit('compChat', 'groupIn')
+					alert('주제의 핵심 기능이 아닙니다. ver2.0 에서 구현예정')
+			//		this.$store.commit('isMember', 'chat')
+			//		this.$store.commit('compChat', 'groupIn')
 				}
 			}
 		}

@@ -77,8 +77,6 @@ export default new Vuex.Store({
 		},
 
 		async insertGroup (state, data) {
-			console.log(state.group)
-
 			var json = await $fetch(`/api/group`, {
 				method: 'POST',
 				headers: {'Content-Type':'application/json'},
@@ -89,6 +87,9 @@ export default new Vuex.Store({
 			alert('그룹 생성이 완료되었습니다.')
 			state.isMember = 'chat'
 			state.compChat = 'groupIn'
+		},
+		async OneToOne (state, val) {
+			
 		},
 		async deleteFriend (state) {
 			var json = await $fetch(`/api/friend/${state.member.idx}/${state.tempData.idx}`, {
