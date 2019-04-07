@@ -75,7 +75,7 @@
 						<label class="input-label">
 							<span class="pre"><i class="fas fa-map-marker-alt"></i></span>
 							<input type="text"  name="place" ref="place" 
-							class="full-width" placeholder="위치를 입력해주세요" 
+							class="full-width" placeholder="위치를 입력해주세요"  required
 							@keydown.enter.prevent="placeSubmit" v-model="data.place" 
 							> 
 							<p class="check-show">{{ data.place }}</p>
