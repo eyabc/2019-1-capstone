@@ -33,18 +33,7 @@
 					email: frm.email.value,
 					password: frm.password.value
 				}
-				var json = await this.$fetch('/api/member/signin', {
-					method: 'post',
-					headers: {'Content-Type':'application/json'},
-					body: JSON.stringify(data)
-				});
-				if (json.member) {
-					this.$store.state.leftMenuWidth = 700
-					this.$store.commit('member', json.member)
-					this.$store.commit('leftMenu', 'isMember')
-				} else {
-					alert("아이디 혹은 비밀번호가 틀렸습니다.")
-				}
+				this.$store.dispatch('login', data)
 			},
 			joinMember () { this.$store.commit('leftMenu','signup')},
 			findPW () { alert("V2.0에서 지원할 예정입니다. ")}

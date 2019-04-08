@@ -1,7 +1,7 @@
 <template>
 	<div class="ismember-header-wrap">
 		<div class='ismember-header-search'>
-			<form @submit.prevent>
+			<form @submit.prevent="setIsMember('search')">
 				<label class="ismember-header-search-label">
 					<span @mousedown="hoverToggle" class="ismember-header-search-icon"><i class="fas fa-search"></i></span>
 					<input type="text" name="place" placeholder="이메일로 사용자 검색" required>
@@ -16,11 +16,11 @@
 			</form>
 		</div>
 		<ul class = "ismember-header-navigation">
-			<li :class="{ active: $store.state.isMember  === 'friends' }"><a href="#" @click="getFriend" ><i class="fas fa-user-friends"></i></a></li>
-			<li :class="{ active: $store.state.isMember === 'chat' }"><a href="#" @click.prevent="getChat('chat')"><i class="fas fa-comment"></i></a></li>
+			<li :class="{ active: $store.state.isMember  === 'relation' }"><a href="#" @click="setIsMember('relation')" ><i class="fas fa-user-friends"></i></a></li>
+			<li :class="{ active: $store.state.isMember === 'activity' }"><a href="#" @click.prevent="setIsMember('activity')"><i class="fas fa-comment"></i></a></li>
 		<!--	<li :class=""><a href="#"><i class="fas fa-users"></i></a></li>
 			<!-- <li :class=""><a href="#"><i class="fas fa-user-alt"></i></a></li> -->
-			<li :class=""><a href="#"><i class="fas fa-cog"></i></a></li>
+			<li :class="{ active: $store.state.isMember === 'setting' }" @click.prevent="setIsMember('setting')"><a href="#"><i class="fas fa-cog"></i></a></li>
 		</ul>
 	</div>
 </template>
@@ -31,7 +31,7 @@
 			isMember: false,
 		},
 		created () {
-			this.isMember = this.$store.getters.isMember
+			this.isMember = this.$store.state.isMember
 		},
 		data() {
 			return {
@@ -42,20 +42,12 @@
 			hoverToggle () {
 				this.hover = !this.hover
 			},
-			getFriend () {
-			//	this.active = false
-			this.$store.commit('getFriends')
-			this.$store.commit('getGroups')
-			this.$store.commit('isMember', 'relation')
+			setIsMember (val) {
+				this.$store.commit('isMember', val)
+			},
 
 		},
-		getChat () {
-			this.$store.commit('isMember', 'chat')
-			this.$store.commit('compChat', 'chatList')
-
-		}
 	}
-}
 </script>
 <style type="">
 a:hover {

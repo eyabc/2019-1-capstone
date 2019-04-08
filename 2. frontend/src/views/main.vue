@@ -30,7 +30,7 @@
        // var member = await this.$fetch('/api');
        // this.$store.commit('member', member);
        this.setLeftMenu()
-       this.$store.commit('setLeftMenuWidth', this.$store.getters.member ? 700 : 500)
+       this.$store.commit('leftMenuWidth', this.$store.state.member ? 700 : 500)
     },
     data () {
       return {
@@ -40,8 +40,8 @@
     methods: {
       setLeftMenu() {
         let component
-        
-        this.$store.getters.member === null ? component = 'login' : component = 'isMember'
+  
+        this.$store.state.member === null ? component = 'login' : component = 'isMember'
         this.$store.commit('leftMenu', component)
 
       }
