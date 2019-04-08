@@ -3,7 +3,7 @@
     <ul class="member-info-btn title">
       <li><a class="title" href="#" @click.prevent=""># 내 정보 수정</a></li>
       <li><a href="#" @click.prevent=""># 공개 설정</a></li>
-      <li><a href="#" @click.prevent="back">수정 취소</a></li>
+      <li><a href="#" @click.prevent="back">뒤로 가기</a></li>
     </ul>
     <form class="member-info-set" method="post" @submit.prevent="setMember">
       <div id="image-set-img">

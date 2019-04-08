@@ -10,8 +10,6 @@
 		</div>
 	</div><br/>
 	<ul class="member-info-btn fixed">
-		<li><a href="#" @click.prevent="">대기 친구</a></li>
-		<li><a href="#" @click.prevent="">대기 그룹</a></li>
 		<li><a href="#" @click.prevent="showMap" >위치정보조회</a></li>
 		<li><a href="#" @click.prevent="setMyinfo">내 정보 설정</a></li>
 	</ul>

@@ -13,7 +13,7 @@ export default new Vuex.Store({
 		leftMenu: false,
 		rightMenu: false,
 		notMember: false,
-		isMember: 'friends',
+		isMember: 'relation',
 		compChat: false,
 
 		friend: [],
