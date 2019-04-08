@@ -17,7 +17,7 @@
 		</div>
 		<ul class = "ismember-header-navigation">
 			<li :class="{ active: $store.state.isMember  === 'relation' }"><a href="#" @click="setIsMember('relation')" ><i class="fas fa-user-friends"></i></a></li>
-			<li :class="{ active: $store.state.isMember === 'activity' }"><a href="#" @click.prevent="setIsMember('activity')"><i class="fas fa-comment"></i></a></li>
+			<li :class="{ active: $store.state.isMember === 'activity' }"><a href="#" @click.prevent="setIsMember('activity'); $store.commit('activity', 'list')"><i class="fas fa-comment"></i></a></li>
 		<!--	<li :class=""><a href="#"><i class="fas fa-users"></i></a></li>
 			<!-- <li :class=""><a href="#"><i class="fas fa-user-alt"></i></a></li> -->
 			<li :class="{ active: $store.state.isMember === 'setting' }" @click.prevent="setIsMember('setting')"><a href="#"><i class="fas fa-cog"></i></a></li>
