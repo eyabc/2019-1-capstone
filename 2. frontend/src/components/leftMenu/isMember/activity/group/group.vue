@@ -1,17 +1,20 @@
 <template>
 	<div class="group-wrap">
-		<groupMenu />
-		<groupContent />
-		<groupFooter />
+		<component :is="componentn" />
 	</div>
 </template>
 <script type="text/javascript">
 
 	export default {
 		components: {
-			groupFooter: () => import('./group-footer'),
-			groupContent: () => import('./group-content'),
-			groupMenu: () => import('./group-menu'),
+			groupHome: () => import('./group-home'),
+			participantSetting: () => import('./participant-setting/participant-setting'),
+			managerSetting: () => import('./manager-setting/manager-setting'),
+		},
+		data () {
+			return {
+				component: 'groupHome'
+			}
 		}
 	} 
 </script>
