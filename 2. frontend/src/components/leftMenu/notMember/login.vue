@@ -20,7 +20,7 @@
 			</ul>
 			<button class="login-btn btn" type="submit">로그인</button>
 		</form>
-		<p><a href="#" @click.prevent='' class="login-option">비밀 번호를 분실하였습니까?</a></p>
+		<p><a href="#" @click.prevent='findPW' class="login-option">비밀 번호를 분실하였습니까?</a></p>
 		<p><a href="#" @click.prevent='joinMember' class="login-option">아직 {{$store.getters.title}} 회원이 아니십니까?</a></p>
 	</div>
 </template>
@@ -33,20 +33,11 @@
 					email: frm.email.value,
 					password: frm.password.value
 				}
-				var json = await this.$fetch('/api/member/signin', {
-					method: 'post',
-					headers: {'Content-Type':'application/json'},
-					body: JSON.stringify(data)
-				});
-				if (json.member) {
-					this.$store.state.leftMenuWidth = 800
-					this.$store.commit('member', json.member)
-					this.$store.commit('leftMenu', 'isMember')
-				} else {
-					alert("아이디 혹은 비밀번호가 틀렸습니다.")
-				}
+				this.$store.dispatch('login', data)
 			},
-			joinMember () { this.$store.commit('leftMenu','signup')}
+			joinMember () { this.$store.commit('leftMenu','signup')},
+			findPW () { alert("V2.0에서 지원할 예정입니다. ")}
+
 		}
 	}
 </script>

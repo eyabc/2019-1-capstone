@@ -112,20 +112,9 @@
 				if(!this.statusAll()) {
 					alert('양식을 다시 확인해 주세요') 
 				} else {
-					const frm = e.target
 					const data = this.data
-					this.$fetch('/api/member/signup', {
-						method: 'post',
-						headers: {'Content-Type':'application/json'},
-						body: JSON.stringify({ data })
-					}).then(json => {
-						if(json.msg === false) {
-							alert('회원가입 완료')
-							this.$store.commit("leftMenu", 'login')
-						} else {
-							alert('회원가입 실패')
-						}
-					})
+					this.$store.dispatch('signup', data)
+					
 				}
 			},
 			overlapEmail (email) {

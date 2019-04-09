@@ -5,17 +5,27 @@
 	</div>
 </template>
 <script type="text/javascript">
-	import isMemberHeader from '@/components/leftMenu/isMember/ismember-header'
-	import friends from '@/components/leftMenu/isMember/friends/friends'
-	import friendInfo from '@/components/leftMenu/isMember/friends/friend-info'
-	import myInfo from '@/components/leftMenu/isMember/my-info/my-info'
-	import setMyInfo from '@/components/leftMenu/isMember/my-info/set-my-info'
-	import chat from '@/components/leftMenu/chat/chat-main'
+	const isMember = '@/components/leftMenu/isMember'
+//	import friends from '@/components/leftMenu/isMember/friends/all'
+//	import requestedFriend from '@/components/leftMenu/isMember/friends/requested-friend'
+//	import requestedGroup from '@/components/leftMenu/isMember/friends/requested-group'
+//	import friendInfo from '@/components/leftMenu/isMember/friends/friend-info'
+//	import myInfo from '@/components/leftMenu/isMember/my-info/my-info'
+//	import chat from '@/components/leftMenu/chat/chat-main'
+
+// commitList: () => import('@/components/task/commit-list.vue'),
+
 	export default {
 		components: {
-			isMemberHeader,
-			friends, friendInfo, myInfo, setMyInfo,
-			chat,
+			relation: () => import(`./relation/list`),
+			info: () => import(`./relation/info`),
+	//		friends, friendInfo, myInfo, setMyInfo,
+	//		chat, requestedFriend, requestedGroup,
+	//@/components/leftMenu/isMember/ismember-header
+			isMemberHeader: () => import(`./ismember-header`),
+			search: () => import(`./search/search`),
+			activity: () => import(`./activity/activity`),
+			setting: () => import(`./setting/setting`),
 		},
 		created () {
 		},

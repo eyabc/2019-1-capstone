@@ -60,7 +60,7 @@ router.post('/api/member/signup/email', async (req, res) => {
 router.post('/api/member/signup', async (req, res) => {
 	const sql = 'insert into member (email, password, nickname, place, lat, lng) values(?,?,?,?,?,?)'
 	const resultJSON = { success: true, msg: false }
-	const data = req.body.data
+	const data = req.body
 	try {
 		const chk = await execQuery(`select email from member where email = ?`, [data.email])
 		if(chk.length === 0) {
