@@ -76,24 +76,6 @@ router.post('/api/member/signup', async (req, res) => {
 })
 
 
-/* # 132 get friend infomation */
-router.get('/api/member/:friend', async (req, res) => {
-	const sql = `SELECT A.request, A.favorite,
-				B.idx, B.email, B.place_visibility, B.reg_date, B.info_visibility, B.one_chat_available, B.nickname, B.profile_img, B.profile_message, B.place, B.lat, B.lng   
-				FROM member B LEFT
-				JOIN friend A
-				ON A.friend = B.idx
-				WHERE A.friend = ? 
-				`
-	const resultJSON = { success: true, data: false }
-	try {
-		resultJSON.data = (await execQuery(sql, [req.params.friend]))[0]
-	} catch (err) {
-		resultJSON.success = false
-		resultJSON.err = err.stack
-	}
-	res.json(resultJSON)
-})
 
 /* #80 update my information  */
 router.put('/api/member/:idx', async (req, res) => {
@@ -117,4 +99,39 @@ router.put('/api/member/:idx', async (req, res) => {
 	res.json(resultJSON)
 })
 
+/* # 132 get friend infomation */
+router.get('/api/member/:friend', async (req, res) => {
+	const sql = `SELECT A.request, A.favorite,
+				B.idx, B.email, B.place_visibility, B.reg_date, B.info_visibility, B.one_chat_available, B.nickname, B.profile_img, B.profile_message, B.place, B.lat, B.lng   
+				FROM member B LEFT
+				JOIN friend A
+				ON A.friend = B.idx
+				WHERE A.friend = ? 
+				`
+	const resultJSON = { success: true, data: false }
+	try {
+		resultJSON.data = (await execQuery(sql, [req.params.friend]))[0]
+	} catch (err) {
+		resultJSON.success = false
+
+		resultJSON.err = err.stack
+	}
+	res.json(resultJSON)
+})
+
+
+/* #158 get members by email (searchMember by email) */
+router.get('/api/member-search', async (req, res) => {
+		const sql = `SELECT idx, nickname, email, reg_date, profile_message 
+					FROM member where email = ?
+		`
+		const resultJSON = { success: true, memberInfo: [] }
+		try {
+			resultJSON.memberInfo = await execQuery(sql, [req.query.email])
+		} catch (err) {
+			resultJSON.success = false
+			resultJSON.err = err.stack
+		}
+		res.json(resultJSON)
+})
 module.exports = router;

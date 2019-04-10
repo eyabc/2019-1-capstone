@@ -80,6 +80,12 @@ const actions = {
 		commit('tempInit')
 		commit('isMember', 'relation')
 	},
+	async getMemberByEmail ({state, commit}, payload) {
+		const json = await $fetch(`/api/member-search?email=${payload}`)
+		commit('searchedEmail', json.memberInfo[0])
+		console.log(state.searchedEmail)
+		state.isMember !== 'search' ? commit('isMember', 'search') : ''
+	}
 }
 
 export default actions

@@ -1,10 +1,10 @@
 <template>
 	<div class="ismember-header-wrap">
 		<div class='ismember-header-search'>
-			<form @submit.prevent="setIsMember('search')">
+			<form @submit.prevent="searchMember">
 				<label class="ismember-header-search-label">
 					<span @mousedown="hoverToggle" class="ismember-header-search-icon"><i class="fas fa-search"></i></span>
-					<input type="text" name="place" placeholder="이메일로 사용자 검색" required>
+					<input type="text" name="email" placeholder="이메일로 사용자 검색" required>
 				</label>
 				<input type="submit">
 <!-- 				<div class="ismember-header-search-more" v-if="hover" >
@@ -25,7 +25,6 @@
 	</div>
 </template>
 <script type="text/javascript">
-
 	export default {
 		components: {
 			isMember: false,
@@ -45,7 +44,9 @@
 			setIsMember (val) {
 				this.$store.commit('isMember', val)
 			},
-
+			async searchMember (e) {
+				this.$store.dispatch('getMemberByEmail', e.target.email.value)
+			}
 		},
 	}
 </script>

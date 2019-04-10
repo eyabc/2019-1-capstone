@@ -48,7 +48,10 @@ const mutations = {
 	},
 	activity (state, val) {
 		state.activity = val
-	}
+	},
+	searchedEmail (state, val) {
+		state.searchedEmail = val
+	},
 }
 
 export default mutations
