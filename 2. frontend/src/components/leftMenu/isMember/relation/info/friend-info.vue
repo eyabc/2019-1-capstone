@@ -49,7 +49,10 @@
 		methods: {
 			deleteFriend () {
 				if(confirm("친구목록에서 삭제하시겠습니까?")){
-					this.$store.dispatch('deleteFriend')
+					const data = { idx: memberData.idx }
+					this.$store.dispatch('deleteFriend', data)
+					this.$store.commit('tempInit')
+					this.$store.commit('isMember', 'relation')
 				}
 			},
 			setFavorite () {
@@ -69,8 +72,8 @@
 					alert('주제의 핵심 기능이 아닙니다. ver2.0 에서 구현예정')
 			//		this.$store.commit('isMember', 'chat')
 			//		this.$store.commit('compChat', 'groupIn')
-				}
-			}
 		}
 	}
+}
+}
 </script>
