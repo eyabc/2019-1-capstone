@@ -70,16 +70,56 @@ const actions = {
 		alert('그룹 생성이 완료되었습니다.')
 		commit('activity', 'group')
 	},
-	async deleteFriend ({state, commit}) {
-		var json = await $fetch(`/api/friend/${state.member.idx}/${state.tempData.idx}`, {
+	async deleteFriend ({state, commit, dispatch}, payload) {
+		var json = await $fetch(`/api/friend/${state.member.idx}/${payload.idx}`, {
 			method: 'delete',
 			headers: {'Content-Type':'application/json'},
 		})
-		const index = state.tempIdx.index
+		const index = state.tempIdx.index	
 		state.friend.splice(index,index+1)
-		commit('tempInit')
-		commit('isMember', 'relation')
+		dispatch('getFriendRelation', payload)
 	},
+	async getMemberByEmail ({state, commit}, payload) {
+		const json = await $fetch(`/api/member-search?email=${payload}`)
+		commit('searchedEmail', json.memberInfo[0])
+		console.log(state.searchedEmail)
+		if (json.memberInfo[0]) {
+			const json2 = await $fetch(`/api/friend/${state.member.idx}/${json.memberInfo[0].idx}`, {
+				method: 'get',
+				headers: {'Content-Type':'application/json'},
+			})
+			console.log(json2)
+			commit('tempData', json2)
+		}
+		state.isMember !== 'search' ? commit('isMember', 'search') : ''
+	},
+	/* #158 insert member-friend request active relation*/
+	async createFriendRelation ({state, commit, dispatch}, payload) {
+		await $fetch(`/api/friend/${payload.from}/${payload.to}`, {
+			method: 'POST',
+			headers: {'Content-Type':'application/json'},
+		})
+		dispatch('getFriendRelation', state.searchedEmail)
+	},
+	/* #158 cancel member-friend request active relation */
+	async deleteFriendRelation ({state, commit, dispatch}, payload) {
+		console.log(payload)
+		const json = await $fetch(`/api/friend-cancel/${payload.from}/${payload.to}`, {
+			method: 'delete',
+			headers: {'Content-Type':'application/json'},
+		})
+		dispatch('getFriendRelation', payload)
+
+
+	},
+	/* #158 get friend-relation */
+	async getFriendRelation ({state, commit}, payload) {
+		const json = await $fetch(`/api/friend/${state.member.idx}/${payload.idx}`, {
+			method: 'get',
+			headers: {'Content-Type':'application/json'},
+		})
+		commit('tempData', json)
+	}
 }
 
 export default actions

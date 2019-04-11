@@ -17,19 +17,18 @@
   </div>
 </template>
 <script type="text/javascript">
-  import eventBus from '@/eventBus'
   export default {
-  data() {
-    return {
-      hover: false,
-    }
-  },
-  methods: {
-    hoverToggle () {
-      this.hover = !this.hover
+    data() {
+      return {
+        hover: false,
+      }
     },
-    search(){
+    methods: {
+      hoverToggle () {    
+        this.hover = !this.hover
+      },
+      search(){
+      }
     }
   }
-}
 </script>

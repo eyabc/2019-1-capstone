@@ -11,7 +11,8 @@ const initState = {
 	friend: [],
 	group: [],
 	tempData: {},
-	tempIdx: []
+	tempIdx: [],
+	searchedEmail: null,
 }
 
 export default initState
