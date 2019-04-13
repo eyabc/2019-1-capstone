@@ -9,8 +9,7 @@
 				<p class="profile-message">{{ item.profile_message }}</p>
 			</div>
 			<ul class="member-info-btn permit">
-				<li><a class="title" @click.prevent="accpet(item.midx, key)">수락</a></li>			
-				<li><a class="title" @click.prevent="refuse(item.midx, key)">거절</a></li>			
+				<li><a class="title" @click.prevent="cancel(item.midx, key)">취소</a></li>			
 			</ul>
 		</div>
 	</div>
@@ -30,19 +29,13 @@
 			}
 		},
 		async mounted () {
-			await this.$store.dispatch('getFriendReceived')
+			await this.$store.dispatch('getFriendSend')
 		},
 		methods: {
 			/* #158 */
-			async accpet(midx, key) {
-				if (confirm("친구 요청을 수락 하겠습니까?")) {
-					await this.$store.dispatch('createFriendRelation', {from: this.$store.state.member.idx, to: midx})
-					this.$store.commit('spliceTempData', key)
-				}
-			},
-			async refuse(midx, key) {
-				if (confirm("친구 요청을 거절 하겠습니까?")) {
-					await this.$store.dispatch('refuseFriend', { to: this.$store.state.member.idx, from: midx })
+			async cancel(midx, key) {
+				if (confirm("친구 요청을 취소 하겠습니까?")) {
+					await this.$store.dispatch('refuseFriend', { from: this.$store.state.member.idx, to: midx })
 					this.$store.commit('spliceTempData', key)
 				}
 			}
@@ -54,7 +47,5 @@
 	position: absolute;
 	display: flex;
 	right: 0;
-	>li>a {
-	}
 }
 </style>
