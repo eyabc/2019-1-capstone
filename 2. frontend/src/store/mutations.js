@@ -36,6 +36,9 @@ const mutations = {
 	putTempData (state, object) {
 		Object.assign(state.tempData, object)
 	},
+	spliceTempData (state, key) {
+		state.tempData.splice(key,key+1)
+	},
 	tempIdx (state, val) {
 		state.tempIdx = val
 	},

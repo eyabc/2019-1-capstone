@@ -61,7 +61,7 @@
 
               case 2:
               // 친구 요청 취소
-              await dispatch('deleteFriendRelation', {from: this.myIdx ,to: this.data.idx })
+              await dispatch('refuseFriend', {from: this.myIdx ,to: this.data.idx })
               await dispatch('getFriendRelation', friendIdx)
               break;
 
@@ -76,7 +76,7 @@
           await this.$store.dispatch('getFriendRelation', {idx: this.data.idx })
         },
         async refuseRequest () {
-          await this.$store.dispatch('deleteFriendRelation', { from: this.data.idx, to: this.myIdx})
+          await this.$store.dispatch('refuseFriend', { from: this.data.idx, to: this.myIdx})
           await this.$store.dispatch('getFriendRelation', {idx: this.data.idx })
 
         }

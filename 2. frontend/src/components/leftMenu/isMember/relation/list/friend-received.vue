@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<div class="profile-wrap" v-for="item in info">
+		<div class="profile-wrap" v-for="(item, key) in info">
 			<img class="profile-small-img"src="./default-avatar.png" alt="img" />
 			<div class="profile-info">
 				<p class="profile-nickname">{{ item.nickname }} 
@@ -9,8 +9,8 @@
 				<p class="profile-message">{{ item.profile_message }}</p>
 			</div>
 			<ul class="member-info-btn permit">
-				<li><a class="title" @click.prevent="accpet(item.midx)">수락</a></li>			
-				<li><a class="title" @click.prevent="refuse(item.midx)">거절</a></li>			
+				<li><a class="title" @click.prevent="accpet(item.midx, key)">수락</a></li>			
+				<li><a class="title" @click.prevent="refuse(item.midx, key)">거절</a></li>			
 			</ul>
 		</div>
 	</div>
@@ -34,15 +34,16 @@
 		},
 		methods: {
 			/* #158 */
-			async accpet(midx) {
+			async accpet(midx, key) {
 				if (confirm("친구 요청을 수락 하겠습니까?")) {
 					await this.$store.dispatch('createFriendRelation', {from: this.$store.state.member.idx, to: midx})
-					await this.$store.dispatch('getFriendReceived')
+					this.$store.commit('spliceTempData', key)
 				}
 			},
-			refuse(midx) {
+			async refuse(midx, key) {
 				if (confirm("친구 요청을 거절 하겠습니까?")) {
-				//	await this.$store.dispatch('')
+					await this.$store.dispatch('refuseFriend', { to: this.$store.state.member.idx, from: midx })
+					this.$store.commit('spliceTempData', key)
 				}
 			}
 		}

@@ -104,13 +104,12 @@ const actions = {
 		})
 	},
 	/* #158 cancel member-friend request active relation */
-	async deleteFriendRelation ({state, commit, dispatch}, payload) {
+	async refuseFriend (context, payload) {
 		console.log(payload)
 		const json = await $fetch(`/api/friend-cancel/${payload.from}/${payload.to}`, {
 			method: 'delete',
 			headers: {'Content-Type':'application/json'},
 		})
-		dispatch('getFriendRelation', payload)
 
 
 	},
