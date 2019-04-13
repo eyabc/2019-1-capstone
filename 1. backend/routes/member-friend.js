@@ -4,16 +4,25 @@ const execQuery = require('../db.js')
 
 /* #54 getFrineds*/
 router.get('/api/friend/:midx', async (req, res) => {
-	const sql = `select A.midx, A.friend, A.favorite,
-	B.nickname, B.profile_message, B.email, B.profile_img, B.reg_date, B.idx
-	from friend A 
-	JOIN member B 
-	on A.friend = B.idx
-	where midx = ?
-	order by nickname asc`
+	const sql1 = `select A.midx, A.friend from friend A WHERE A.midx = ?`
+	const sql2 = `select * A.favorite,
+	B.nickname, B.idx, B.email, B.profile_message, B.profile_img, B.place, B.lat, B.lng
+	FROM friend A JOIN member B 
+	ON A.midx = B.idx
+	WHERE midx = ? AND friend = ?
+	ORDER BY B.nickname ASC
+	`
 	const resultJSON = { success: true, data: []}
+	let resultSql1
+	let resultSql2
 	try {
-		resultJSON.data = await execQuery(sql, [req.params.midx])
+		resultSql1 = await execQuery(sql1, [req.params.midx])
+		resultSql1.forEach(friend => {
+			console.log(friend)
+		})
+		resultSql2 = await execQuery(sql2, [16, req.params.midx])
+		console.log("test")
+		console.log(resultSql2)
 	} catch (err) {
 		resultJSON.success = false
 		resultJSON.err = err.stack

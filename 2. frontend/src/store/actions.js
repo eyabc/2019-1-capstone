@@ -31,8 +31,12 @@ const actions = {
 		})
 	},
 	async getFriends ({state, commit}, payload) {
-		var json = await $fetch(`/api/friend/${state.member.idx}`)
+		var json = await $fetch(`/api/friend/${state.member.idx}`, {
+			method: 'get',
+			headers: { 'Content-Type': 'application/json'}
+		})
 		commit('friend', json.data)
+		console.log(state.friend)
 	},
 	async getGroups ({state, commit}, payload) {
 		var json = await $fetch(`/api/group/${state.member.idx}`)
