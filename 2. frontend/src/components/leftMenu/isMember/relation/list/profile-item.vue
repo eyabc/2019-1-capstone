@@ -9,6 +9,9 @@
 </template>
 <script type="text/javascript">
 	export default {
+		created() {
+			console.log(this.info)
+		},
 		methods: {
 			goInfo () {
 				const state = this.$store.state
@@ -16,6 +19,7 @@
 				if (!this.info.midx) {
 					this.$store.commit('info', 'myInfo')
 				} else {
+					console.log(this.info)
 					this.$store.commit('tempData', { idx: this.info.friend})
 					this.$store.commit('tempIdx', { index: this.index })
 					this.$store.commit('info', 'friendInfo')

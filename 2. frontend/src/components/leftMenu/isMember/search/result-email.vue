@@ -51,7 +51,7 @@
               break;
               case 1:
               // 친구 입니다. 친구 삭제 
-              this.$store.dispatch('deleteFriend', {idx: this.data.idx })
+              this.$store.dispatch('deleteFriend', {idx: this.data.idx, state: 'result-email' })
               break;
               case 2:
               // 친구 요청 취소

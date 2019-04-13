@@ -36,7 +36,6 @@ const actions = {
 			headers: { 'Content-Type': 'application/json'}
 		})
 		commit('friend', json.data)
-		console.log(state.friend)
 	},
 	async getGroups ({state, commit}, payload) {
 		var json = await $fetch(`/api/group/${state.member.idx}`)
@@ -79,9 +78,14 @@ const actions = {
 			method: 'delete',
 			headers: {'Content-Type':'application/json'},
 		})
-		const index = state.tempIdx.index	
-		state.friend.splice(index,index+1)
-		dispatch('getFriendRelation', payload)
+		
+		if(payload.state === 'result-email') {
+			dispatch('getFriendRelation', payload)
+		} else {
+			const index = state.tempIdx.index	
+			state.friend.splice(index,index+1)
+			dispatch('getFriends')
+		}
 	},
 	async getMemberByEmail ({state, commit}, payload) {
 		const json = await $fetch(`/api/member-search?email=${payload}`)
