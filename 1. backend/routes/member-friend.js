@@ -5,18 +5,18 @@ const execQuery = require('../db.js')
 /* #54 getFrineds*/
 router.get('/api/friend/:midx', async (req, res) => {
 	const sql = `
-		select  A.*,
-				B.nickname, B.idx AS midx, B.email, B.profile_message, B.profile_img, B.place, B.lat, B.lng
-		FROM 	friend A
-		JOIN 	member B ON A.friend = B.idx
-		WHERE 	friend in (
-			SELECT 	f2.midx
-			FROM 	friend f1
-			JOIN    friend f2 ON f1.friend = f2.midx
-			where 	f1.midx = ${req.params.midx}
-			and 	f2.friend = ${req.params.midx}
-		)
-		ORDER BY B.nickname ASC
+	select  A.*,
+	B.nickname, B.idx AS midx, B.email, B.profile_message, B.profile_img, B.place, B.lat, B.lng
+	FROM 	friend A
+	JOIN 	member B ON A.friend = B.idx
+	WHERE 	friend in (
+	SELECT 	f2.midx
+	FROM 	friend f1
+	JOIN    friend f2 ON f1.friend = f2.midx
+	where 	f1.midx = ${req.params.midx}
+	and 	f2.friend = ${req.params.midx}
+	)
+	ORDER BY B.nickname ASC
 	`
 	const resultJSON = { success: true, data: [] }
 	try {
@@ -68,7 +68,7 @@ router.get('/api/friend/:midx/:friend', async (req, res) => {
 		const values = await Promise.all([
 			execQuery(sql1, [req.params.midx, req.params.friend]),
 			execQuery(sql2, [req.params.friend, req.params.midx])
-		])
+			])
 		const result1 = values[0][0]
 		const result2 = values[1][0]
 
@@ -105,13 +105,58 @@ router.post('/api/friend/:midx/:friend', async (req, res) => {
 		resultJSON.err = err.stack
 	}
 	res.json(resultJSON)
-})
+})	
 /* #158 cancel member-friend request active relation */
 router.delete('/api/friend-cancel/:midx/:friend', async (req, res) => {
 	const sql = `DELETE FROM friend WHERE midx = ? and friend =?`
 	const resultJSON = { success: true }
 	try {
 		await execQuery(sql, [req.params.midx, req.params.friend])
+	} catch (err) {
+		resultJSON.success = false
+		resultJSON.err = err.stack
+	}
+	res.json(resultJSON)
+})
+
+
+/* #162 get Friend Requested received */
+router.get('/api/friend-received/:midx', async (req, res) => {
+	const sql = `
+	select 
+	B.idx AS midx, B.nickname, B.profile_message, B.profile_img, B.reg_date
+	FROM 	member B
+	WHERE B.idx in (
+	select midx from friend
+	where friend = ${req.params.midx}
+	and 	midx not in (SELECT friend from friend where midx = ${req.params.midx})
+	)
+	ORDER BY B.nickname ASC
+	`
+	const resultJSON = { success: true, data: [] }
+
+	try {
+		resultJSON.data = await execQuery(sql)
+		console.log(resultJSON.data)
+	} catch (err) {
+		resultJSON.success = false
+		resultJSON.err = err.stack
+	}
+	res.json(resultJSON)
+})
+/* #162 get Friend Requested send */
+router.get('/api/friend-send/:midx', async (req, res) => {
+	const sql = `
+	select * from friend
+	where midx = ${req.params.midx}
+	and 	friend not in (SELECT midx from friend where friend = ${req.params.midx})
+	order by midx asc;
+	`
+	const resultJSON = { success: true, data: [] }
+
+	try {
+		resultJSON.data = await execQuery(sql)
+		console.log(resultJSON.data)
 	} catch (err) {
 		resultJSON.success = false
 		resultJSON.err = err.stack

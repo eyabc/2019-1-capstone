@@ -10,7 +10,6 @@
 <script type="text/javascript">
 	export default {
 		created() {
-			console.log(this.info)
 		},
 		methods: {
 			goInfo () {

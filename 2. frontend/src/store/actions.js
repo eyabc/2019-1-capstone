@@ -78,14 +78,9 @@ const actions = {
 			method: 'delete',
 			headers: {'Content-Type':'application/json'},
 		})
-		
-		if(payload.state === 'result-email') {
-			dispatch('getFriendRelation', payload)
-		} else {
 			const index = state.tempIdx.index	
 			state.friend.splice(index,index+1)
 			dispatch('getFriends')
-		}
 	},
 	async getMemberByEmail ({state, commit}, payload) {
 		const json = await $fetch(`/api/member-search?email=${payload}`)
@@ -107,7 +102,6 @@ const actions = {
 			method: 'POST',
 			headers: {'Content-Type':'application/json'},
 		})
-		dispatch('getFriendRelation', state.searchedEmail)
 	},
 	/* #158 cancel member-friend request active relation */
 	async deleteFriendRelation ({state, commit, dispatch}, payload) {
@@ -122,12 +116,29 @@ const actions = {
 	},
 	/* #158 get friend-relation */
 	async getFriendRelation ({state, commit}, payload) {
+		console.log("action: getFriendRelation")
 		const json = await $fetch(`/api/friend/${state.member.idx}/${payload.idx}`, {
 			method: 'get',
 			headers: {'Content-Type':'application/json'},
 		})
 		commit('tempData', json)
-	}
+	},
+	/* #162 get Friend Requested - received */
+	async getFriendReceived ({state, commit}, payload) {
+		const json = await $fetch(`/api/friend-received/${state.member.idx}`, {
+			method: 'get',
+			headers: {'Content-Type':'application/json'},
+		})
+		commit('tempData', json.data)
+	},
+	/* #162 get Friend Requested - send */
+	async getFriendSend ({state, commit}, payload) {
+		const json = await $fetch(`/api/friend-send/${state.member.idx}`, {
+			method: 'get',
+			headers: {'Content-Type':'application/json'},
+		})
+		commit('tempData', json.data)
+	},
 }
 
 export default actions
