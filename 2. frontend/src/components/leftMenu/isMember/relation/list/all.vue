@@ -4,13 +4,13 @@
 		<friendItem :info="myself" />
 		<hr class='contour' />
 		<p class="profile-title">즐겨찾는 친구</p>
-		<friendItem v-for="(info, index) in friend" :info="info" :index="index" v-if="info.favorite===1 && info.request === 0"/> 
+		<friendItem v-for="(info, index) in friend" :info="info" :index="index" v-if="info.favorite===1"/> 
 		<hr class='contour' />
 		<p class="profile-title">그룹</p>
-		<groupItem v-for="(info, index) in group" :info="info" :index="index" v-if="info.favorite===0"/> 
+		<groupItem v-for="(info, index) in group" :info="info" :index="index"/> 
 		<hr class='contour' />
 		<p class="profile-title">친구</p>
-		<friendItem v-for="(info, index) in friend" :info="info" :index="index" v-if="info.request === 0" /> 
+		<friendItem v-for="(info, index) in friend" :info="info" :index="index" /> 
 	</div>
 </template>
 <script type="text/javascript">
@@ -30,6 +30,7 @@
 		created () {
 			this.$store.dispatch('getFriends')
 			this.$store.dispatch('getGroups')
+			console.log(this.friend)
 		},
 		data() {
 			return {

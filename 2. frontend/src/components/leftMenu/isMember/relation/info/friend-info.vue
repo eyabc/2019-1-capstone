@@ -49,8 +49,7 @@
 		methods: {
 			deleteFriend () {
 				if(confirm("친구목록에서 삭제하시겠습니까?")){
-					const data = { idx: memberData.idx }
-					this.$store.dispatch('deleteFriend', data)
+					this.$store.dispatch('deleteFriend', { idx: this.memberData.idx })
 					this.$store.commit('tempInit')
 					this.$store.commit('isMember', 'relation')
 				}
