@@ -7,21 +7,13 @@
 				<p class="profile-message">{{ item.description }}</p>
 			</div>
 			<ul class="member-info-btn permit">
-				<li><a class="title" @click.prevent="accpet(item.midx, key)">수락</a></li>			
-				<li><a class="title" @click.prevent="refuse(item.midx, key)">거절</a></li>			
+				<li><a class="title" @click.prevent="cancel(item.cgidx, key)">요청 취소</a></li>			
 			</ul>
 		</div>
 	</div>
 </template>
 <script type="text/javascript">
 	export default {
-		components: {
-			
-		},
-		data () {
-			return {
-			}
-		},
 		computed: {
 			info () {
 				return this.$store.state.group
@@ -31,17 +23,10 @@
 			await this.$store.dispatch('getGroups', { request: 2 })
 		},
 		methods: {
-			/* #158 */
-			async accpet(midx, key) {
-				if (confirm("친구 요청을 수락 하겠습니까?")) {
-					await this.$store.dispatch('createFriendRelation', {from: this.$store.state.member.idx, to: midx})
-					this.$store.commit('spliceTempData', key)
-				}
-			},
-			async refuse(midx, key) {
-				if (confirm("친구 요청을 거절 하겠습니까?")) {
-					await this.$store.dispatch('refuseFriend', { to: this.$store.state.member.idx, from: midx })
-					this.$store.commit('spliceTempData', key)
+			async cancel(cgidx, key) {
+				if (confirm("그룹 참여 요청을 취소하시겠습니까?")) {
+					await this.$store.dispatch('deleteGroupParticipant', { midx: this.$store.state.member.idx, cgidx: cgidx })
+					this.$store.commit('spliceGroup', key)
 				}
 			}
 		}
@@ -52,7 +37,5 @@
 	position: absolute;
 	display: flex;
 	right: 0;
-	>li>a {
-	}
 }
 </style>
