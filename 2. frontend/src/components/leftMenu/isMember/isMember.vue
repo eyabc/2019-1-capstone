@@ -28,6 +28,7 @@
 			setting: () => import(`./setting/setting`),
 		},
 		created () {
+			this.$store.commit('isMember', 'relation')
 		},
 		mounted() {
 		},

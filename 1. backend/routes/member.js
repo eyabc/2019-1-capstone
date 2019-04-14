@@ -134,4 +134,9 @@ router.get('/api/member-search', async (req, res) => {
 		}
 		res.json(resultJSON)
 })
+
+/* #170 logout */
+router.delete('/api/member-session', (req, res) => {
+	// Ver2.0에서 session sql을 사용 할 때 쓰입니다. 
+})
 module.exports = router;
