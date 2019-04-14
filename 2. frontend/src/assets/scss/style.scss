@@ -36,7 +36,7 @@
 			width: 280px;
 			border: 2px;
 			background: rgba(255, 255, 255, 0.5);
-			padding-right: 30px;
+			margin-right: 20px;
 		}
 
 		>input[type="submit"] {
@@ -63,9 +63,7 @@
 		}
 
 	}
-
 }
-
 .search-plus-icon {
 	position: absolute;
 	z-index: 10;
