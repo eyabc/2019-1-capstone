@@ -33,12 +33,16 @@ const actions = {
 	async getFriends ({state, commit}, payload) {
 		var json = await $fetch(`/api/friend/${state.member.idx}`, {
 			method: 'get',
-			headers: { 'Content-Type': 'application/json'}
+			headers: { 'Content-Type': 'application/json'},
+			body: JSON.stringify(payload)
 		})
 		commit('friend', json.data)
 	},
 	async getGroups ({state, commit}, payload) {
-		var json = await $fetch(`/api/group/${state.member.idx}`)
+		var json = await $fetch(`/api/group/${state.member.idx}/${payload.request}`, {
+			method: 'get',
+			headers: { 'Content-Type': 'application/json'},
+		})
 		commit('group', json.data)
 	},
 	async getFrendInfo ({state, commit}) {
@@ -78,9 +82,9 @@ const actions = {
 			method: 'delete',
 			headers: {'Content-Type':'application/json'},
 		})
-			const index = state.tempIdx.index	
-			state.friend.splice(index,index+1)
-			dispatch('getFriends')
+		const index = state.tempIdx.index	
+		state.friend.splice(index,index+1)
+		dispatch('getFriends')
 	},
 	async getMemberByEmail ({state, commit}, payload) {
 		const json = await $fetch(`/api/member-search?email=${payload}`)
@@ -138,6 +142,22 @@ const actions = {
 		})
 		commit('tempData', json.data)
 	},
+	/* change group Request */
+	async putRequest (context, payload) {
+		const json = await $fetch(`/api/group-request`, {
+			method: 'put',
+			headers: {'Content-Type':'application/json'},
+			body: JSON.stringify(payload)
+		})
+	},
+	/* delete group-participant */
+	async deleteGroupParticipant (context, payload) {
+		const json = await $fetch(`/api/group-participant`, {
+			method: 'delete',
+			headers: { 'Content-Type':'application/json'},
+			body: JSON.stringify(payload)
+		})
+	}
 }
 
 export default actions
