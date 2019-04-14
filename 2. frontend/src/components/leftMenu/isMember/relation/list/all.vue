@@ -29,8 +29,7 @@
 		},
 		created () {
 			this.$store.dispatch('getFriends')
-			this.$store.dispatch('getGroups')
-			console.log(this.friend)
+			this.$store.dispatch('getGroups', { request: 0 })
 		},
 		data() {
 			return {

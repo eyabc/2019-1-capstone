@@ -30,6 +30,9 @@ const mutations = {
 	group (state, val) {
 		state.group = val
 	},
+	spliceGroup (state, key) {
+		state.group.splice(key,key+1)
+	},
 	tempData (state, val) {
 		state.tempData = val
 	},	

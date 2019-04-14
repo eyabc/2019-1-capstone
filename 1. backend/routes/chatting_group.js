@@ -3,17 +3,18 @@ var router = express.Router();
 const execQuery = require('../db.js')
 
 /* #54 getGroups*/
-router.get('/api/group/:midx', async (req, res) => {
-	const sql = `select A.midx, A.cgidx, A.authority, A.favorite, A.request, 
+router.get('/api/group/:midx/:request', async (req, res) => {
+	const sql = `select A.cgidx, A.authority, A.favorite, A.request,
 	B.name, B.image, B.place, B.description
 	from group_participant A 
 	JOIN chatting_group B 
 	on A.cgidx = B.idx
-	where midx = ?
+	where midx = ? and request = ?
 	order by name asc`
 	const resultJSON = { success: true, data: []}
-	try {
-		resultJSON.data = await execQuery(sql, [req.params.midx])
+	try { 
+		console.log(req)
+		resultJSON.data = await execQuery(sql, [req.params.midx, req.params.request])
 	} catch (err) {
 		resultJSON.success = false
 		resultJSON.err = err.stack
@@ -43,6 +44,35 @@ router.post('/api/group', async (req, res) => {
 	res.json(resultJSON)
 })
 
+/* change group Request */
+router.put('/api/group-request', async (req, res) => {
+	const sql = `UPDATE group_participant SET 
+				request = ? 
+				WHERE midx = ? and cgidx = ?`
+	const resultJSON = { success: true }
+	try {
+		await execQuery(sql, [req.body.request, req.body.midx, req.body.cgidx])
+	} catch (err) {
+		resultJSON.success = false
+		resultJSON.err = err.stack
+		console.log(err)
+	}
+	res.json(resultJSON)
+})
+
+
+/* delete group-participant */
+router.delete('/api/group-participant', async (req, res) => {
+	const sql = 'DELETE FROM group_participant where midx = ? and cgidx = ?'
+	const resultJSON = { success: true }
+	try {
+		await execQuery(sql, [req.body.midx, req.body.cgidx])
+	} catch (err) {
+		resultJSON.success = false
+		resultJSON.err = err.stack
+	}
+	res.json(resultJSON)
+})
 module.exports = router;
 
 

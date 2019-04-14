@@ -1,6 +1,6 @@
 <template>
 	<div class="group-wrap">
-		<component :is="componentn" />
+		<component :is="component" />
 	</div>
 </template>
 <script type="text/javascript">

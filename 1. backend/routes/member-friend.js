@@ -147,10 +147,15 @@ router.get('/api/friend-received/:midx', async (req, res) => {
 /* #162 get Friend Requested send */
 router.get('/api/friend-send/:midx', async (req, res) => {
 	const sql = `
-	select * from friend
+	SELECT 
+	B.idx AS midx, B.nickname, B.profile_message, B.profile_img, B.reg_date
+	FROM 	member B
+	WHERE B.idx in (
+	select friend from friend
 	where midx = ${req.params.midx}
 	and 	friend not in (SELECT midx from friend where friend = ${req.params.midx})
-	order by midx asc;
+	)
+	ORDER BY B.nickname ASC
 	`
 	const resultJSON = { success: true, data: [] }
 
