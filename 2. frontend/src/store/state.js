@@ -3,7 +3,7 @@ const initState = {
 	title: "CEO",
 	leftMenuWidth: 500,
 	leftMenu: false,
-	rightMenu: false,
+	rightMenu: 'groupList',
 	notMember: false,
 	isMember: 'relation',
 	activity: 'list',
@@ -13,6 +13,7 @@ const initState = {
 	tempData: {},
 	tempIdx: [],
 	searchedEmail: null,
+	mapSearchList: [],
 }
 
 export default initState

@@ -1,14 +1,14 @@
 <!-- #26 -->
 <template>
   <div class="site-header">
-    <h3 class="logo"><router-link to="/"></router-link></h3>
+    <h3 class="logo"></h3>
     <div class="header-search-bar">
       <form @submit.prevent="search">
         <input type="text" id="pac-input" name="place" placeholder="위치를 입력해주세요">
         <input type="text" name="name" placeholder="그룹 이름으로 검색">
         <input type="text" name="description" placeholder="그룹 설명으로 검색">
         <span class="checks etrans place-check">
-          <input type="checkbox" id="cb1" ref="oneChat" name="visibility_oneChat">
+          <input type="checkbox" id="cb1" ref="thisplace" name="visibility_oneChat">
           <label for="cb1">현재 범위에서 검색</label>
         </span>
         <input type="submit">
@@ -22,6 +22,8 @@
 </template>
 <script type="text/javascript">
   import eventBus from '@/eventBus'
+  import $fetch from '@//middleware/fetch'
+
   export default {
     data() {
       return {
@@ -32,8 +34,31 @@
       // hoverToggle () {    
       //   this.hover = !this.hover
       // },
-      search(){
-      }
-    }
-  }
+
+      async search(e){
+        const frm = e.target
+        let data = {
+          url: '/api/search-group?',
+        } 
+        if (this.$refs.thisplace.checked === true) {
+          data.place = e.target.place.value;
+          data.url = data.url + `&lat=${data.lat}&lng=${data.lng}`
+        }
+        if (frm.name.value !== '') {
+          data.name = e.target.name.value;
+          data.url = data.url + `&name=${data.name}`
+        }
+        if (frm.description.value !== '') {
+          data.description = e.target.description.value;
+          data.url = data.url + `&description=${data.description}`
+        }
+        console.log(data)
+        this.$store.dispatch('getSearchedGroup', data)
+        const jsonData = this.$store.state.mapSearchList[0]
+        const location = { lat:jsonData.lat , lng: jsonData.lng}
+        const datas = { nickname:jsonData.name , place: jsonData.place }
+        eventBus.setLocation(location, datas)
+},
+}
+}
 </script>
