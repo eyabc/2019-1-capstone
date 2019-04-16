@@ -54,10 +54,10 @@
         }
         console.log(data)
         this.$store.dispatch('getSearchedGroup', data)
-        const jsonData = this.$store.state.mapSearchList[0]
-        const location = { lat:jsonData.lat , lng: jsonData.lng}
-        const datas = { nickname:jsonData.name , place: jsonData.place }
-        eventBus.setLocation(location, datas)
+        // const jsonData = this.$store.state.mapSearchList[0]
+        // const location = { lat:jsonData.lat , lng: jsonData.lng}
+        // const datas = { nickname:jsonData.name , place: jsonData.place }
+        // eventBus.setLocation(location, datas)
 },
 }
 }
