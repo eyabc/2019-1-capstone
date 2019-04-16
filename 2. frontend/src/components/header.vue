@@ -38,21 +38,16 @@
       async search(e){
         const frm = e.target
         let data = {
-          url: '/api/search-group?',
-        } 
+          name: frm.name.value,
+          description: frm.description.value,
+          url: '',
+        }
+        data.url = `/api/search-group?&name=${data.name}&description=${data.description}`
+        
         if (this.$refs.thisplace.checked === true) {
-          data.place = e.target.place.value;
+          data.place = frm.place.value;
           data.url = data.url + `&lat=${data.lat}&lng=${data.lng}`
         }
-        if (frm.name.value !== '') {
-          data.name = e.target.name.value;
-          data.url = data.url + `&name=${data.name}`
-        }
-        if (frm.description.value !== '') {
-          data.description = e.target.description.value;
-          data.url = data.url + `&description=${data.description}`
-        }
-        console.log(data)
         this.$store.dispatch('getSearchedGroup', data)
         // const jsonData = this.$store.state.mapSearchList[0]
         // const location = { lat:jsonData.lat , lng: jsonData.lng}

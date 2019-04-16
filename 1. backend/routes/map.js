@@ -4,14 +4,26 @@ var router = express.Router();
 
 /* #174 map group search */
 router.get('/api/search-group', async (req, res) => {
-	console.log('test')
-	const sql = `
-	SELECT idx AS cgidx, name, description, image, place, lat, lng FROM chatting_group 
-	WHERE visibility = ? AND ( name LIKE ? or description LIKE ? )
-	`
+	const add_sql = []
+	const execArr = [1]
 	const resultJSON = { success :true }
+	const { name, description } = req.query
 	try {
-		resultJSON.data = await execQuery(sql, [1, '%' + req.query.name + '%', '%' + req.query.description + '%'])
+		if (name !== '') {
+			add_sql.push('name LIKE ?')
+			execArr.push(`%${name}%`)
+		}
+		if (description !== '') {
+			add_sql.push('description LIKE ?')
+			execArr.push(`%${description}%`)
+		}
+		const add_sql_joined = add_sql.length ? ` and (${add_sql.join(' or ')})` : ''
+ 		const sql = `
+			SELECT idx AS cgidx, name, description, image, place, lat, lng FROM
+			chatting_group  WHERE visibility = ? ${add_sql_joined}
+		`
+		console.log(sql, execArr)
+		resultJSON.data = await execQuery(sql, execArr)
 		console.log(sql)
 	} catch (err) {
 		resultJSON.success = false
@@ -19,7 +31,23 @@ router.get('/api/search-group', async (req, res) => {
 	}
 	res.json(resultJSON)
 })
-/* #174 search by group-description */
+/* #174 get all group */
+router.get('/api/map-group', async (req, res) => {
+	const sql = `
+	SELECT idx AS cgidx, name, description, image, place, lat, lng FROM chatting_group 
+	WHERE visibility = ? 
+	`
+	const resultJSON = { success :true }
+	try {
+		resultJSON.data = await execQuery(sql, [1])
+		console.log(sql)
+	} catch (err) {
+		resultJSON.success = false
+		resultJSON.err = err.stack
+	}
+	res.json(resultJSON)
+})
+
 
 
 
