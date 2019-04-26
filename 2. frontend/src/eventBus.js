@@ -5,9 +5,10 @@ const bus = new Vue({
 	data: {
 		map: null,
 		locationTarget: null,
+		rightFold: false
 	},
 	methods: {
-		initMap(currentLocation) {
+		initMap(currentLocation, groups) {
 			if(currentLocation.lat === 0 || currentLocation.lng === 0) {
 				currentLocation = {lat: -33.8688, lng: 151.2195}
 			}
@@ -17,6 +18,9 @@ const bus = new Vue({
 				mapTypeId: 'roadmap'
 			});
 			this.initSearchBox(document.getElementById('pac-input'))
+			groups.forEach((item, key)=> {
+				this.setMarker({ lat: item.lat ,lng: item.lng }, { nickname: item.name, place: item.place} )
+			})
 		},
 		initSearchBox (input) {
 		    // Create the search box and link it to the UI element.
@@ -56,6 +60,7 @@ const bus = new Vue({
 		  searchBox.addListener('places_changed', places_changed);
 		},
 		initLocation (target) {
+			this.map.setZoom(18);
 			this.locationTarget = target
 		},
 		setLocation(Location, data) {
@@ -77,12 +82,41 @@ const bus = new Vue({
 			var infowindow = new google.maps.InfoWindow({
 				content: contentString
 			});
-			infowindow.open(this.map, marker);
+			// infowindow.open(this.map, marker);
 			marker.addListener('click', function() {
 				infowindow.open(this.map, marker);
 			});
 
-		}
+		},
+		setMarker(Location, data) {
+			var marker = new google.maps.Marker({
+				position: Location,
+				map: this.map,
+				title: "hle"
+			});
+			var contentString = '<div id="content">'+
+			'<div id="siteNotice">'+
+			'</div>'+
+			'<h3 id="firstHeading" class="firstHeading">'+data.nickname+'</h3>'+
+			'<div id="bodyContent">'+
+			'<p>'+data.place+'</p>'+
+			'</div>'+
+			'</div>';
+			var infowindow = new google.maps.InfoWindow({
+				content: contentString
+			});
+			marker.addListener('mouseover', function() {
+				infowindow.open(this.map, marker);
+			});
+			marker.addListener('mouseout', function() {
+				infowindow.close(this.map, marker);
+			});
+			console.log(this.rightFold)
+
+			marker.addListener('click', function() {
+
+			});
+		},
 	}
 })
 

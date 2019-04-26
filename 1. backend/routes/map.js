@@ -22,9 +22,7 @@ router.get('/api/search-group', async (req, res) => {
 			SELECT idx AS cgidx, name, description, image, place, lat, lng FROM
 			chatting_group  WHERE visibility = ? ${add_sql_joined}
 		`
-		console.log(sql, execArr)
 		resultJSON.data = await execQuery(sql, execArr)
-		console.log(sql)
 	} catch (err) {
 		resultJSON.success = false
 		resultJSON.err = err.stack

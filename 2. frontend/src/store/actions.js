@@ -160,11 +160,7 @@ const actions = {
 	},
 	/* #174 map group search */
 	async getSearchedGroup ({state, commit}, payload) {
-
-		const json = await $fetch(payload.url, {
-			method: 'get',
-			headers: { 'Content-Type':'application/json'},
-		})
+		const json = await $fetch(payload.url)
 		commit('mapSearchList', json.data)
 	},
 }

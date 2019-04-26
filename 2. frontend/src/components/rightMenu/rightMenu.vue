@@ -8,6 +8,7 @@
 	</div>
 </template>
 <script type="text/javascript">
+	import eventBus from '@/eventBus'
 
 	export default {
 		components: {
@@ -15,14 +16,14 @@
 		},
 		created() {
 		},
-		data() {
-			return {
-				rightFold: false
+		computed: {
+			rightFold () {
+				return eventBus.rightFold
 			}
 		},
 		methods: {
 			setFolding (val) {
-				this.rightFold = val
+				eventBus.rightFold = val
 			},
 
 		},

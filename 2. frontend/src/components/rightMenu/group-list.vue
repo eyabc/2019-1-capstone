@@ -6,10 +6,11 @@
 				<p class="profile-nickname">{{ item.name }} 
 					<span class="profile-message">{{ item.reg_date }}</span>
 				</p> 
-				<p class="profile-message">{{ item.profile_message }}</p>
+				<p class="profile-message">{{ item.description }}</p>
+				<p class="profile-message">{{ item.place }}</p>
 			</div>
 			<ul class="member-info-btn permit">
-				<li><a class="title" @click.prevent="accpet(item.midx, key)"><i class="fas fa-plus"></i></a></li>			
+				<li><a class="title" @click.prevent="accpet(item.midx, key)"><i class="fas fa-ellipsis-h"></i></a></li>			
 			</ul>
 		</div>
 	</div>
@@ -53,5 +54,8 @@
 	right: 0;
 	>li>a {
 	}
+}
+.profile-wrap {
+	height: auto;
 }
 </style>

@@ -4,8 +4,8 @@
     <h3 class="logo"></h3>
     <div class="header-search-bar">
       <form @submit.prevent="search">
-        <input type="text" id="pac-input" name="place" placeholder="위치를 입력해주세요">
-        <input type="text" name="name" placeholder="그룹 이름으로 검색">
+        <input type="text" id="pac-input" name="place" placeholder="위치를 입력해주세요" onkeypress="return false">
+        <input type="text" name="name" placeholder="그룹 이름으로 검색">  
         <input type="text" name="description" placeholder="그룹 설명으로 검색">
         <span class="checks etrans place-check">
           <input type="checkbox" id="cb1" ref="thisplace" name="visibility_oneChat">
@@ -48,12 +48,10 @@
           data.place = frm.place.value;
           data.url = data.url + `&lat=${data.lat}&lng=${data.lng}`
         }
-        this.$store.dispatch('getSearchedGroup', data)
-        // const jsonData = this.$store.state.mapSearchList[0]
-        // const location = { lat:jsonData.lat , lng: jsonData.lng}
-        // const datas = { nickname:jsonData.name , place: jsonData.place }
-        // eventBus.setLocation(location, datas)
-},
-}
-}
+        await  this.$store.dispatch('getSearchedGroup', data)
+        const jsonData = this.$store.state.mapSearchList
+        eventBus.initMap({lat: jsonData[0].lat ,lng: jsonData[0].lng}, jsonData)
+      },
+    }
+  }
 </script>
