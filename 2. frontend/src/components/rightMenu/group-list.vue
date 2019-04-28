@@ -12,13 +12,13 @@
 				</div>
 			</div>
 			<ul class="member-info-btn permit">
-				<li><a class="title" @click.prevent="accpet(item.cgidx)"><i class="fas fa-ellipsis-h"></i></a></li>			
+				<li><a class="title" @click.prevent="view(item.cgidx)"><i class="fas fa-ellipsis-h"></i></a></li>			
 			</ul>
 		</div>
 	</div>
 </template>
 <script type="text/javascript">
-  import eventBus from '@/eventBus'
+	import eventBus from '@/eventBus'
 	
 	export default {
 		components: {
@@ -36,10 +36,8 @@
 		async mounted () {
 		},
 		methods: {
-			async accpet(cgidx) {
-				console.log(cgidx)
-				await this.$store.dispatch('getGroupInfo', { cgidx: cgidx })
-				eventBus.rightMenu = 'groupInfo'
+			async view(cgidx) {
+				this.$store.dispatch('getGroupInfo', { cgidx: cgidx })
 			},
 			showMap (data) {
 				const location = { lat:data.lat , lng: data.lng}

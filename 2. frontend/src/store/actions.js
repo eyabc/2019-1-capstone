@@ -1,4 +1,5 @@
 import $fetch from '../middleware/fetch'
+import eventBus from '@/eventBus'
 
 const actions = {
 	async login ({state, commit}, payload) {
@@ -164,11 +165,14 @@ const actions = {
 		commit('mapSearchList', json.data)
 	},
 	/* #176 get group infomation */
-	async getGroupInfo ({commit}, payload) {
+	/* #179 relation check between group and member */
+	async getGroupInfo ({state, commit}, payload) {
 		const json = await $fetch(`/api/group-info/${payload.cgidx}`)
 		commit('groupInfo', json.data[0])
-		console.log(json)
-	}
+		const json2 = await $fetch(`/api/group-participant/relation/${state.member.idx}/${state.groupInfo.idx}`)
+		commit('getGroupMemberRelation', json2.data[0])
+		eventBus.rightMenu = 'groupInfo'
+	},
 }
 
 export default actions

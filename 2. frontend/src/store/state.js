@@ -14,6 +14,7 @@ const initState = {
 	searchedEmail: null,
 	mapSearchList: [],
 	groupInfo: [],
+	getGroupMemberRelation: false,
 }
 
 export default initState

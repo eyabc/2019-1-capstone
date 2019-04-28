@@ -606,7 +606,7 @@ $left-width: 500px;
 	}
 	&-btn {
 		display: flex;
-
+		flex-wrap: wrap;
 		>li>a {
 			display: inline-block;
 			font-size: 14px;
@@ -821,8 +821,10 @@ $left-width: 500px;
 	margin: 10px 0;
 }
 .group-info {
+	margin-bottom: 20px;
 	&-wrap {
 		margin: 0 10px;
+
 	}
 	label {
 		color: #FFA347;
