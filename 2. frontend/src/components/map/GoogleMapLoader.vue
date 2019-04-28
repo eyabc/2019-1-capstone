@@ -17,8 +17,8 @@
 			// At this point, the child GmapMap has been mounted, but
 			// its map has not been initialized.
 			// Therefore we need to write mapRef.$mapPromise.then(() => ...)
-      this.$store.dispatch('getSearchedGroup', {url: '/api/search-group?name=&description='})
-      console.log(this.$store.state.mapSearchList)
+      await this.$store.dispatch('getSearchedGroup', {url: '/api/search-group?name=&description='})
+      
       navigator.geolocation.getCurrentPosition(position => {
         this.currentLocation = {
           lat: position.coords.latitude,

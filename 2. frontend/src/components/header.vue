@@ -9,7 +9,7 @@
         <input type="text" name="description" placeholder="그룹 설명으로 검색">
         <span class="checks etrans place-check">
           <input type="checkbox" id="cb1" ref="thisplace" name="visibility_oneChat">
-          <label for="cb1">현재 범위에서 검색</label>
+      <!--    <label for="cb1">현재 범위에서 검색</label> -->
         </span>
         <input type="submit">
         <!-- <span @mousedown="hoverToggle" class="search-plus-icon"><i class="fas fa-pencil-alt"></i></span> -->

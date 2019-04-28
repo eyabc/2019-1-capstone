@@ -1,6 +1,6 @@
 <template>
 	<div class="right-menu-wrap" :class="{'right-active': rightFold }">
-		<component :is="$store.state.rightMenu"/>
+		<component :is="rightMenu"/>
 		<span class="folding folding-right" @click="setFolding(!rightFold)">
 			<i v-if="!rightFold" class="fas fa-chevron-left"></i>
 			<i v-else class="fas fa-chevron-right"></i>
@@ -12,13 +12,17 @@
 
 	export default {
 		components: {
-			groupList: () => import('./group-list')
+			groupList: () => import('./group-list'),
+			groupInfo: () => import('./group-info')
 		},
 		created() {
 		},
 		computed: {
 			rightFold () {
 				return eventBus.rightFold
+			},
+			rightMenu () {
+				return eventBus.rightMenu
 			}
 		},
 		methods: {

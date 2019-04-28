@@ -28,7 +28,7 @@
 			showMap () {
 				const location = { lat:this.myData.lat , lng: this.myData.lng}
 				const data = { nickname:this.myData.nickname , place: this.myData.place }
-				eventBus.setLocation(location, data)
+				eventBus.memberLocation(location, data)
 			},
 			setMyinfo () {
 				this.$store.commit('info', 'setMyInfo')

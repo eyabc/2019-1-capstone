@@ -63,7 +63,7 @@
 				if(this.memberData.place_visibility === 1){
 					const location = { lat:this.memberData.lat , lng: this.memberData.lng}
 					const data = { nickname:this.memberData.nickname , place: this.memberData.place }
-					eventBus.setLocation(location, data)
+					eventBus.memberLocation(location, data)
 				}
 			},
 			setChat () {
