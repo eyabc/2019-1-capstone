@@ -95,12 +95,18 @@ const bus = new Vue({
 			});
 
 		},
-		setLocation(Location, data) {
+		setLocation(Location) {
+			if(Location.lat === 0 || Location.lng === 0) {
+				alert('지도에 등록된 그룹이 아닙니다.') 
+				return 
+			}
 			this.map.setZoom(18);
 			this.map.setCenter({lat: Location.lat, lng: Location.lng}); 
-
 		},
 		setMarker(Location, data) {
+			if(Location.lat === 0 || Location.lng === 0) {
+				return 
+			}
 			var $this = this
 			var marker = new google.maps.Marker({
 				position: Location,

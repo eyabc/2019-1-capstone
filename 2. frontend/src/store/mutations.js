@@ -67,6 +67,9 @@ const mutations = {
 	mapSearchList (state ,val) {
 		state.mapSearchList = val
 	},
+	groupInfo (state, val) {
+		state.groupInfo = val
+	}
 }
 
 export default mutations
