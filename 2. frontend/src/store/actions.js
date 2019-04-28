@@ -163,6 +163,12 @@ const actions = {
 		const json = await $fetch(payload.url)
 		commit('mapSearchList', json.data)
 	},
+	/* #176 get group infomation */
+	async getGroupInfo ({commit}, payload) {
+		const json = await $fetch(`/api/group-info/${payload.cgidx}`)
+		commit('groupInfo', json.data[0])
+		console.log(json)
+	}
 }
 
 export default actions

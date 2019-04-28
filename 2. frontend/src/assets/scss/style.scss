@@ -820,3 +820,22 @@ $left-width: 500px;
 .select-box {
 	margin: 10px 0;
 }
+.group-info {
+	&-wrap {
+		margin: 0 10px;
+	}
+	label {
+		color: #FFA347;
+		margin-right: 5px;
+		cursor: default;
+	}
+	span {
+		color: #555;
+		font-size: 14px;
+	}
+	li {
+		padding: 3px 0
+	}
+
+
+}
