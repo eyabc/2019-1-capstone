@@ -15,7 +15,7 @@
 		<ul class="member-info-btn">
 			<li v-if="relation === 0"><a class="title" @click.prevent=""># 이미 참여중인 그룹</a></li>
 			<li v-if="relation === 0 "><a class="title" @click.prevent="">대화 시작</a></li>
-			<li v-if="relation === false & item.permission === 0"><a class="title" @click.prevent="">참여 하기</a></li>
+			<li v-if="relation === false & item.permission === 0"><a class="title" @click.prevent="createdParticipant(item.default_authority, 0)">참여 하기</a></li>
 			<li v-if="relation === false & item.permission === 1"><a class="title" @click.prevent="">참여 신청</a></li>
 			<li v-if="relation === 2"><a class="title" @click.prevent="">참여 취소</a></li>
 			<li><a class="title" @click.prevent="showMap">위치 조회</a></li>
@@ -75,6 +75,13 @@
 			showMap () {
 				eventBus.setLocation({lat: this.item.lat, lng: this.item.lng})
 			},
+			createdParticipant (auth, req) {
+				const data = {
+					authority: auth,
+					request: req,
+				}
+				this.$store.dispatch('createdParticipant', data)
+			}
 		}
 	}
 	</script>

@@ -165,14 +165,28 @@ const actions = {
 		commit('mapSearchList', json.data)
 	},
 	/* #176 get group infomation */
-	/* #179 relation check between group and member */
-	async getGroupInfo ({state, commit}, payload) {
+	async getGroupInfo ({state, commit, dispatch}, payload) {
 		const json = await $fetch(`/api/group-info/${payload.cgidx}`)
 		commit('groupInfo', json.data[0])
-		const json2 = await $fetch(`/api/group-participant/relation/${state.member.idx}/${state.groupInfo.idx}`)
-		commit('getGroupMemberRelation', json2.data[0])
+		await dispatch('getGroupMemberRelation')
 		eventBus.rightMenu = 'groupInfo'
 	},
+	/* #179 relation check between group and member */
+	async getGroupMemberRelation ({state, commit}, payload) {
+		const json2 = await $fetch(`/api/group-participant/relation/${state.member.idx}/${state.groupInfo.idx}`)
+		commit('getGroupMemberRelation', json2.data[0])
+	},
+	/* #179 insert participant */
+	async createdParticipant({state, commit, dispatch}, payload) {
+		const json = await $fetch(`/api/group-participant/${state.member.idx}/${state.groupInfo.idx}`, {
+			method: 'post',
+			heaers: { 'Content-Type':'application/json'},
+			body: JSON.stringify(payload)
+		})
+		console.log("test")
+		dispatch('getGroupMemberRelation')
+	},
+
 }
 
 export default actions
