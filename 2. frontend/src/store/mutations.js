@@ -64,6 +64,9 @@ const mutations = {
 	searchedEmail (state, val) {
 		state.searchedEmail = val
 	},
+	mapSearchList (state ,val) {
+		state.mapSearchList = val
+	},
 }
 
 export default mutations

@@ -1,22 +1,29 @@
 <!-- #26 -->
 <template>
   <div class="site-header">
-    <h3 class="logo"><router-link to="/"></router-link></h3>
+    <h3 class="logo"></h3>
     <div class="header-search-bar">
       <form @submit.prevent="search">
-        <input type="text" id="pac-input" name="place" placeholder="위치를 입력해주세요">
+        <input type="text" id="pac-input" name="place" placeholder="위치를 입력해주세요" onkeypress="return false">
+        <input type="text" name="name" placeholder="그룹 이름으로 검색">  
+        <input type="text" name="description" placeholder="그룹 설명으로 검색">
+        <span class="checks etrans place-check">
+          <input type="checkbox" id="cb1" ref="thisplace" name="visibility_oneChat">
+      <!--    <label for="cb1">현재 범위에서 검색</label> -->
+        </span>
         <input type="submit">
-        <span @mousedown="hoverToggle" class="search-plus-icon"><i class="fas fa-pencil-alt"></i></span>
-        <div class="header-search-plus" v-if="hover" >
-          <p><input type="text" name="nameInplace" placeholder="현재 위치에서 검색할 그룹 이름"></p>
-          <p><input type="text" name="nameAll" placeholder="검색할 그룹 이름"></p>
+        <!-- <span @mousedown="hoverToggle" class="search-plus-icon"><i class="fas fa-pencil-alt"></i></span> -->
+<!--         <div class="header-search-plus" v-if="hover" >
           <p><input type="text" name="theme" placeholder="검색할 주제"></p>
-        </div>
+        </div> -->
       </form>
     </div>
   </div>
 </template>
 <script type="text/javascript">
+  import eventBus from '@/eventBus'
+  import $fetch from '@//middleware/fetch'
+
   export default {
     data() {
       return {
@@ -24,11 +31,27 @@
       }
     },
     methods: {
-      hoverToggle () {    
-        this.hover = !this.hover
+      // hoverToggle () {    
+      //   this.hover = !this.hover
+      // },
+
+      async search(e){
+        const frm = e.target
+        let data = {
+          name: frm.name.value,
+          description: frm.description.value,
+          url: '',
+        }
+        data.url = `/api/search-group?&name=${data.name}&description=${data.description}`
+        
+        if (this.$refs.thisplace.checked === true) {
+          data.place = frm.place.value;
+          data.url = data.url + `&lat=${data.lat}&lng=${data.lng}`
+        }
+        await  this.$store.dispatch('getSearchedGroup', data)
+        const jsonData = this.$store.state.mapSearchList
+        eventBus.initMap({lat: jsonData[0].lat ,lng: jsonData[0].lng}, jsonData)
       },
-      search(){
-      }
     }
   }
 </script>

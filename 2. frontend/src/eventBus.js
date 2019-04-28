@@ -1,24 +1,30 @@
 import Vue from 'vue'
-import store from './store/index'
 
 const bus = new Vue({
 	data: {
 		map: null,
 		locationTarget: null,
+		rightFold: false,
+		rightMenu: 'groupList'
 	},
 	methods: {
-		initMap(currentLocation) {
-			if(currentLocation.lat === 0 || currentLocation.lng === 0) {
-				currentLocation = {lat: -33.8688, lng: 151.2195}
-			}
-			this.map = new google.maps.Map(document.getElementById('map'), {
-				center: {lat:currentLocation.lat, lng:currentLocation.lng},
-				zoom: 13,
-				mapTypeId: 'roadmap'
-			});
-			this.initSearchBox(document.getElementById('pac-input'))
-		},
-		initSearchBox (input) {
+		initMap(currentLocation, groups) {
+		//	if(currentLocation.lat === 0 || currentLocation.lng === 0) {
+		//		currentLocation = {lat: -33.8688, lng: 151.2195}
+		//	}
+		this.rightMenu = 'groupList'
+		this.map = new google.maps.Map(document.getElementById('map'), {
+			center: {lat:currentLocation.lat, lng:currentLocation.lng},
+			zoom: 13,
+			mapTypeId: 'roadmap'
+		});
+		this.initSearchBox(document.getElementById('pac-input'))
+		groups.forEach((item, key)=> {
+			this.setMarker({ lat: item.lat ,lng: item.lng }, { nickname: item.name, place: item.place} )
+		})
+
+	},
+	initSearchBox (input) {
 		    // Create the search box and link it to the UI element.
 		    const map = this.map
 		    const searchBox = new google.maps.places.SearchBox(input);
@@ -56,15 +62,19 @@ const bus = new Vue({
 		  searchBox.addListener('places_changed', places_changed);
 		},
 		initLocation (target) {
+			this.map.setZoom(18);
 			this.locationTarget = target
 		},
-		setLocation(Location, data) {
+		memberLocation(Location, data) {
+			var $this = this
 			this.map.setZoom(18);
 			this.map.setCenter({lat: Location.lat, lng: Location.lng}); 
 			var marker = new google.maps.Marker({
 				position: Location,
 				map: this.map,
-				title: "hle"
+				title: "hle",
+				icon: 'http://maps.google.com/mapfiles/ms/icons/yellow.png'
+
 			});
 			var contentString = '<div id="content">'+
 			'<div id="siteNotice">'+
@@ -77,12 +87,52 @@ const bus = new Vue({
 			var infowindow = new google.maps.InfoWindow({
 				content: contentString
 			});
-			infowindow.open(this.map, marker);
-			marker.addListener('click', function() {
-				infowindow.open(this.map, marker);
+			marker.addListener('mouseover', function() {
+				infowindow.open($this.map, marker);
+			});
+			marker.addListener('mouseout', function() {
+				infowindow.close($this.map, marker);
 			});
 
-		}
+		},
+		setLocation(Location, data) {
+			this.map.setZoom(18);
+			this.map.setCenter({lat: Location.lat, lng: Location.lng}); 
+
+		},
+		setMarker(Location, data) {
+			var $this = this
+			var marker = new google.maps.Marker({
+				position: Location,
+				map: this.map,
+				title: "hle",
+				icon: 'http://maps.google.com/mapfiles/ms/icons/orange-dot.png'
+			});
+			var contentString = '<div id="content">'+
+			'<div id="siteNotice">'+
+			'</div>'+
+			'<h3 id="firstHeading" class="firstHeading">'+data.nickname+'</h3>'+
+			'<div id="bodyContent">'+
+			'<p>'+data.place+'</p>'+
+			'</div>'+
+			'</div>';
+			var infowindow = new google.maps.InfoWindow({
+				content: contentString
+			});
+			marker.addListener('mouseover', function() {
+				infowindow.open($this.map, marker);
+			});
+			marker.addListener('mouseout', function() {
+				infowindow.close($this.map, marker);
+			});
+			// console.log($this.rightFold)
+
+			marker.addListener('click', () => {
+				console.log($this.rightFold)
+				this.rightFold = true
+				this.rightMenu = 'groupInfo'
+			});
+		},
 	}
 })
 

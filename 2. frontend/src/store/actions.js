@@ -157,7 +157,12 @@ const actions = {
 			headers: { 'Content-Type':'application/json'},
 			body: JSON.stringify(payload)
 		})
-	}
+	},
+	/* #174 map group search */
+	async getSearchedGroup ({state, commit}, payload) {
+		const json = await $fetch(payload.url)
+		commit('mapSearchList', json.data)
+	},
 }
 
 export default actions
