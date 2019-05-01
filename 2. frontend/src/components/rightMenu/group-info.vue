@@ -10,12 +10,14 @@
 			<li><label>생성날짜</label><span>{{ item.reg_date}}</span></li>
 			<li><label>위치</label><br/><span>{{ item.place}}</span></li>
 			<li><label>설명</label><br/><span>{{ item.description}}</span></li>
-			<li><label></label><span>{{ item }}</span></li>
+			<!-- <li><label></label><span>{{ item }}</span></li> -->
 		</ul>
 		<ul class="member-info-btn">
-			<li v-if="item.permission === 0"><a class="title" @click.prevent="">그룹 참여</a></li>
-			<li v-if="item.permission === 1"><a class="title" @click.prevent="">참여 신청</a></li>
-			<li v-if="item.permission === 1"><a class="title" @click.prevent="">참여 취소</a></li>
+			<li v-if="relation === 0"><a class="title" @click.prevent=""># 이미 참여중인 그룹</a></li>
+			<li v-if="relation === 0 "><a class="title" @click.prevent="">대화 시작</a></li>
+			<li v-if="relation === false & item.permission === 0"><a class="title" @click.prevent="createdParticipant(item.default_authority, 0)">참여 하기</a></li>
+			<li v-if="relation === false & item.permission === 1"><a class="title" @click.prevent="createdParticipant(item.default_authority, 2)">참여 신청</a></li>
+			<li v-if="relation === 2"><a class="title" @click.prevent="cancel">참여 취소</a></li>
 			<li><a class="title" @click.prevent="showMap">위치 조회</a></li>
 		</ul>
 	</div>
@@ -33,6 +35,24 @@
 		computed: {
 			item () {
 				return this.$store.state.groupInfo
+			},
+			relation () {
+				const relation = this.$store.state.getGroupMemberRelation
+				if (relation === undefined) {
+					return false
+				} else {
+					switch (relation.request) {
+						case 0:
+						return 0
+						break;
+						case 1: 
+						return 1
+						break;
+						case 2: 
+						return 2
+						break;
+					}
+				}
 			}
 		},
 		created () {
@@ -41,7 +61,7 @@
 			} else {
 				this.authority = '읽기 쓰기'
 			}
-			if(this.permission === 1) {
+			if(this.item.permission === 1) {
 				this.permission = '필요'
 			} else {
 				this.permission = '바로참여'
@@ -53,7 +73,25 @@
 			},
 			showMap () {
 				eventBus.setLocation({lat: this.item.lat, lng: this.item.lng})
+			},
+			createdParticipant (auth, req) {
+				const data = {
+					authority: auth,
+					request: req,
+				}
+				console.log(data)
+				this.$store.dispatch('createdParticipant', data)
+				this.$store.dispatch('getGroupMemberRelation')
+			},
+			cancel () {
+				const data = {
+					midx: this.$store.state.member.idx,
+					cgidx: this.item.idx,
+				}
+				this.$store.dispatch('deleteGroupParticipant', data)
+				this.$store.dispatch('getGroupMemberRelation')
+
 			}
 		}
 	}
-</script>
+	</script>

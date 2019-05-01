@@ -69,6 +69,9 @@ const mutations = {
 	},
 	groupInfo (state, val) {
 		state.groupInfo = val
+	},
+	getGroupMemberRelation (state, val) {
+		state.getGroupMemberRelation = val
 	}
 }
 

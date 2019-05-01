@@ -61,23 +61,10 @@ router.put('/api/group-request', async (req, res) => {
 })
 
 
-/* delete group-participant */
-router.delete('/api/group-participant', async (req, res) => {
-	const sql = 'DELETE FROM group_participant where midx = ? and cgidx = ?'
-	const resultJSON = { success: true }
-	try {
-		await execQuery(sql, [req.body.midx, req.body.cgidx])
-	} catch (err) {
-		resultJSON.success = false
-		resultJSON.err = err.stack
-	}
-	res.json(resultJSON)
-})
-
 /* #176 get group infomation */
 router.get('/api/group-info/:cgidx', async (req, res) => {
 	const sql = 'SELECT idx, name, permission, image, place, manager, default_authority, lat, lng, description, reg_date FROM chatting_group WHERE idx = ?'
-	const resultJSON = {success: true}
+	const resultJSON = { success: true }
 	try {
 		resultJSON.data = await execQuery(sql, [req.params.cgidx])
 	} catch (err) {
@@ -86,6 +73,8 @@ router.get('/api/group-info/:cgidx', async (req, res) => {
 	}
  	res.json(resultJSON)
 })
+
+
 module.exports = router;
 
 

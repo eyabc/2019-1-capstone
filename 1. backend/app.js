@@ -50,12 +50,15 @@ const chatRouter = require('./routes/chat');
 const memberFriendRouter = require('./routes/member-friend');
 const chatting_groupRouter = require('./routes/chatting_group');
 const mapRouter = require('./routes/map');
+const participantRouter = require('./routes/participant');
 app.use('/', chatting_groupRouter);
 app.use('/', memberFriendRouter);
 app.use('/', chatRouter);
 app.use('/', categoryRouter);
 app.use('/', memberRouter);
 app.use('/', mapRouter);
+app.use('/', participantRouter);
+
 
 
 // catch 404 and forward to error handler
