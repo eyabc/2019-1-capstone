@@ -34,6 +34,7 @@ router.get('/api/group-participant/relation/:midx/:cgidx', async (req, res) => {
 router.post('/api/group-participant/:midx/:cgidx', async (req, res) => {
 	const sql = `INSERT INTO group_participant (midx, cgidx, authority, request) values(?, ?, ?, ?)`
 	const resultJSON = { success: true }
+	console.log(req)
 	try {
 		await execQuery(sql, [req.params.midx, req.params.cgidx, req.body.authority, req.body.request])
 		console.log(resultJSON.data)

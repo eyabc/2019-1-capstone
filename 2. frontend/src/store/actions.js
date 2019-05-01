@@ -180,10 +180,10 @@ const actions = {
 	async createdParticipant({state, commit, dispatch}, payload) {
 		const json = await $fetch(`/api/group-participant/${state.member.idx}/${state.groupInfo.idx}`, {
 			method: 'post',
-			heaers: { 'Content-Type':'application/json'},
+			headers: {'Content-Type':'application/json'},
 			body: JSON.stringify(payload)
 		})
-		console.log("test")
+		console.log(payload)
 		dispatch('getGroupMemberRelation')
 	},
 
