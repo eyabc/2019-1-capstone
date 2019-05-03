@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import store from './store/index'
 
 const bus = new Vue({
 	data: {
@@ -20,7 +21,7 @@ const bus = new Vue({
 		});
 		this.initSearchBox(document.getElementById('pac-input'))
 		groups.forEach((item, key)=> {
-			this.setMarker({ lat: item.lat ,lng: item.lng }, { nickname: item.name, place: item.place} )
+			this.setMarker({ lat: item.lat ,lng: item.lng }, item )
 		})
 
 	},
@@ -117,7 +118,7 @@ const bus = new Vue({
 			var contentString = '<div id="content">'+
 			'<div id="siteNotice">'+
 			'</div>'+
-			'<h3 id="firstHeading" class="firstHeading">'+data.nickname+'</h3>'+
+			'<h3 id="firstHeading" class="firstHeading">'+data.name+'</h3>'+
 			'<div id="bodyContent">'+
 			'<p>'+data.place+'</p>'+
 			'</div>'+
@@ -134,7 +135,7 @@ const bus = new Vue({
 			// console.log($this.rightFold)
 
 			marker.addListener('click', () => {
-				console.log($this.rightFold)
+				store.dispatch('getGroupInfo', { cgidx: data.cgidx })
 				this.rightFold = true
 				this.rightMenu = 'groupInfo'
 			});
