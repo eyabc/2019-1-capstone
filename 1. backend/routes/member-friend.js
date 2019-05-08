@@ -137,7 +137,6 @@ router.get('/api/friend-received/:midx', async (req, res) => {
 
 	try {
 		resultJSON.data = await execQuery(sql)
-		console.log(resultJSON.data)
 	} catch (err) {
 		resultJSON.success = false
 		resultJSON.err = err.stack
@@ -161,7 +160,6 @@ router.get('/api/friend-send/:midx', async (req, res) => {
 
 	try {
 		resultJSON.data = await execQuery(sql)
-		console.log(resultJSON.data)
 	} catch (err) {
 		resultJSON.success = false
 		resultJSON.err = err.stack

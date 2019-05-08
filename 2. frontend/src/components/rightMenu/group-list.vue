@@ -38,6 +38,8 @@
 		methods: {
 			async view(cgidx) {
 				this.$store.dispatch('getGroupInfo', { cgidx: cgidx })
+				await this.$store.dispatch('getGroupMemberRelation')
+				eventBus.rightMenu = 'groupInfo'
 			},
 			showMap (data) {
 				const location = { lat:data.lat , lng: data.lng}

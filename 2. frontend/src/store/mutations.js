@@ -3,11 +3,12 @@ const mutations = {
 		localStorage.setItem('member', JSON.stringify(val))
 		state.member = val
 	},
-	logout (commit, val) {
-		commit('member', null)
-		commit('leftMenu', 'notMember')
-		commit('leftMenuWidth', 500)
-		commit('rightMenu', null)
+	logout (state, val) {
+		state.member = null
+		localStorage.setItem('member', null)
+		state.leftMenu = 'notMember'
+		state.leftMenuWidth = 500
+		state.rightMenu = null
 	},
 	putMember (state, object) {
 		Object.assign(state.member, object)
@@ -72,7 +73,10 @@ const mutations = {
 	},
 	getGroupMemberRelation (state, val) {
 		state.getGroupMemberRelation = val
-	}
+	},
+	ASSIGN_SOCKET: (state, payload) => {
+		state.socket = payload;
+	},
 }
 
 export default mutations

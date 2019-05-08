@@ -1,24 +1,32 @@
 <template>
 	<div class="group-wrap">
-		<groupMenu />
-		<groupHeader />
-		<groupContent />
-		<groupFooter />
+		<chatMenu />
+		<chatHeader />
+		<chatContent />
+		<chatFooter />
 	</div>
 </template>
 <script type="text/javascript">
-
 	export default {
 		components: {
-			groupFooter: () => import('./group-footer'),
-			groupContent: () => import('./group-content'),
-			groupMenu: () => import('./group-menu'),
-			groupHeader: () => import('./group-header'),
+			chatFooter: () => import('./chat-footer'),
+			chatContent: () => import('./chat-content'),
+			chatMenu: () => import('./chat-menu'),
+			chatHeader: () => import('./chat-header'),
 		},
 		data () {
 			return {
-				component: ''
+				component: '',
+
 			}
+		},
+		computed: {
+			getSocket () {
+				return this.$store.state.socket
+			}
+		},	
+		created () {
+			this.getSocket.emit('join', {cgidx: this.$store.state.groupInfo.idx});
 		}
 	} 
 </script>

@@ -15,6 +15,7 @@ const initState = {
 	mapSearchList: [],
 	groupInfo: [],
 	getGroupMemberRelation: false,
+	socket: null
 }
 
 export default initState

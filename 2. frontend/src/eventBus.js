@@ -134,10 +134,11 @@ const bus = new Vue({
 			});
 			// console.log($this.rightFold)
 
-			marker.addListener('click', () => {
+			marker.addListener('click', async () => {
 				store.dispatch('getGroupInfo', { cgidx: data.cgidx })
-				this.rightFold = true
+				store.dispatch('getGroupMemberRelation')
 				this.rightMenu = 'groupInfo'
+				this.rightFold = true
 			});
 		},
 	}

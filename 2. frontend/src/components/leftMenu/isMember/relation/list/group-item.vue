@@ -7,11 +7,15 @@
 		</div>
 	</div>
 </template>
+<script src="/socket.io/socket.io.js"></script>
+
 <script type="text/javascript">
 	export default {
 		props: ['info', 'index'],
 		methods: {
-			moveGroup () {
+			async moveGroup () {
+				var room = this.info.cgidx
+				await this.$store.dispatch('getGroupInfo', {cgidx: room})
 				this.$store.commit('isMember', 'activity')
 				this.$store.commit('activity', 'group')
 			}
