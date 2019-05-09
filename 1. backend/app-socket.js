@@ -21,7 +21,7 @@ module.exports = server => {
 //			socket.on('set_midx',  data => {
 //				midx = data.midx
 //			})
-			if (rooms[socket.room] == undefined) {
+			if (rooms[socket.room] === undefined) {
 					console.log('room create :'+socket.room)
 				rooms[socket.room] = new Object()
 				rooms[socket.room].socket_ids = new Object()
@@ -37,6 +37,7 @@ module.exports = server => {
 			socket.leave(socket.room)
 		});
 		// message 이벤트
+
 		socket.on('send_msg', (data) => {
 			console.log(data)
 			io.to(socket.room).emit('message emit', data);

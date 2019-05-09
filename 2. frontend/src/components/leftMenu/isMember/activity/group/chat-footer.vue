@@ -1,13 +1,14 @@
 <template>
 	<div class="chat-footer">
 		<form>
-			<textarea 
+			<textarea
 			rows="1" 
 			class="chat-input"  
 			autocomplete="off" 
 			id="m"
 			v-model.trim="content"
 			data-gramm_editor="false"
+			ref="chatInput"
 			></textarea>
 			<input type="submit" name="" value="send" @click="sendMessage">
 		</form>
@@ -66,7 +67,9 @@
 					user: this.$store.state.member.idx,
 					content: this.content
 				});
-				this.content = '';	
+				this.content = '';
+				this.$refs.chatInput.focus()
+				this.getSocket.off('send_msg')
 				return false
 			}
 		},
