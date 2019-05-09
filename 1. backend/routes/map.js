@@ -38,7 +38,6 @@ router.get('/api/map-group', async (req, res) => {
 	const resultJSON = { success :true }
 	try {
 		resultJSON.data = await execQuery(sql, [1])
-		console.log(sql)
 	} catch (err) {
 		resultJSON.success = false
 		resultJSON.err = err.stack

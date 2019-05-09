@@ -168,8 +168,6 @@ const actions = {
 	async getGroupInfo ({state, commit, dispatch}, payload) {
 		const json = await $fetch(`/api/group-info/${payload.cgidx}`)
 		commit('groupInfo', json.data[0])
-		await dispatch('getGroupMemberRelation')
-		eventBus.rightMenu = 'groupInfo'
 	},
 	/* #179 relation check between group and member */
 	async getGroupMemberRelation ({state, commit}, payload) {
@@ -186,7 +184,9 @@ const actions = {
 		console.log(payload)
 		dispatch('getGroupMemberRelation')
 	},
-
+	assignSocket: (context, payload) => {
+		context.commit('ASSIGN_SOCKET', payload);
+	},
 }
 
 export default actions

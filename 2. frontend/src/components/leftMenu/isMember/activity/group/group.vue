@@ -4,7 +4,6 @@
 	</div>
 </template>
 <script type="text/javascript">
-
 	export default {
 		components: {
 			groupHome: () => import('./group-home'),
@@ -13,8 +12,10 @@
 		},
 		data () {
 			return {
-				component: 'groupHome'
+				component: 'groupHome',
 			}
+		},
+		created () {
 		}
 	} 
 </script>

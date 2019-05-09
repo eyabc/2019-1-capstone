@@ -13,7 +13,6 @@ router.get('/api/group/:midx/:request', async (req, res) => {
 	order by name asc`
 	const resultJSON = { success: true, data: []}
 	try { 
-		console.log(req)
 		resultJSON.data = await execQuery(sql, [req.params.midx, req.params.request])
 	} catch (err) {
 		resultJSON.success = false
@@ -29,7 +28,6 @@ router.post('/api/group', async (req, res) => {
 	const sql3 = `INSERT INTO group_participant (midx, cgidx, authority) values(?,?,?)`
 	const resultJSON = { success: true }
 	const f = req.body
-	console.log(f.data2)
 	try {
 		const resultSql1 = await execQuery(sql1, f.data)
 		await execQuery(sql2, [f.data.manager, resultSql1.insertId, 0, 0])
@@ -39,7 +37,6 @@ router.post('/api/group', async (req, res) => {
 	} catch (err) {
 		resultJSON.success = false
 		resultJSON.err = err.stack
-		console.log(err)
 	}
 	res.json(resultJSON)
 })
@@ -55,8 +52,7 @@ router.put('/api/group-request', async (req, res) => {
 	} catch (err) {
 		resultJSON.success = false
 		resultJSON.err = err.stack
-		console.log(err)
-	}
+		}
 	res.json(resultJSON)
 })
 
