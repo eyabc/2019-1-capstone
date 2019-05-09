@@ -17,6 +17,7 @@
 		data () {
 			return {
 				component: '',
+				groupInfo: this.$store.state.groupInfo
 
 			}
 		},
@@ -26,7 +27,10 @@
 			}
 		},	
 		created () {
-			this.getSocket.emit('join', {cgidx: this.$store.state.groupInfo.idx});
-		}
+			this.getSocket.emit('exit_room', {room: this.groupInfo.idx})
+			this.getSocket.emit('join_room', {room: this.groupInfo.idx,
+				midx: this.$store.state.member.idx,
+			});
+		},
 	} 
 </script>

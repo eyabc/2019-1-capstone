@@ -2,7 +2,7 @@
 	<div>
 		<div class="profile-wrap" v-for="(item, key) in list" >
 			<div class="profile-wrap" @click="showMap(item)">
-				<img class="profile-small-img"src="./default-avatar.png" alt="img" />
+				<img class="profile-small-img" src="./default-avatar.png" alt="img" />
 				<div class="profile-info">
 					<p class="profile-nickname">{{ item.name }} 
 						<span class="profile-message">{{ item.reg_date }}</span>

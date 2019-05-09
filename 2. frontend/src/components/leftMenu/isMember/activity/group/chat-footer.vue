@@ -61,8 +61,8 @@
 				}
 			},
 			sendMessage() {
-				this.getSocket.emit('newMessage', {
-					// cgidx: this.groupInfo.cgidx,
+				this.getSocket.emit('send_msg', {
+					cgidx: this.groupInfo.cgidx,
 					user: this.$store.state.member.idx,
 					content: this.content
 				});

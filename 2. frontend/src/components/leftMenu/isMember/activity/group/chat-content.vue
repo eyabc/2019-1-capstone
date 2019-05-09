@@ -3,6 +3,10 @@
 		<ul id="messages" v-for="(item, index) in msg">
 			<li>{{ item }}</li>
 		</ul>
+		<p>{{ messages }}</p>
+		<p>{{ $store.state.groupInfo }}</p>
+		asdasd
+		{{}}
 	</div>
 
 </template>
@@ -10,13 +14,14 @@
 	export default {
 		data () {
 			return {
-				msg: []
+				msg: ['asdasd'],
+				Socket: this.$store.state.socket
 			}
 		},
 		computed: {
 			messages () {
-				socket.on('message emit', function(m){
-					this.msgs.push(m)
+				this.Socket.on('message emit', function(data){
+					// 	this.msgs.push(data)
 					console.log(this.msgs);
 				}); 
 				return this.msg

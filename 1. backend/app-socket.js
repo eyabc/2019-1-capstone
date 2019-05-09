@@ -1,11 +1,8 @@
 module.exports = server => {
 	const io = require('socket.io')(server)
+	var rooms = [];
 
 	io.on('connection', socket => {
-
-		let currentRoomId = null;
-		var instanceId = socket.id;
-
 		/** Socket Events */
 		socket.on('disconnect', function () {
 			io.emit('user disconnected');
@@ -15,22 +12,34 @@ module.exports = server => {
 			console.log(m)
 		})
 		// join 이벤트
-		socket.on('join', data => {
-			currentRoomId = data.cgidx;
-			console.log("join")
-			socket.join(data);
-        	//data.socketId = socket.id;
+		socket.on('join_room', data => {
+			console.log("joinroom")
+			socket.join(data.room);
+	
+			socket.room = data.room;
+			var midx = data.midx
+//			socket.on('set_midx',  data => {
+//				midx = data.midx
+//			})
+			if (rooms[socket.room] == undefined) {
+					console.log('room create :'+socket.room)
+				rooms[socket.room] = new Object()
+				rooms[socket.room].socket_ids = new Object()
+			}
+			rooms[socket.room].socket_ids[midx] = socket.id
+			console.log(rooms[socket.room])
+			// currentRoomId = data.cgidx;
+        	// data.socketId = socket.id;
         });
 		/** User Exit Room */
-		socket.on('exit', data => {
-			currentRoomId = null;
-			socket.leave(data.cgidx)
-
+		socket.on('exit_room', data => {
+			console.log("exit")
+			socket.leave(socket.room)
 		});
 		// message 이벤트
-		socket.on('newMessage', function(data){
+		socket.on('send_msg', (data) => {
 			console.log(data)
-			io.sockets.in(data.cgidx).emit('message emit', data);
+			io.to(socket.room).emit('message emit', data);
 		});
 	});
 
