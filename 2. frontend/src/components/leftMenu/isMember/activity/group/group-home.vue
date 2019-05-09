@@ -1,7 +1,7 @@
 <template>
 	<div class="group-wrap">
 		<chatMenu />
-		<chatHeader />
+		<chatHeader :menuFold="menuFold"/>
 		<chatContent />
 		<chatFooter />
 	</div>
@@ -17,8 +17,8 @@
 		data () {
 			return {
 				component: '',
-				groupInfo: this.$store.state.groupInfo
-
+				groupInfo: this.$store.state.groupInfo,
+				menuFold: false,
 			}
 		},
 		computed: {

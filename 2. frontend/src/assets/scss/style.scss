@@ -393,7 +393,7 @@ $left-width: 500px;
 	&-header {
 		z-index: 1000;
 		width: 100%;
-		height: 120px;
+		height: 110px;
 		&-search {
 			width: 100%;
 			height: 60px;
@@ -721,6 +721,18 @@ $left-width: 500px;
 }
 
 .chat {
+	&-header {
+		height: 40px;
+		background:#FFF3E6;
+		display: flex;
+		justify-content: space-between;
+		>span { 
+			line-height: 40px;display: inline-block;padding: 0 10px; 
+			&.name { width:310px;}
+			&.category { background:#ffd7af; width: 310px;  }
+			&.menu-icon { cursor: pointer; background:#ffc677;;width: 40px; height: 40px; display:flex; justify-content:center; align-items: center; padding: 0}
+		}
+	}
 	&-footer {
 		position: fixed;
 		bottom: 0;
@@ -773,7 +785,7 @@ $left-width: 500px;
 	&-content {
 		position: absolute;
 		width: 100%;
-		background: #eee;
+		background: #fff;
 		transition: .3s;
 		height: calc(100% - 210px);
 		&.active {
@@ -786,7 +798,6 @@ $left-width: 500px;
 	&-wrap {
 		position: relative;
 		height: 100%;
-		top: -10px;
 	}
 	&-friend-search{
 		input {	margin-top: 10px; }

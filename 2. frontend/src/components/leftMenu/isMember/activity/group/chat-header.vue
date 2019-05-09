@@ -1,4 +1,26 @@
 <template>
-	<div>
+	<div class='chat-header'>
+		<span class="name">{{groupInfo.name}}</span>
+		<span class="category">카테고리 이름(구현 전)</span>
+		<span class="menu-icon" @click="setFolding(!menuFold)"><i class="fas fa-bars"></i></span>
 	</div>
 </template>
+<script type="text/javascript">
+	export default {
+		data () {
+			return {
+				groupInfo: this.$store.state.groupInfo
+			}
+		},
+		methods: {
+			setFolding(val) {
+				this.$parent.menuFold = val
+				console.log(this.menuFold)
+			}
+		},
+		created() {
+			// console.log(this.menuFold)
+		},
+		props: ['menuFold']
+	}
+</script>
