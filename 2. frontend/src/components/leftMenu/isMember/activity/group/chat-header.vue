@@ -1,6 +1,6 @@
 <template>
 	<div class='chat-header'>
-		<span class="name">{{groupInfo.name}}</span>
+		<span class="name" @click="chatContent">{{groupInfo.name}}</span>
 		<span class="category">카테고리 이름(구현 전)</span>
 		<span class="menu-icon" @click="setFolding(!menuFold)"><i class="fas fa-bars"></i></span>
 	</div>
@@ -15,6 +15,9 @@
 		methods: {
 			setFolding(val) {
 				this.$parent.menuFold = val
+			},
+			chatContent () {
+				this.$store.commit('groupComp', {upper: 'chatContent'})
 			}
 		},
 		created() {

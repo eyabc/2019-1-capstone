@@ -77,6 +77,9 @@ const mutations = {
 	ASSIGN_SOCKET: (state, payload) => {
 		state.socket = payload;
 	},
+	groupComp (state, val) {
+		state.groupComp = val
+	},
 }
 
 export default mutations

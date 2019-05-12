@@ -612,7 +612,7 @@ $left-width: 500px;
 	&-btn {
 		display: flex;
 		flex-wrap: wrap;
-		>li>a {
+		a {
 			display: inline-block;
 			font-size: 14px;
 			padding: 10px;
@@ -736,7 +736,7 @@ $left-width: 500px;
 		>span { 
 			line-height: 40px;display: inline-block;padding: 0 10px; 
 			font-weight: bold;
-			&.name { width:330px;}
+			&.name { width:330px; cursor: pointer}
 			&.category { background:#ffd7af; width: 290px;  }
 			&.menu-icon { cursor: pointer; background:#ffc677;;width: 40px; height: 40px; display:flex; justify-content:center; align-items: center; padding: 0}
 		}

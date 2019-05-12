@@ -2,7 +2,8 @@
 	<div class="group-wrap">
 		<chatMenu :menuFold="menuFold"/>
 		<chatHeader :menuFold="menuFold"/>
-		<chatContent :menuFold="menuFold" />
+		<component :is="component" :menuFold="menuFold" />
+		<!-- <chatContent :menuFold="menuFold" /> -->
 		<chatFooter />
 	</div>
 </template>
@@ -13,10 +14,10 @@
 			chatContent: () => import('./chat-content'),
 			chatMenu: () => import('./chat-menu'),
 			chatHeader: () => import('./chat-header'),
+			category: () => import('./category'),
 		},
 		data () {
 		return {
-				component: '',
 				groupInfo: this.$store.state.groupInfo,
 				menuFold: false,
 			}
@@ -24,6 +25,9 @@
 		computed: {
 			getSocket () {
 				return this.$store.state.socket
+			},
+			component () {
+				return this.$store.state.groupComp.upper
 			}
 		},	
 		created () {
