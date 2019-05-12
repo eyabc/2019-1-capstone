@@ -1,8 +1,8 @@
 <template>
 	<div class="group-wrap">
-		<chatMenu />
+		<chatMenu :menuFold="menuFold"/>
 		<chatHeader :menuFold="menuFold"/>
-		<chatContent />
+		<chatContent :menuFold="menuFold" />
 		<chatFooter />
 	</div>
 </template>
@@ -15,7 +15,7 @@
 			chatHeader: () => import('./chat-header'),
 		},
 		data () {
-			return {
+		return {
 				component: '',
 				groupInfo: this.$store.state.groupInfo,
 				menuFold: false,
@@ -28,7 +28,8 @@
 		},	
 		created () {
 			this.getSocket.emit('exit_room', {room: this.groupInfo.idx})
-			this.getSocket.emit('join_room', {room: this.groupInfo.idx,
+			this.getSocket.emit('join_room', {
+				room: this.groupInfo.idx,
 				midx: this.$store.state.member.idx,
 			});
 		},

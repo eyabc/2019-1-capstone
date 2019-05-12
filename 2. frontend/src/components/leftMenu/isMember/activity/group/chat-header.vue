@@ -15,11 +15,9 @@
 		methods: {
 			setFolding(val) {
 				this.$parent.menuFold = val
-				console.log(this.menuFold)
 			}
 		},
 		created() {
-			// console.log(this.menuFold)
 		},
 		props: ['menuFold']
 	}

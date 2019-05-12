@@ -5,6 +5,9 @@ import store from './store/index'
 import * as VueGoogleMaps from 'vue2-google-maps'
 import $fetch from './middleware/fetch'
 import io from 'socket.io-client'
+import DateRangePicker from 'vue-mj-daterangepicker'
+import '../node_modules/vue-mj-daterangepicker/dist/vue-mj-daterangepicker.css'
+Vue.use(DateRangePicker)
 
 Vue.config.productionTip = false
 // # 16 ~~
@@ -25,9 +28,9 @@ import vSelectPage from 'v-selectpage';
 Vue.use(vSelectPage, {
     // server side data loader
     dataLoad: function(vue, data, params){
-        return new Promise((resolve, reject)=>{
-            axios.post(url, params).then(resp=>resolve(resp),resp=>reject(resp));
-        });
+    	return new Promise((resolve, reject)=>{
+    		axios.post(url, params).then(resp=>resolve(resp),resp=>reject(resp));
+    	});
     }
 });
 
