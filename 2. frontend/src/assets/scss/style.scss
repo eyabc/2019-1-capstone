@@ -614,12 +614,12 @@ $left-width: 500px;
 		flex-wrap: wrap;
 		a {
 			display: inline-block;
-			font-size: 14px;
+			font-size: 14px;	
 			padding: 10px;
 			margin: 10px 8px;
 			width: 90px;
 			border: dashed 1px #FFBB77;		
-			height: 20px;
+			// height: 20px;
 			text-align: center;
 			border-radius: 7px;
 			font-weight:bold;
@@ -944,4 +944,10 @@ $left-width: 500px;
 	border-bottom: 2px solid rgba(255, 255, 255, 0.5);
 	padding: 5px;
 
+}
+.group-content { }
+.groupAbout {
+	&-wrap {
+		li {line-height: 30px; font-size: 17px;}
+	}
 }

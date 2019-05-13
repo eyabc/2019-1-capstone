@@ -2,8 +2,7 @@
 	<div class="group-wrap">
 		<chatMenu :menuFold="menuFold"/>
 		<chatHeader :menuFold="menuFold"/>
-		<component :is="component" :menuFold="menuFold" />
-		<!-- <chatContent :menuFold="menuFold" /> -->
+		<component :is="component" :menuFold="menuFold" class="chat-content"/>
 		<chatFooter />
 	</div>
 </template>
@@ -15,6 +14,8 @@
 			chatMenu: () => import('./chat-menu'),
 			chatHeader: () => import('./chat-header'),
 			category: () => import('./category'),
+			groupInfo: () => import('./group-info'),
+			groupAbout: () => import('./group-about'),
 		},
 		data () {
 		return {

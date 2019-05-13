@@ -8,8 +8,9 @@
 		components: {
 			addCategory: () => import('./add-category'),
 			getList: () => import('./category-list'),
+			// categoryDetail: () => import('./category-detail'),
+			categoryEdit: () => import('./category-edit'),
 		},
 		props: ['lower']
-
 	}
 </script>
