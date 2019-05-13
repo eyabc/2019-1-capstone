@@ -7,8 +7,7 @@
 	export default {
 		components: {
 			groupHome: () => import('./group-home'),
-			participantSetting: () => import('./participant-setting/participant-setting'),
-			managerSetting: () => import('./manager-setting/manager-setting'),
+
 		},
 		data () {
 			return {

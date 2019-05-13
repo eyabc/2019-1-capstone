@@ -18,9 +18,6 @@ module.exports = server => {
 	
 			socket.room = data.room;
 			var midx = data.midx
-//			socket.on('set_midx',  data => {
-//				midx = data.midx
-//			})
 			if (rooms[socket.room] === undefined) {
 					console.log('room create :'+socket.room)
 				rooms[socket.room] = new Object()

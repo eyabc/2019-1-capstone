@@ -10,7 +10,7 @@
 			data-gramm_editor="false"
 			ref="chatInput"
 			></textarea>
-			<input type="submit" name="" value="send" @click="sendMessage">
+			<input type="submit" name="" value="send" @click.prevent="sendMessage">
 		</form>
 	</div>
 </template>
@@ -64,8 +64,10 @@
 			sendMessage() {
 				this.getSocket.emit('send_msg', {
 					cgidx: this.groupInfo.cgidx,
-					user: this.$store.state.member.idx,
-					content: this.content
+					midx: this.$store.state.member.idx,
+					content: this.content,
+					nickname: this.$store.state.member.nickname,
+					datetime: new Date().getTime()
 				});
 				this.content = '';
 				this.$refs.chatInput.focus()
