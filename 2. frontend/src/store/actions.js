@@ -170,7 +170,7 @@ const actions = {
 		commit('groupInfo', json.data[0])
 	},
 	/* #179 relation check between group and member */
-	async getGroupMemberRelation ({state, commit}, payload) {
+	async getGroupMemberRelation ({state, commit}) {
 		const json2 = await $fetch(`/api/group-participant/relation/${state.member.idx}/${state.groupInfo.idx}`)
 		commit('getGroupMemberRelation', json2.data[0])
 	},

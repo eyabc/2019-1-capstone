@@ -21,6 +21,7 @@
 		return {
 				groupInfo: this.$store.state.groupInfo,
 				menuFold: false,
+				myAuth: false,
 			}
 		},
 		computed: {
@@ -37,6 +38,7 @@
 				room: this.groupInfo.idx,
 				midx: this.$store.state.member.idx,
 			});
+			this.$store.dispatch('getGroupMemberRelation')
 		},
 	} 
 </script>
