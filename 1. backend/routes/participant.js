@@ -42,6 +42,4 @@ router.post('/api/group-participant/:midx/:cgidx', async (req, res) => {
 	res.json(resultJSON)
 })
 
-/* #195 get my participant data in cgidx */
-
 module.exports = router;
