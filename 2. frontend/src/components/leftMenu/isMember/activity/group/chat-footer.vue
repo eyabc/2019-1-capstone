@@ -84,7 +84,8 @@
 				this.$store.dispatch('createChat', {
 					category: this.$store.state.group.current_category,
 					content: this.content,
-					datetime: datetime
+					datetime: datetime,
+					nickname: this.$store.state.member.nickname
 				})
 				this.content = '';
 				this.$refs.chatInput.focus()

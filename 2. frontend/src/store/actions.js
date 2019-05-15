@@ -187,6 +187,7 @@ const actions = {
 	assignSocket: (context, payload) => {
 		context.commit('ASSIGN_SOCKET', payload);
 	},
+	/* chat */
 	async createChat ({state, commit}, payload) {
 		const json = await $fetch(`/api/chat/${state.member.idx}/${state.groupInfo.idx}`, {
 			method: 'post',
@@ -194,6 +195,13 @@ const actions = {
 			body: JSON.stringify(payload)
 		})
 	},
+	async readChat ({state, commit}, payload) {
+		const json = await $fetch(`/api/chat/${state.groupInfo.idx}/${payload.category}`, {
+			method: 'get',
+		})
+		console.log(payload)
+		commit(payload.commit, json.data)
+	}
 
 }
 

@@ -27,13 +27,13 @@
 				msgs: []
 			}
 		},
-
-		created () {
+		async created () {
 			this.Socket.off('message emit')
 			this.Socket.on('message emit', data => {
 				this.msgs.push(data)
 			});
-
+			await this.$store.dispatch('readChat', {commit: 'chat_content', category: this.$store.state.group.current_category})
+			this.msgs = this.$store.state.group.chat_content
 		},
 		distroyed () {
 			this.msgs = []

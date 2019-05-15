@@ -80,9 +80,15 @@ const mutations = {
 	groupComp (state, val) {
 		state.groupComp = val
 	},
+/* state: group json */
 	myGroupRelation (state, val) {
 		state.group.myRelation = val
-	}
+	},
+	chat_content (state, val) {
+		state.group.chat_content = val
+	}, 
+
+
 }
 
 export default mutations
