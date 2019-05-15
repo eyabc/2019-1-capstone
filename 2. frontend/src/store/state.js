@@ -19,6 +19,7 @@ const initState = {
 	groupComp: false,
 	group: {
 		myRelation: false,
+		current_category: false,
 	}
 }
 

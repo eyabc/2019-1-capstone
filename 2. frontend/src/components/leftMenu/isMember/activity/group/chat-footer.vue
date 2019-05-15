@@ -73,13 +73,19 @@
 				}
 			},
 			sendMessage() {
+				const datetime = new Date().getTime()
 				this.getSocket.emit('send_msg', {
 					cgidx: this.groupInfo.cgidx,
 					midx: this.$store.state.member.idx,
 					content: this.content,
 					nickname: this.$store.state.member.nickname,
-					datetime: new Date().getTime()
+					datetime: datetime,
 				});
+				this.$store.dispatch('createChat', {
+					category: this.$store.state.group.current_category,
+					content: this.content,
+					datetime: datetime
+				})
 				this.content = '';
 				this.$refs.chatInput.focus()
 				this.getSocket.off('send_msg')

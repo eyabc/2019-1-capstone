@@ -187,6 +187,14 @@ const actions = {
 	assignSocket: (context, payload) => {
 		context.commit('ASSIGN_SOCKET', payload);
 	},
+	async createChat ({state, commit}, payload) {
+		const json = await $fetch(`/api/chat/${state.member.idx}/${state.groupInfo.idx}`, {
+			method: 'post',
+			headers: { 'Content-Type': 'application/json'},
+			body: JSON.stringify(payload)
+		})
+	},
+
 }
 
 export default actions
