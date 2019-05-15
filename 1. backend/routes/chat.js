@@ -18,8 +18,6 @@ router.post('/api/chat/:midx/:cgidx', async (req, res) => {
 router.get('/api/chat/:cgidx/:category', async (req, res) => {
 	const resultJSON = { success: true }
 	const { category, cgidx } = req.params
-	console.log("category : " + category)
-	console.log("cgidx : " + cgidx)
 	const add_sql = []
 	const execArr = [cgidx]
 	let category_idx
@@ -34,7 +32,6 @@ router.get('/api/chat/:cgidx/:category', async (req, res) => {
 
 	try { 
 		resultJSON.data = await execQuery(sql, execArr)
-		console.log(resultJSON.data)
 	} catch (err) {
 		resultJSON.success = false
 		resultJSON.err = err.stack

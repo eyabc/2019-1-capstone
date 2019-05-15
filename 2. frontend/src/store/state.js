@@ -20,7 +20,9 @@ const initState = {
 	group: {
 		myRelation: false,
 		current_category: false,
-		chat_content: []
+		chat_content: [],
+		category_list: [],
+		category_insertId: false,
 	}
 }
 

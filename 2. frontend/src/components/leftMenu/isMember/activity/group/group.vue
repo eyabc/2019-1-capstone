@@ -16,6 +16,7 @@
 		},
 		created () {
 			this.$store.dispatch('getGroupMemberRelation', {commit: 'myGroupRelation'})
+      		this.$store.dispatch('readCategory', {commit: 'category_list'})
 		},
 	} 
 </script>

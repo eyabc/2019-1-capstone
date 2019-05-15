@@ -201,6 +201,23 @@ const actions = {
 		})
 		console.log(payload)
 		commit(payload.commit, json.data)
+	},
+
+	/* category */
+	async readCategory ({state, commit}, payload) {
+		const json = await $fetch(`/api/category/${state.groupInfo.idx}`, {
+			method: 'get'
+		})
+		commit(payload.commit, json.data)	
+		console.log(state.group.category_list)
+	},
+	async createCategory ({state, commit}, payload) {
+		const json = await $fetch(`/api/category/${state.groupInfo.idx}`, {
+			method: 'post',
+			headers: { 'Content-Type': 'application/json'},
+			body: JSON.stringify(payload)
+		})
+		commit('category_insertId', json.idx)
 	}
 
 }

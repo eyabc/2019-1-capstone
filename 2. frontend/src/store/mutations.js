@@ -87,6 +87,15 @@ const mutations = {
 	chat_content (state, val) {
 		state.group.chat_content = val
 	}, 
+	category_list (state, val) {
+		state.group.category_list = val
+	},
+	updateCategory_list (state, val) {
+		state.group.category_list.push(val)
+	},
+	category_insertId (state, val) {
+		state.group.category_insertId = val
+	}
 
 
 }
