@@ -8,9 +8,10 @@
 			id="m"
 			v-model.trim="content"
 			data-gramm_editor="false"
-			ref="chatInput"
+			ref="chatInput" v-if="this.$store.state.groupComp.upper === 'chatContent'" 
 			></textarea>
-			<input ref="input_button" type="submit" name="" value="send" @click.prevent="sendMessage">
+			<input ref="input_button" type="submit" name="" value="send" @click.prevent="sendMessage"
+			v-if="this.$store.state.groupComp.upper === 'chatContent'" >
 		</form>
 	</div>
 </template>
@@ -32,14 +33,13 @@
 				return this.$store.state.socket
 			}
 		},		
-		created () {
-		},
 		async mounted () {
 			if (this.$store.state.group.myRelation.authority === 2) {
 				this.$refs.chatInput.disabled = true
 				this.$refs.chatInput.value = '쓰기 권한이 없습니다.'
 				this.$refs.input_button.disabled = true
 			}
+
 			this.$el.addEventListener('input', this.resizeTextarea)
 		},
 		methods: {
