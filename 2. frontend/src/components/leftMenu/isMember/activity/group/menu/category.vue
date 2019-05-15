@@ -33,7 +33,7 @@
 			</li>
 		</ul>
 		<!-- 나의 권한을 확인한 후 display 설정 css 필요 -->
-		<p class="category-option">
+		<p class="category-option" v-if="$store.state.group.myRelation.authority === 0">
 			<span><i class="fas fa-plus" @click="addCategory"></i></span>
 			<span><i class="fas fa-cog" @click="getList"></i></span>
 		</p>

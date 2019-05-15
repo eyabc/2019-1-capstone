@@ -2,8 +2,8 @@
 	<div class="option-wrap"> 
 		<p class="category-option">
 			<span @click="groupAbout"><i class="fas fa-info-circle"></i></span>
-			<span @click="groupSetting"><i class="fas fa-cog"></i></span>
-			<span @click="groupUser"><i class="fas fa-user-alt"></i></span>
+			<span @click="groupSetting" v-if="$store.state.group.myRelation.authority === 0"><i class="fas fa-cog"></i></span>
+			<span @click="groupUser" v-if="$store.state.group.myRelation.authority === 0"><i class="fas fa-user-alt"></i></span>
 		</p>
 	</div>
 </template>

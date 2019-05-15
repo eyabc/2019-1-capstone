@@ -32,8 +32,7 @@
 				return this.$store.state.groupComp.upper
 			}
 		},	
-		async created () {
-			
+		async created () {			
 			this.getSocket.emit('exit_room', {room: this.groupInfo.idx})
 			this.getSocket.emit('join_room', {
 				room: this.groupInfo.idx,
