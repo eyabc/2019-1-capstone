@@ -15,6 +15,7 @@
 			}
 		},
 		created () {
-		}
+			this.$store.dispatch('getGroupMemberRelation', {commit: 'myGroupRelation'})
+		},
 	} 
 </script>

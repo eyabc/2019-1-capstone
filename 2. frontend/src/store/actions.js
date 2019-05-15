@@ -170,9 +170,9 @@ const actions = {
 		commit('groupInfo', json.data[0])
 	},
 	/* #179 relation check between group and member */
-	async getGroupMemberRelation ({state, commit}) {
-		const json2 = await $fetch(`/api/group-participant/relation/${state.member.idx}/${state.groupInfo.idx}`)
-		commit('getGroupMemberRelation', json2.data[0])
+	async getGroupMemberRelation ({state, commit}, payload) {
+		const json = await $fetch(`/api/group-participant/relation/${state.member.idx}/${state.groupInfo.idx}`)
+		commit(payload.commit, json.data[0])
 	},
 	/* #179 insert participant */
 	async createdParticipant({state, commit, dispatch}, payload) {
@@ -182,7 +182,7 @@ const actions = {
 			body: JSON.stringify(payload)
 		})
 		console.log(payload)
-		dispatch('getGroupMemberRelation')
+		dispatch('getGroupMemberRelation', {commit: 'getGroupMemberRelation'})
 	},
 	assignSocket: (context, payload) => {
 		context.commit('ASSIGN_SOCKET', payload);

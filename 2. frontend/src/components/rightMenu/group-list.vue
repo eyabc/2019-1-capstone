@@ -38,7 +38,7 @@
 		methods: {
 			async view(cgidx) {
 				await this.$store.dispatch('getGroupInfo', { cgidx: cgidx })
-				await this.$store.dispatch('getGroupMemberRelation')
+				await this.$store.dispatch('getGroupMemberRelation', {commit: 'getGroupMemberRelation'})
 				eventBus.rightMenu = 'groupInfo'
 			},
 			showMap (data) {

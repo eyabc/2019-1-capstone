@@ -32,13 +32,13 @@
 				return this.$store.state.groupComp.upper
 			}
 		},	
-		created () {
+		async created () {
+			
 			this.getSocket.emit('exit_room', {room: this.groupInfo.idx})
 			this.getSocket.emit('join_room', {
 				room: this.groupInfo.idx,
 				midx: this.$store.state.member.idx,
 			});
-			this.$store.dispatch('getGroupMemberRelation')
 		},
 	} 
 </script>

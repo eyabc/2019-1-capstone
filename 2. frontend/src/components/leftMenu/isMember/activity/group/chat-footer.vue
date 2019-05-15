@@ -1,7 +1,7 @@
 <template>
 	<div class="chat-footer">
 		<form>
-			<textarea
+			<textarea 
 			rows="1" 
 			class="chat-input"  
 			autocomplete="off" 
@@ -10,7 +10,7 @@
 			data-gramm_editor="false"
 			ref="chatInput"
 			></textarea>
-			<input type="submit" name="" value="send" @click.prevent="sendMessage">
+			<input ref="input_button" type="submit" name="" value="send" @click.prevent="sendMessage">
 		</form>
 	</div>
 </template>
@@ -23,7 +23,8 @@
 		data(){
 			return {
 				groupInfo: this.$store.state.groupInfo,
-           		content: '',
+				content: '',
+				
 			}
 		},
 		computed: {
@@ -31,6 +32,19 @@
 				return this.$store.state.socket
 			}
 		},		
+		created () {
+		},
+		async mounted () {
+			await this.$store.dispatch('getGroupMemberRelation', {commit: 'myGroupRelation'})
+			console.log(this.$store.state.group.myRelation)
+			if (this.$store.state.group.myRelation.authority === 2) {
+				console.log(this.$refs.chatInput)
+				this.$refs.chatInput.disabled = true
+				this.$refs.chatInput.value = '쓰기 권한이 없습니다.'
+				this.$refs.input_button.disabled = true
+			}
+			this.$el.addEventListener('input', this.resizeTextarea)
+		},
 		methods: {
 			resizeTextarea (event) {
 				if(100 < event.target.scrollHeight) {
@@ -75,9 +89,7 @@
 				return false
 			}
 		},
-		mounted () {
-			this.$el.addEventListener('input', this.resizeTextarea)
-		},
+
 		beforeDestroy () {
 			this.$el.removeEventListener('input', this.resizeTextarea)
 		},

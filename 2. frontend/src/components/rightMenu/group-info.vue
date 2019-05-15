@@ -81,7 +81,7 @@
 				}
 				console.log(data)
 				this.$store.dispatch('createdParticipant', data)
-				this.$store.dispatch('getGroupMemberRelation')
+				this.$store.dispatch('getGroupMemberRelation', {commit: 'getGroupMemberRelation'})
 			},
 			cancel () {
 				const data = {
@@ -89,7 +89,7 @@
 					cgidx: this.item.idx,
 				}
 				this.$store.dispatch('deleteGroupParticipant', data)
-				this.$store.dispatch('getGroupMemberRelation')
+				this.$store.dispatch('getGroupMemberRelation', {commit: 'getGroupMemberRelation'})
 
 			}
 		}

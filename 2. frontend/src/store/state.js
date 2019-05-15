@@ -17,6 +17,9 @@ const initState = {
 	getGroupMemberRelation: false,
 	socket: null,
 	groupComp: false,
+	group: {
+		myRelation: false,
+	}
 }
 
 export default initState
