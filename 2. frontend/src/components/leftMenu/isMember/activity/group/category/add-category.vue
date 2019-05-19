@@ -6,8 +6,8 @@
 					<label class="select-lbl">
 						<span class="title-ct">상위 카테고리 선택</span>
 						<select class="select-form" v-model="data.parent">
-							<option value="null">없음</option>
-							<option :value="item.idx" v-for="(item, index) in category_list">{{item.name}}</option>
+							<option :value="0">없음</option>
+							<option :value="item.idx" v-for="(item, index) in category_list" v-if="item.parent===0 ">{{item.name}}</option>
 						</select>
 					</label>
 				</li>				
@@ -43,7 +43,7 @@
 		data() {
 			return {
 				data: {
-					parent: null,
+					parent: 0,
 				// authority {공개: 1, 비공개: 0 }
 				authority: 1,
 				name: '',
@@ -63,7 +63,7 @@
 			await this.$store.dispatch('createCategory', this.data)
 			Object.assign(this.data, {idx: this.$store.state.group.category_insertId})
 			console.log(this.data)
-			this.$store.commit('updateCategory_list', this.data)
+			this.$store.commit('createCategory_list', this.data)
 			alert("추가 되었습니다.")
 			this.$store.commit('groupComp', {upper: 'category', lower: 'getList'})
 		}

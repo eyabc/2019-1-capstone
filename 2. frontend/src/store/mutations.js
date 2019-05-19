@@ -90,11 +90,20 @@ const mutations = {
 	category_list (state, val) {
 		state.group.category_list = val
 	},
-	updateCategory_list (state, val) {
+	createCategory_list (state, val) {
 		state.group.category_list.push(val)
+	},	
+	updateCategory_list (state, val, key) {
+		state.group.category_list[key] = val
 	},
 	category_insertId (state, val) {
 		state.group.category_insertId = val
+	},
+	spliceCategory_list (state, key) {
+		state.group.category_list.splice(key,key+1)
+	},
+	category_key (state, val) {
+		state.group.category_key = val
 	}
 }
 

@@ -23,6 +23,7 @@ const initState = {
 		chat_content: [],
 		category_list: [],
 		category_insertId: false,
+		category_key: false,
 	}
 }
 

@@ -26,5 +26,33 @@ router.post('/api/category/:cgidx', async (req, res) => {
 	}
 	res.json(resultJSON)
 })
+router.put('/api/category/:idx', async (req, res) => {
+	const sql = `
+				UPDATE category SET 
+				parent = ?, name = ?, description = ?, authority = ?  
+				WHERE idx = ?
+				`
+	const resultJSON = { success: true }
+	try {
+		await execQuery(sql, [req.body.parent, req.body.name, req.body.description, req.body.authority, req.params.idx])
+	} catch (err) {
+		resultJSON.success = false
+		resultJSON.err = err.stack
+	}
+	res.json(resultJSON)
+})
+router.delete('/api/category/:idx', async (req, res) => {
+	const sql = `
+				DELETE FROM category WHERE idx = ?
+				`
+	const resultJSON = { success: true }
+	try {
+		await execQuery(sql, [req.params.idx])
+	} catch (err) {
+		resultJSON.success = false
+		resultJSON.err = err.stack
+	}
+	res.json(resultJSON)
+})
 
 module.exports = router;

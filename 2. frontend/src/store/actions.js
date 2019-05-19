@@ -218,7 +218,21 @@ const actions = {
 			body: JSON.stringify(payload)
 		})
 		commit('category_insertId', json.idx)
-	}
+	},
+	async updateCategory ({state, commit}, payload) {
+		const json = await $fetch(`/api/category/${state.group.category_key.idx}`, {
+			method: 'put',
+			headers: { 'Content-Type': 'application/json'},
+			body: JSON.stringify(payload)
+		})
+	},	
+	async deleteCategory ({state, commit}, payload) {
+		const json = await $fetch(`/api/category/${state.group.category_key.idx}`, {
+			method: 'delete',
+			headers: { 'Content-Type': 'application/json'},
+			body: JSON.stringify(payload)
+		})
+	},
 
 }
 
