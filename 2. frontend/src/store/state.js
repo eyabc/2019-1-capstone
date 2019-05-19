@@ -24,6 +24,7 @@ const initState = {
 		category_list: [],
 		category_insertId: false,
 		category_key: false,
+		participant: false,
 	}
 }
 

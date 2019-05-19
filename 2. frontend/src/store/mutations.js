@@ -104,6 +104,9 @@ const mutations = {
 	},
 	category_key (state, val) {
 		state.group.category_key = val
+	},
+	participant (state, val) {
+		state.group.participant = val
 	}
 }
 

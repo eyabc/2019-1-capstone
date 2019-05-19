@@ -199,7 +199,6 @@ const actions = {
 		const json = await $fetch(`/api/chat/${state.groupInfo.idx}/${payload.category}`, {
 			method: 'get',
 		})
-		console.log(payload)
 		commit(payload.commit, json.data)
 	},
 
@@ -209,7 +208,6 @@ const actions = {
 			method: 'get'
 		})
 		commit(payload.commit, json.data)	
-		console.log(state.group.category_list)
 	},
 	async createCategory ({state, commit}, payload) {
 		const json = await $fetch(`/api/category/${state.groupInfo.idx}`, {
@@ -232,6 +230,12 @@ const actions = {
 			headers: { 'Content-Type': 'application/json'},
 			body: JSON.stringify(payload)
 		})
+	},
+	async readParticipant ({state, commit}, payload) {
+		const json = await $fetch(`/api/group-participant/${state.groupInfo.idx}`, {
+			method: 'get'
+		})
+		commit('participant', json.data)
 	},
 
 }

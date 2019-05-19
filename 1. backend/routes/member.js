@@ -139,4 +139,16 @@ router.get('/api/member-search', async (req, res) => {
 router.delete('/api/member-session', (req, res) => {
 	// Ver2.0에서 session sql을 사용 할 때 쓰입니다. 
 })
+router.get('/api/member-info/:idx', async (res, req) => {
+	const sql = `SELECT idx, nickname, profile_message, reg_date, place, lat, lng, info_visibility FROM member WHERE idx =?`
+	const resultJSON = { success: true }
+	try {
+		resultJSON.data = await execQuery(sql, [req.params.idx])
+	} catch (err) {
+		resultJSON.success = false
+		resultJSON.err = err.stack
+	}
+	res.json(resultJSON)
+})
 module.exports = router;
+

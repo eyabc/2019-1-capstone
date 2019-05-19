@@ -59,7 +59,7 @@ router.put('/api/group-request', async (req, res) => {
 
 /* #176 get group infomation */
 router.get('/api/group-info/:cgidx', async (req, res) => {
-	const sql = 'SELECT idx, name, permission, image, place, manager, default_authority, lat, lng, description, reg_date FROM chatting_group WHERE idx = ?'
+	const sql = 'SELECT idx, visibility, name, permission, image, place, manager, default_authority, lat, lng, description, reg_date FROM chatting_group WHERE idx = ?'
 	const resultJSON = { success: true }
 	try {
 		resultJSON.data = await execQuery(sql, [req.params.cgidx])
