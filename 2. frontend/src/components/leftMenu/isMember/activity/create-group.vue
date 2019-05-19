@@ -165,6 +165,8 @@ export default {
       			alert('참여자 초기 권한을 지정하세요')
       		} else {
       			this.$store.dispatch('insertGroup', {data, data2})
+				this.$store.commit('activity', 'group')
+      			
       		}
 
       	},

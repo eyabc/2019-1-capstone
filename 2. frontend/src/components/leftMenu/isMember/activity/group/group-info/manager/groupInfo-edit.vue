@@ -60,30 +60,14 @@
 </div>
 </template>
 <script type="text/javascript">
-import 'babel-polyfill'; // es6 shim
-import myUpload from 'vue-image-crop-upload';
 import eventBus from '@/eventBus'
 
 export default {
-	components: {
-		'my-upload': myUpload
-	},
 	data() {
 		return {
 			show: false,
-			data: {
-				visibility: 0,
-				name: '',
-				default_authority: 0,
-				permission: 0,
-      			image: '', // the datebase64 url of created image
-      			place: '',
-      			lat: '',
-      			lng: '',
-      			password: '',
-      			description: '',
-      			manager: this.$store.state.member.idx
-      		},
+			data: this.$store.state.groupInfo,
+			
       		data2: {
       			friends: [],
       		},

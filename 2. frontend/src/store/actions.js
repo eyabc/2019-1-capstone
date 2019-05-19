@@ -76,7 +76,6 @@ const actions = {
 		})
 		state.group.splice(state.group.length - 1, 0, payload.data)
 		alert('그룹 생성이 완료되었습니다.')
-		commit('activity', 'group')
 	},
 	async deleteFriend ({state, commit, dispatch}, payload) {
 		var json = await $fetch(`/api/friend/${state.member.idx}/${payload.idx}`, {
