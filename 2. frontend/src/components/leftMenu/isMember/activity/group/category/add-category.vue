@@ -5,7 +5,7 @@
 				<li>
 					<label class="select-lbl">
 						<span class="title-ct">상위 카테고리 선택</span>
-						<select class="select-form" v-model="data.upper_category">
+						<select class="select-form" v-model="data.parent">
 							<option value="null">없음</option>
 							<option :value="item.idx" v-for="(item, index) in category_list">{{item.name}}</option>
 						</select>
@@ -43,11 +43,12 @@
 		data() {
 			return {
 				data: {
-					upper_category: null,
+					parent: null,
 				// authority {공개: 1, 비공개: 0 }
 				authority: 1,
 				name: '',
-				description: ''
+				description: '',
+				cidx: this.$store.state.groupInfo.idx
 			},
 			category_list : this.$store.state.group.category_list, 
 		}

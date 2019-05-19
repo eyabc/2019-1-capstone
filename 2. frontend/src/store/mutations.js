@@ -96,8 +96,6 @@ const mutations = {
 	category_insertId (state, val) {
 		state.group.category_insertId = val
 	}
-
-
 }
 
 export default mutations
