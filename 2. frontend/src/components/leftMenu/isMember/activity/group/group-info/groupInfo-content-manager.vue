@@ -8,6 +8,7 @@
 		components: {
 			editGroupInfo: () => import('./manager/groupInfo-edit'),
 			setParticipant: () => import('./manager/participant-setting'),
+			addParticipant: () => import('./manager/participant-add'),
 		},
 		computed: {
 			component () {
