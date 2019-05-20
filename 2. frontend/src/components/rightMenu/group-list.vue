@@ -43,7 +43,6 @@
 			},
 			showMap (data) {
 				const location = { lat:data.lat , lng: data.lng}
-				const datas = { nickname:data.name , place: data.place }
 				eventBus.setLocation(location)
 			}
 		}

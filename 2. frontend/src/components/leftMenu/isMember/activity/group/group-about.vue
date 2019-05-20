@@ -42,8 +42,8 @@
 		},
 		methods: {
 			showMap () {
-				const { lat, lng } = this.data
-				eventBus.setLocation(location)
+				const Location = { lat: this.data.lat, lng: this.data.lng }
+				eventBus.setLocation(Location)
 			},
 			setMyinfo () {
 				this.$store.commit('info', 'setMyInfo')

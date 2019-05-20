@@ -70,6 +70,9 @@ const mutations = {
 	},
 	groupInfo (state, val) {
 		state.groupInfo = val
+	},	
+	updateGroupInfo (state, object) {
+		Object.assign(state.groupInfo, object)
 	},
 	getGroupMemberRelation (state, val) {
 		state.getGroupMemberRelation = val

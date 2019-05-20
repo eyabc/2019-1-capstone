@@ -236,7 +236,13 @@ const actions = {
 		})
 		commit('participant', json.data)
 	},
-
+	async updateGroupInfo ({state, commit}, payload) {
+		const json = await $fetch(`/api/group-info/${state.groupInfo.idx}`, {
+			method: 'put',
+			headers: { 'Content-Type': 'application/json'},
+			body: JSON.stringify(payload)
+		})
+	}
 }
 
 export default actions
