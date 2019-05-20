@@ -32,7 +32,7 @@
 		data () {
 			return {
 				data : this.$store.state.groupInfo,
-				participant: this.$store.state.group.participant
+				participant: this.$store.state.participant
 			}
 		},
 		computed: {

@@ -1,6 +1,5 @@
 <template>
 	<div class="chat-content" :class="{active:menuFold}" ref="msg">
-		<p>{{ $store.state.groupInfo }}</p>
 		<ul id="messages" v-for="(item, index) in msgs" >
 			<li v-if="item.midx !== $store.state.member.idx" class="others">
 				<p>

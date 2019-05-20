@@ -38,7 +38,7 @@ const mutations = {
 		state.group = val
 	},
 	spliceGroup (state, key) {
-		state.group.splice(key,key+1)
+		state.group.splice(key,1)
 	},
 	tempData (state, val) {
 		state.tempData = val
@@ -47,7 +47,7 @@ const mutations = {
 		Object.assign(state.tempData, object)
 	},
 	spliceTempData (state, key) {
-		state.tempData.splice(key,key+1)
+		state.tempData.splice(key,1)
 	},
 	tempIdx (state, val) {
 		state.tempIdx = val
@@ -83,7 +83,7 @@ const mutations = {
 	groupComp (state, val) {
 		state.groupComp = val
 	},
-/* state: group json */
+	/* state: group json */
 	myGroupRelation (state, val) {
 		state.group.myRelation = val
 	},
@@ -103,14 +103,18 @@ const mutations = {
 		state.group.category_insertId = val
 	},
 	spliceCategory_list (state, key) {
-		state.group.category_list.splice(key,key+1)
+		state.group.category_list.splice(key,1)
 	},
 	category_key (state, val) {
 		state.group.category_key = val
 	},
 	participant (state, val) {
-		state.group.participant = val
-	}
+		state.participant = val
+	},
+	spliceParticipant (state, key) {
+		state.participant.splice(key, 1)
+	},
+
 }
 
 export default mutations

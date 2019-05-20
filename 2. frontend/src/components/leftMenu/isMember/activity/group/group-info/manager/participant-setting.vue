@@ -20,7 +20,7 @@
 							<option :value="1">읽기</option>
 							<option :value="2">읽기/쓰기</option>
 						</select>
-						<span class=""><i class="fas fa-times"></i></span>
+						<span class="" @click="deleteGroupParticipant(item.midx, key)"><i class="fas fa-times"></i></span>
 					</span>
 				</li>				
 				<li v-for="(item, key) in paritipant" v-if="item.request ===  0 & request === 0 & authority === true">
@@ -34,7 +34,7 @@
 							<option :value="1">읽기</option>
 							<option :value="2">읽기/쓰기</option>
 						</select>
-						<span class=""><i class="fas fa-times"></i></span>
+						<span class="" @click="deleteGroupParticipant(item.midx, key)"><i class="fas fa-times"></i></span>
 					</span>
 				</li>
 				<li v-for="(item, key) in paritipant" v-if="item.request !== 0 & request === item.request">
@@ -48,7 +48,7 @@
 							<option :value="1">읽기</option>
 							<option :value="2">읽기/쓰기</option>
 						</select>
-						<span class=""><i class="fas fa-times"></i></span>
+						<span class="" @click="deleteGroupParticipant(item.midx, key)"><i class="fas fa-times"></i></span>
 					</span>
 				</li>
 			</ul>
@@ -59,7 +59,6 @@
 		export default {
 			data () {
 				return {
-					paritipant: this.$store.state.group.participant,
 					request: 0,
 					authority: true,
 				}
@@ -68,9 +67,20 @@
 				setAuth(request, authority) {
 					this.request = request
 					this.authority = authority
+				},
+				deleteGroupParticipant (midx, key) {
+					if (midx === this.$store.state.member.idx) {
+						alert('자기 자신을 그룹참여에서 삭제할 수 없습니다.')
+					} else {
+						this.$store.dispatch('deleteGroupParticipant', { midx: midx, cgidx: this.$store.state.groupInfo.idx })
+						this.$store.commit('spliceParticipant', key)
+					}
 				}
 			},
 			computed: {
+				paritipant () {
+					return this.$store.state.participant
+				}
 			}
 		}
 	</script>
