@@ -242,7 +242,22 @@ const actions = {
 			headers: { 'Content-Type': 'application/json'},
 			body: JSON.stringify(payload)
 		})
-	}
+	},	
+	async updateParticipantAuth ({state, commit}, payload) {
+		const json = await $fetch(`/api/participant-auth/${payload.midx}/${state.groupInfo.idx}`, {
+			method: 'put',
+			headers: { 'Content-Type': 'application/json'},
+			body: JSON.stringify(payload)
+		})
+	},	
+	async updateParticipantReqeust ({state, commit}, payload) {
+		const json = await $fetch(`/api/participant-request/${payload.midx}/${state.groupInfo.idx}`, {
+			method: 'put',
+			headers: { 'Content-Type': 'application/json'},
+			body: JSON.stringify(payload)
+		})
+	},
+	
 }
 
 export default actions

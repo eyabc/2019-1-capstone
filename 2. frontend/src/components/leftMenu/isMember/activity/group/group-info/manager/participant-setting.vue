@@ -15,10 +15,10 @@
 						<span>{{item.reg_date}}</span>
 					</span>
 					<span>
-						<select name="" v-model="item.authority">
+						<select name="" v-model="item.authority" @change="updateAuth(item.authority, item.midx)">
 							<option :value="0">매니저</option>
-							<option :value="1">읽기</option>
-							<option :value="2">읽기/쓰기</option>
+							<option :value="1">읽기/쓰기</option>
+							<option :value="2">읽기</option>
 						</select>
 						<span class="" @click="deleteGroupParticipant(item.midx, key)"><i class="fas fa-times"></i></span>
 					</span>
@@ -29,10 +29,10 @@
 						<span>{{item.reg_date}}</span>
 					</span>
 					<span>
-						<select name="" v-model="item.authority">
+						<select name="" v-model="item.authority" @change="updateAuth(item.authority, item.midx)">
 							<option :value="0">매니저</option>
-							<option :value="1">읽기</option>
-							<option :value="2">읽기/쓰기</option>
+							<option :value="1">읽기/쓰기</option>
+							<option :value="2">읽기</option>
 						</select>
 						<span class="" @click="deleteGroupParticipant(item.midx, key)"><i class="fas fa-times"></i></span>
 					</span>
@@ -43,11 +43,13 @@
 						<span>{{item.reg_date}}</span>
 					</span>
 					<span>
-						<select name="" v-model="item.authority">
+						<span class="accept" v-if="item.request === 2" @click="acceptParty(key, item.midx)">참여 수락</span>
+						<select name="" v-model="item.authority" @change="updateAuth(item.authority, item.midx)">
 							<option :value="0">매니저</option>
-							<option :value="1">읽기</option>
-							<option :value="2">읽기/쓰기</option>
+							<option :value="1">읽기/쓰기</option>
+							<option :value="2">읽기</option>
 						</select>
+
 						<span class="" @click="deleteGroupParticipant(item.midx, key)"><i class="fas fa-times"></i></span>
 					</span>
 				</li>
@@ -75,6 +77,13 @@
 						this.$store.dispatch('deleteGroupParticipant', { midx: midx, cgidx: this.$store.state.groupInfo.idx })
 						this.$store.commit('spliceParticipant', key)
 					}
+				},
+				updateAuth (authority, midx) {
+					this.$store.dispatch('updateParticipantAuth', {authority: authority, midx: midx})
+				},
+				acceptParty (key, midx) {
+					this.paritipant[key].request = 0
+					this.$store.dispatch('updateParticipantReqeust', {request: 0, midx: midx})
 				}
 			},
 			computed: {
@@ -99,5 +108,10 @@
 		.fa-times {padding: 10px; cursor: pointer; transition: 0.3s;
 			&:hover { transition: 0.3s; color: red}
 		}
+	}
+	.accept {
+		cursor: pointer;
+		background: #fff;
+		&:hover { background: #FFD6AC; }
 	}
 </style>
