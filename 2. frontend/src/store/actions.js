@@ -257,7 +257,11 @@ const actions = {
 			body: JSON.stringify(payload)
 		})
 	},
-	
+	async searchByEmail ({state, commit}, payload) {
+		const json = await $fetch(`/api/member-search?email=${payload}`)
+		commit('searchedEmail', json.memberInfo[0])
+		console.log(state.searchedEmail)
+	},
 }
 
 export default actions

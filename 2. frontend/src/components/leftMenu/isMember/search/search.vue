@@ -18,9 +18,8 @@
 				return this.$store.state.searchedEmail ? 'resultEmail' : 'resultNone'
 			}
 		},
-		mounted () {
-			
-
+		beforeDestroy () {
+			this.$store.commit('searchedEmail', null)
 		}
 	}
 </script>
