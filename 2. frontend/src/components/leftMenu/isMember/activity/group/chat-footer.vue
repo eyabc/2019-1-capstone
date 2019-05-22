@@ -42,6 +42,13 @@
 
 			this.$el.addEventListener('input', this.resizeTextarea)
 		},
+		updated () {
+			if (this.$store.state.group.myRelation.authority === 2) {
+				this.$refs.chatInput.disabled = true
+				this.$refs.chatInput.value = '쓰기 권한이 없습니다.'
+				this.$refs.input_button.disabled = true
+			}
+		},
 		methods: {
 			resizeTextarea (event) {
 				if(100 < event.target.scrollHeight) {
