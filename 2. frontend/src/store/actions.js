@@ -262,6 +262,13 @@ const actions = {
 		commit('searchedEmail', json.memberInfo[0])
 		console.log(state.searchedEmail)
 	},
+	async createdParticipant2({state, commit}, payload) {
+		const json = await $fetch(`/api/group-participant/${payload.midx}/${state.groupInfo.idx}`, {
+			method: 'post',
+			headers: {'Content-Type':'application/json'},
+			body: JSON.stringify(payload)
+		})
+	},
 }
 
 export default actions

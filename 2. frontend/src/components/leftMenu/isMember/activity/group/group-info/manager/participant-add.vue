@@ -16,42 +16,55 @@
 				<li><label>위치</label><span class="content" v-if="search_result.place">{{search_result.place}}</span></li>
 				<li><label>프로필 메세지</label><br /><span class="content" v-if="search_result.profile_message">{{search_result.profile_message}}</span></li>
 			</ul>
-			<form class="auth" @submit.prevent="invite">
-					<span>권한</span>
-					<select name="select">
-						<option :value="0">매니저</option>
-						<option :value="1">읽기/쓰기</option>
-						<option :value="2">읽기</option>
-					</select>
+			<p v-if="search_result.idx === $store.state.member.idx">내 정보 입니다</p>
+			<p v-if="partyChk_computed">이미 참여자 관계 입니다.</p>
+			<form class="auth" @submit.prevent="invite" v-else>
+				<span>권한</span>
+				<select name="select">
+					<option :value="0">매니저</option>
+					<option :value="1">읽기/쓰기</option>
+					<option :value="2">읽기</option>
+				</select>
 				<input type="submit" class="dashed-btn thiswidth" value="초대 하기"></input>
 			</form>
 		</div>
-
 	</div>
 </template>
 <script type="text/javascript">
 	export default {
 		data() {
 			return {
-
+				participant: this.$store.state.participant,
+				partyChk: false,
 			}
 		},
 		methods: {
 			async searchMember (e) {
-				this.$store.dispatch('searchByEmail', e.target.email.value)
+				await this.$store.dispatch('searchByEmail', e.target.email.value)
+				const data = this.participant.find(v => v.midx === this.$store.state.searchedEmail.idx)
+				this.partyChk = data !== undefined ? true : false
 			},
 			invite (e) {
-				console.log(e.target.select.value)
-
+				const authority = parseInt(e.target.select.value)
+				let data = this.search_result
+				const data2 = {midx: this.search_result.idx,authority: authority, request: 1, cgidx: this.$store.state.groupInfo.idx}
+				Object.assign(data, data2)
+				this.$store.commit('createParticipant', data)
+				this.partyChk = true
 			}
 		},
 		computed: {
 			search_result () {
 				return this.$store.state.searchedEmail
+			},
+			partyChk_computed () { 
+				return this.partyChk 
 			}
 		},
 		beforeDestroy () {
 			this.$store.commit('searchedEmail', null)
+		},
+		mounted () {
 		}
 	}
 </script>

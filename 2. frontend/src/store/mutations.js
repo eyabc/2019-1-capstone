@@ -114,7 +114,9 @@ const mutations = {
 	spliceParticipant (state, key) {
 		state.participant.splice(key, 1)
 	},
-
+	createParticipant (state, val) {
+		state.participant.push(val)
+	},	
 }
 
 export default mutations
