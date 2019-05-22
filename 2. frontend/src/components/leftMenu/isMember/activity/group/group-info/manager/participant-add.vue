@@ -35,13 +35,14 @@
 						<span class="name">{{item.nickname}}</span>
 						<span>{{item.reg_date}}</span>
 					</span>
-					<span>
-						<select name="">
+					<form class="auth" @submit.prevent="inviteFriend($event, item)">
+						<select name="select">
 							<option :value="0">매니저</option>
 							<option :value="1">읽기/쓰기</option>
 							<option :value="2">읽기</option>
 						</select>
-					</span>
+						<input type="submit" class="dashed-btn thiswidth" value="초대 하기"/>
+					</form>
 				</li>
 			</ul>			
 		</div>
@@ -69,6 +70,13 @@
 				Object.assign(data, data2)
 				this.$store.commit('createParticipant', data)
 				this.partyChk = true
+			},
+			inviteFriend (e, info) {
+				const authority = parseInt(e.target.select.value)
+				const data = {midx: info.midx,authority: authority, request: 1, cgidx: this.$store.state.groupInfo.idx}
+				this.$store.dispatch('createdParticipant2', data)
+				Object.assign(data, info)
+				this.$store.commit('createParticipant', data)
 			}
 		},
 		computed: {
@@ -79,15 +87,9 @@
 				return this.partyChk 
 			},
 			friends () {
-				//const friends = this.$store.state.friend
-				// const data = this.participant.find(v => {
-				// 	// friends.find(s => {
-				// 	// 	v.midx === s.midx
-				// 	// })
-				// })
-				//this.partyChk = data !== undefined ? true : false
-				// console.log(this.friends)
-				return this.$store.state.friend
+				const participants = this.participant.map(v => v.midx)
+				const data = this.$store.state.friend.filter(v => participants.indexOf(v.midx)=== -1)
+				return data
 			}
 		},
 		beforeDestroy () {
@@ -102,6 +104,9 @@
 .search-result {
 	border-bottom: 2px solid #FFBB77;
 
+}
+.participant-item {
+	li { padding: 10px 0; display: flex; justify-content: space-between}
 }
 .auth {
 	select {margin: 0 10px;
