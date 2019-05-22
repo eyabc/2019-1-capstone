@@ -7,7 +7,6 @@
 			</label>
 			<input type="submit">
 		</form>
-
 		<div class="member-info-desc search-result" v-if="search_result">
 			<h3>{{search_result.nickname}}</h3><hr/>
 			<ul class="group-info">
@@ -27,6 +26,24 @@
 				</select>
 				<input type="submit" class="dashed-btn thiswidth" value="초대 하기"></input>
 			</form>
+		</div>
+		<div class="member-info-desc" v-if="">
+			<h3>내 친구 목록</h3><hr/>
+			<ul class="participant-item">
+				<li v-for="(item, key) in friends" v-if="">
+					<span>
+						<span class="name">{{item.nickname}}</span>
+						<span>{{item.reg_date}}</span>
+					</span>
+					<span>
+						<select name="">
+							<option :value="0">매니저</option>
+							<option :value="1">읽기/쓰기</option>
+							<option :value="2">읽기</option>
+						</select>
+					</span>
+				</li>
+			</ul>			
 		</div>
 	</div>
 </template>
@@ -48,6 +65,7 @@
 				const authority = parseInt(e.target.select.value)
 				let data = this.search_result
 				const data2 = {midx: this.search_result.idx,authority: authority, request: 1, cgidx: this.$store.state.groupInfo.idx}
+				this.$store.dispatch('createdParticipant2', data2)
 				Object.assign(data, data2)
 				this.$store.commit('createParticipant', data)
 				this.partyChk = true
@@ -59,12 +77,24 @@
 			},
 			partyChk_computed () { 
 				return this.partyChk 
+			},
+			friends () {
+				//const friends = this.$store.state.friend
+				// const data = this.participant.find(v => {
+				// 	// friends.find(s => {
+				// 	// 	v.midx === s.midx
+				// 	// })
+				// })
+				//this.partyChk = data !== undefined ? true : false
+				// console.log(this.friends)
+				return this.$store.state.friend
 			}
 		},
 		beforeDestroy () {
 			this.$store.commit('searchedEmail', null)
 		},
 		mounted () {
+
 		}
 	}
 </script>

@@ -25,6 +25,9 @@
 			component () {
 				return this.$store.state.groupComp.lower
 			}
+		},
+		created () {
+      		this.$store.dispatch('readParticipant')
 		}
 	}
 </script>
