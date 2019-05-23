@@ -19,6 +19,7 @@
 			chatContent () {
 				this.$store.commit('current_category', null)
 				this.$store.commit('groupComp', {upper: 'chatContent'})
+				this.$store.state.group.current_category_name = null
 			},
 		},
 		computed: {
