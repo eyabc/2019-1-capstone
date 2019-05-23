@@ -7,7 +7,7 @@
 		<friendItem v-for="(info, index) in friend" :info="info" :index="index" v-if="info.favorite===1"/> 
 		<hr class='contour' />
 		<p class="profile-title">그룹</p>
-		<groupItem v-for="(info, index) in group" :info="info" :index="index"/> 
+		<groupItem v-for="(info, index) in groups" :info="info" :index="index"/> 
 		<hr class='contour' />
 		<p class="profile-title">친구</p>
 		<friendItem v-for="(info, index) in friend" :info="info" :index="index" /> 
@@ -23,8 +23,8 @@
 			friend () {
 				return this.$store.state.friend
 			},
-			group () {
-				return this.$store.state.group
+			groups () {
+				return this.$store.state.groups
 			}
 		},
 		created () {

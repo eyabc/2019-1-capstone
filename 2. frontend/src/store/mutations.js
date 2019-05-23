@@ -34,11 +34,11 @@ const mutations = {
 	friend (state, val) {
 		state.friend = val
 	},	
-	group (state, val) {
-		state.group = val
+	groups (state, val) {
+		state.groups = val
 	},
 	spliceGroup (state, key) {
-		state.group.splice(key,1)
+		state.groups.splice(key,1)
 	},
 	tempData (state, val) {
 		state.tempData = val
@@ -117,6 +117,18 @@ const mutations = {
 	createParticipant (state, val) {
 		state.participant.push(val)
 	},	
+	setRoom (state, val) {
+		state.room = val
+	},
+	current_category (state, val) {
+		const group = { ...state.group }
+		group.current_category = val
+		state.group = group
+	},
+	current_category_name (state, val) {
+		state.group.current_category_name = val
+	}
+
 }
 
 export default mutations

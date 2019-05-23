@@ -81,7 +81,7 @@ export default new Vuex.Store({
 				body: JSON.stringify(data)
 			})
 			
-			state.group.splice(state.group.length - 1, 0, data.data)
+			state.groups.splice(state.groups.length - 1, 0, data.data)
 			alert('그룹 생성이 완료되었습니다.')
 			state.isMember = 'chat'
 			state.compChat = 'groupIn'

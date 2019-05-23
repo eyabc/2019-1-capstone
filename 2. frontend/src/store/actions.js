@@ -44,7 +44,7 @@ const actions = {
 			method: 'get',
 			headers: { 'Content-Type': 'application/json'},
 		})
-		commit('group', json.data)
+		commit('groups', json.data)
 	},
 	async getFrendInfo ({state, commit}) {
 		var json = await $fetch(`/api/member/${state.tempData.idx}`)
@@ -74,7 +74,7 @@ const actions = {
 			headers: {'Content-Type':'application/json'},
 			body: JSON.stringify(payload)
 		})
-		state.group.splice(state.group.length - 1, 0, payload.data)
+		state.groups.splice(state.groups.length - 1, 0, payload.data)
 		alert('그룹 생성이 완료되었습니다.')
 	},
 	async deleteFriend ({state, commit, dispatch}, payload) {
@@ -195,9 +195,8 @@ const actions = {
 		})
 	},
 	async readChat ({state, commit}, payload) {
-		const json = await $fetch(`/api/chat/${state.groupInfo.idx}/${payload.category}`, {
-			method: 'get',
-		})
+		const json = await $fetch(`/api/chat/${state.groupInfo.idx}`)
+		console.log(json)
 		commit(payload.commit, json.data)
 	},
 

@@ -87,13 +87,9 @@
 					content: this.content,
 					nickname: this.$store.state.member.nickname,
 					datetime: datetime,
+					category: this.$store.state.group.current_category
 				});
-				this.$store.dispatch('createChat', {
-					category: this.$store.state.group.current_category,
-					content: this.content,
-					datetime: datetime,
-					nickname: this.$store.state.member.nickname
-				})
+
 				this.content = '';
 				this.$refs.chatInput.focus()
 				this.getSocket.off('send_msg')

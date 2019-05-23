@@ -15,23 +15,12 @@ router.post('/api/chat/:midx/:cgidx', async (req, res) => {
 	}
 	res.json(resultJSON)
 })
-router.get('/api/chat/:cgidx/:category', async (req, res) => {
+router.get('/api/chat/:cgidx', async (req, res) => {
 	const resultJSON = { success: true }
-	const { category, cgidx } = req.params
-	const add_sql = []
-	const execArr = [cgidx]
-	let category_idx
-	if (category === 'undefined') {
-		add_sql.push('category IS NULL')
-	} else {
-		add_sql.push('category = ?')
-		execArr.push(`${category}`)
-	}
-	const add_sql_joined = add_sql.length ? ` and ${add_sql}` : ''
-	const sql = `SELECT * FROM chat WHERE cgidx = ? ${add_sql_joined}`
-
+	const sql = `SELECT * FROM chat WHERE cgidx = ? `
+	console.log(sql)
 	try { 
-		resultJSON.data = await execQuery(sql, execArr)
+		resultJSON.data = await execQuery(sql, [req.params.cgidx])
 	} catch (err) {
 		resultJSON.success = false
 		resultJSON.err = err.stack

@@ -51,10 +51,6 @@ Vue.use(vSelectPage, {
 
 const socket = io('localhost:3000')
 store.dispatch('assignSocket', socket);
-socket.emit('test', '안녕하세요1')
-socket.emit('test', '안녕하세요2')
-socket.emit('test', '안녕하세요3')
-socket.emit('test', '안녕하세요4')
 
 new Vue({
 	router,
