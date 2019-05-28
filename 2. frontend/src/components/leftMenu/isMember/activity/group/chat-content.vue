@@ -67,7 +67,6 @@
 						msgs = msgs.filter( v => v.category === data.idx)
 					}
 				} 
-				console.log(msgs)
 				return msgs
 			}
 		},
