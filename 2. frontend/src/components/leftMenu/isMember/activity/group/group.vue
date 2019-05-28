@@ -21,8 +21,9 @@
 
 		},
 		beforeDestroy () {
-			this.$store.state.group = null
-			
+			this.$store.commit('resetGroup')
+			this.$store.commit('resetFilter')
+
 		},
 
 	} 

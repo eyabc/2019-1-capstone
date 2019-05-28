@@ -1,7 +1,16 @@
 <template>
 	<div class="chat-content" :class="{active:menuFold}" ref="msg">
-		<ul id="messages" v-for="(item, index) in msgs">
+		<ul id="messages" v-for="(item, index) in msgs" v-if="filter.writer===''&&filter.content===''&&filter.category===''">
 			<li v-if="item.category == group.current_category" :class="item.midx === $store.state.member.idx ? 'me' : 'others'">
+				<p>
+					<span class="name">{{item.nickname}}</span>
+					<span class="reg_date">{{new Date(item.datetime)}} </span>
+				</p>
+				<p><span class="content" v-html="nl2br(item.content)"></span></p>
+			</li>
+		</ul>
+ 		<ul id="messages" v-for="(item, index) in filtered_msgs" v-if="filter.writer!=='' || filter.content!=='' || filter.category!==''">	
+			<li :class="item.midx === $store.state.member.idx ? 'me' : 'others'">
 				<p>
 					<span class="name">{{item.nickname}}</span>
 					<span class="reg_date">{{new Date(item.datetime)}} </span>
@@ -16,7 +25,9 @@
 		data () {
 			return {
 				Socket: this.$store.state.socket,
-				msgs: []
+				msgs: [],
+				filter: this.$store.state.filter,
+				msgs_filtered: false,
 			}
 		},
 		async created () {
@@ -39,9 +50,25 @@
 		},
 		computed: {
 			group () {
-				console.log(this.$store.state.group.current_category)
-				console.log(this.msgs.map(v => v.category))
 				return this.$store.state.group
+			},
+			filtered_msgs (item) {
+				const condition =[]
+				let msgs = this.msgs
+				if (this.filter.writer !== '') {
+					msgs = msgs.filter( v => v.nickname === this.filter.writer)
+				}
+				if (this.filter.content !== '') {
+					msgs = msgs.filter( v => v.content === this.filter.content)
+				} 	
+				if (this.filter.category !== '') {
+					const data = this.$store.state.group.category_list.find( v => v.name == this.filter.category )
+					if(data !== undefined) { 
+						msgs = msgs.filter( v => v.category === data.idx)
+					}
+				} 
+				console.log(msgs)
+				return msgs
 			}
 		},
 		methods: {

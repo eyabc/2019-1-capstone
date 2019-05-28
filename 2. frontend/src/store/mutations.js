@@ -127,6 +127,22 @@ const mutations = {
 	},
 	current_category_name (state, val) {
 		state.group.current_category_name = val
+	},
+	resetFilter (state) {
+		state.filter.writer = ''
+		state.filter.content = ''
+		state.filter.category = ''
+	},
+	resetGroup (state) {
+		state.group.myRelation = false
+		state.group.current_category = null
+		state.group.chat_content = []
+		state.group.category_list = [],
+		state.group.category_insertId = false
+		state.group.category_key = false
+		state.group.room = false
+		state.group.current_category_name = null
+
 	}
 
 }

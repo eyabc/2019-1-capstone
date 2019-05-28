@@ -8,20 +8,20 @@
 			</li>
 			<li>
 				<span class="lbl">작성자</span>
-				<span class="desc"><input></span>
+				<span class="desc"><input v-model="filter.writer"></span>
 			</li>
 			<li>
 				<span class="lbl">내용</span>
-				<span class="desc"><input></span>
+				<span class="desc"><input  v-model="filter.content"></span>
 			</li>
 			<li>
 				<span class="lbl">카테고리</span>
-				<span class="desc"><input></span>
+				<span class="desc"><input v-model="filter.category"></span>
 			</li>
-			<li>
+			<!-- <li>
 				<span class="lbl">그룹</span>
 				<span class="desc"><input></span>
-			</li>
+			</li> -->
 		</ul>	
 	</div>
 </template>
@@ -33,6 +33,11 @@
 		},
 		data () {
 			return {
+				test:'',
+				filter: this.$store.state.filter,
+
+
+				
 			}
 		},
 		methods: {

@@ -28,6 +28,11 @@ const initState = {
 		current_category_name: null,
 	},
 	participant: false,
+	filter: {
+		writer: '',
+		content: '',
+		category: '',
+	}
 }
 
 export default initState

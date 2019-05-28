@@ -81,15 +81,16 @@
 			},
 			sendMessage() {
 				const datetime = new Date().getTime()
-				this.getSocket.emit('send_msg', {
+				const data = {
 					cgidx: this.groupInfo.cgidx,
 					midx: this.$store.state.member.idx,
 					content: this.content,
 					nickname: this.$store.state.member.nickname,
 					datetime: datetime,
 					category: this.$store.state.group.current_category
-				});
-
+				}
+				this.getSocket.emit('send_msg', data);
+				this.$store.dispatch('createChat', data)
 				this.content = '';
 				this.$refs.chatInput.focus()
 				this.getSocket.off('send_msg')
