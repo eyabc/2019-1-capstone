@@ -17,6 +17,21 @@ Vue.prototype.nl2br = str => {
 
 Vue.prototype.$fetch = $fetch
 
+Vue.prototype.group_auth = (request, authority) => {
+	if (request !== 0) {
+		return [0,'요청: 그룹->멤버', '요청: 멤버->그룹'][request]
+	} else {
+		return ['매니저', '읽기/쓰기', '읽기', '허가 필요'][authority]
+	}
+}
+Vue.prototype.group_permission = (permission) => {
+	//{ 1 : 필요, 0 : 불필요 }
+	return ['바로참여', '허가필요'][permission]
+}
+Vue.prototype.group_visibility = (visibility) => {
+	//{ 1 : 전체공개, 2 : 친구공개 }
+	return [0,'전체공개', '친구공개'][visibility]
+}
 Vue.use(VueGoogleMaps, {
 	load: {
 		key: 'AIzaSyBWjfwRSMOm94bojXMoZNjvgNM3cfU7yCY',
@@ -36,10 +51,6 @@ Vue.use(vSelectPage, {
 
 const socket = io('localhost:3000')
 store.dispatch('assignSocket', socket);
-socket.emit('test', '안녕하세요1')
-socket.emit('test', '안녕하세요2')
-socket.emit('test', '안녕하세요3')
-socket.emit('test', '안녕하세요4')
 
 new Vue({
 	router,

@@ -8,7 +8,7 @@ const initState = {
 	activity: 'list',
 	info: false,
 	friend: [],
-	group: [],
+	groups: [],
 	tempData: {},
 	tempIdx: [],
 	searchedEmail: null,
@@ -17,6 +17,22 @@ const initState = {
 	getGroupMemberRelation: false,
 	socket: null,
 	groupComp: false,
+	group: {
+		myRelation: false,
+		current_category: null,
+		chat_content: [],
+		category_list: [],
+		category_insertId: false,
+		category_key: false,
+		room: false,
+		current_category_name: null,
+	},
+	participant: false,
+	filter: {
+		writer: '',
+		content: '',
+		category: '',
+	}
 }
 
 export default initState

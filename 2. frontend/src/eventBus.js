@@ -136,7 +136,7 @@ const bus = new Vue({
 
 			marker.addListener('click', async () => {
 				store.dispatch('getGroupInfo', { cgidx: data.cgidx })
-				store.dispatch('getGroupMemberRelation')
+				store.dispatch('getGroupMemberRelation', {commit: 'getGroupMemberRelation'})
 				this.rightMenu = 'groupInfo'
 				this.rightFold = true
 			});

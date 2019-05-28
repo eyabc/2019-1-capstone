@@ -17,10 +17,17 @@
 			groupInfo: () => import('./group-info'),
 			groupAbout: () => import('./group-about'),
 		},
+				// this.getSocket.emit('exit_room')
+				// this.getSocket.emit('join_room', {
+				// 	room: this.$store.state.group.room,
+				// 	midx: this.$store.state.member.idx,
+				// });
 		data () {
-		return {
+			return {
 				groupInfo: this.$store.state.groupInfo,
 				menuFold: false,
+				myAuth: false,
+				room: this.$store.state.group.room
 			}
 		},
 		computed: {
@@ -31,10 +38,10 @@
 				return this.$store.state.groupComp.upper
 			}
 		},	
-		created () {
-			this.getSocket.emit('exit_room', {room: this.groupInfo.idx})
+		async created () {	
+			this.getSocket.emit('exit_room', {room: this.room})
 			this.getSocket.emit('join_room', {
-				room: this.groupInfo.idx,
+				room: this.room,
 				midx: this.$store.state.member.idx,
 			});
 		},

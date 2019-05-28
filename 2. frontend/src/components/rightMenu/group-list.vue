@@ -37,13 +37,12 @@
 		},
 		methods: {
 			async view(cgidx) {
-				this.$store.dispatch('getGroupInfo', { cgidx: cgidx })
-				await this.$store.dispatch('getGroupMemberRelation')
+				await this.$store.dispatch('getGroupInfo', { cgidx: cgidx })
+				await this.$store.dispatch('getGroupMemberRelation', {commit: 'getGroupMemberRelation'})
 				eventBus.rightMenu = 'groupInfo'
 			},
 			showMap (data) {
 				const location = { lat:data.lat , lng: data.lng}
-				const datas = { nickname:data.name , place: data.place }
 				eventBus.setLocation(location)
 			}
 		}

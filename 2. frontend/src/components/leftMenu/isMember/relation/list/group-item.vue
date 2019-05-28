@@ -15,10 +15,14 @@
 		methods: {
 			async moveGroup () {
 				var room = this.info.cgidx
+				this.$store.commit('setRoom', room)
+				this.$store.commit('current_category', null)
 				await this.$store.dispatch('getGroupInfo', {cgidx: room})
+				await this.$store.dispatch('getGroupMemberRelation', {commit: 'myGroupRelation'})
 				this.$store.commit('isMember', 'activity')
 				this.$store.commit('activity', 'group')
 				this.$store.commit('groupComp', {upper: 'chatContent'})
+
 			}
 		}
 	}

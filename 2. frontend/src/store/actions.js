@@ -44,7 +44,7 @@ const actions = {
 			method: 'get',
 			headers: { 'Content-Type': 'application/json'},
 		})
-		commit('group', json.data)
+		commit('groups', json.data)
 	},
 	async getFrendInfo ({state, commit}) {
 		var json = await $fetch(`/api/member/${state.tempData.idx}`)
@@ -74,9 +74,8 @@ const actions = {
 			headers: {'Content-Type':'application/json'},
 			body: JSON.stringify(payload)
 		})
-		state.group.splice(state.group.length - 1, 0, payload.data)
+		state.groups.splice(state.groups.length - 1, 0, payload.data)
 		alert('그룹 생성이 완료되었습니다.')
-		commit('activity', 'group')
 	},
 	async deleteFriend ({state, commit, dispatch}, payload) {
 		var json = await $fetch(`/api/friend/${state.member.idx}/${payload.idx}`, {
@@ -171,8 +170,8 @@ const actions = {
 	},
 	/* #179 relation check between group and member */
 	async getGroupMemberRelation ({state, commit}, payload) {
-		const json2 = await $fetch(`/api/group-participant/relation/${state.member.idx}/${state.groupInfo.idx}`)
-		commit('getGroupMemberRelation', json2.data[0])
+		const json = await $fetch(`/api/group-participant/relation/${state.member.idx}/${state.groupInfo.idx}`)
+		commit(payload.commit, json.data[0])
 	},
 	/* #179 insert participant */
 	async createdParticipant({state, commit, dispatch}, payload) {
@@ -182,10 +181,92 @@ const actions = {
 			body: JSON.stringify(payload)
 		})
 		console.log(payload)
-		dispatch('getGroupMemberRelation')
+		dispatch('getGroupMemberRelation', {commit: 'getGroupMemberRelation'})
 	},
 	assignSocket: (context, payload) => {
 		context.commit('ASSIGN_SOCKET', payload);
+	},
+	/* chat */
+	async createChat ({state, commit}, payload) {
+		const json = await $fetch(`/api/chat/${state.member.idx}/${state.groupInfo.idx}`, {
+			method: 'post',
+			headers: { 'Content-Type': 'application/json'},
+			body: JSON.stringify(payload)
+		})
+	},
+	async readChat ({state, commit}, payload) {
+		const json = await $fetch(`/api/chat/${state.groupInfo.idx}`)
+		console.log(json)
+		commit(payload.commit, json.data)
+	},
+
+	/* category */
+	async readCategory ({state, commit}, payload) {
+		const json = await $fetch(`/api/category/${state.groupInfo.idx}`, {
+			method: 'get'
+		})
+		commit(payload.commit, json.data)	
+	},
+	async createCategory ({state, commit}, payload) {
+		const json = await $fetch(`/api/category/${state.groupInfo.idx}`, {
+			method: 'post',
+			headers: { 'Content-Type': 'application/json'},
+			body: JSON.stringify(payload)
+		})
+		commit('category_insertId', json.idx)
+	},
+	async updateCategory ({state, commit}, payload) {
+		const json = await $fetch(`/api/category/${state.group.category_key.idx}`, {
+			method: 'put',
+			headers: { 'Content-Type': 'application/json'},
+			body: JSON.stringify(payload)
+		})
+	},	
+	async deleteCategory ({state, commit}, payload) {
+		const json = await $fetch(`/api/category/${state.group.category_key.idx}`, {
+			method: 'delete',
+			headers: { 'Content-Type': 'application/json'},
+			body: JSON.stringify(payload)
+		})
+	},
+	async readParticipant ({state, commit}, payload) {
+		const json = await $fetch(`/api/group-participant/${state.groupInfo.idx}`, {
+			method: 'get'
+		})
+		commit('participant', json.data)
+	},
+	async updateGroupInfo ({state, commit}, payload) {
+		const json = await $fetch(`/api/group-info/${state.groupInfo.idx}`, {
+			method: 'put',
+			headers: { 'Content-Type': 'application/json'},
+			body: JSON.stringify(payload)
+		})
+	},	
+	async updateParticipantAuth ({state, commit}, payload) {
+		const json = await $fetch(`/api/participant-auth/${payload.midx}/${state.groupInfo.idx}`, {
+			method: 'put',
+			headers: { 'Content-Type': 'application/json'},
+			body: JSON.stringify(payload)
+		})
+	},	
+	async updateParticipantReqeust ({state, commit}, payload) {
+		const json = await $fetch(`/api/participant-request/${payload.midx}/${state.groupInfo.idx}`, {
+			method: 'put',
+			headers: { 'Content-Type': 'application/json'},
+			body: JSON.stringify(payload)
+		})
+	},
+	async searchByEmail ({state, commit}, payload) {
+		const json = await $fetch(`/api/member-search?email=${payload}`)
+		commit('searchedEmail', json.memberInfo[0])
+		console.log(state.searchedEmail)
+	},
+	async createdParticipant2({state, commit}, payload) {
+		const json = await $fetch(`/api/group-participant/${payload.midx}/${state.groupInfo.idx}`, {
+			method: 'post',
+			headers: {'Content-Type':'application/json'},
+			body: JSON.stringify(payload)
+		})
 	},
 }
 

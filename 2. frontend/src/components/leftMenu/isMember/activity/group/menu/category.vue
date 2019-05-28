@@ -1,39 +1,16 @@
 <template>
 	<div class="category-wrap">
 		<ul class="category-list">
-			<li><p class="upper">카테고리 1</p>
-				<ul class="lower">
-					<li>하위카테고리 2</li>
-				</ul>
-			</li>
-			<li><p class="upper">카테고리 1</p>
-				<ul class="lower">
-					<li>하위카테고리 2</li>
-				</ul>
-			</li>
-			<li><p class="upper">카테고리 1</p>
-				<ul class="lower">
-					<li>하위카테고리 2</li>
-				</ul>
-			</li>
-			<li><p class="upper">카테고리 1</p>
-				<ul class="lower">
-					<li>하위카테고리 2</li>
-				</ul>
-			</li>
-			<li><p class="upper">카테고리 1</p>
-				<ul class="lower">
-					<li>하위카테고리 2</li>
-				</ul>
-			</li>
-			<li><p class="upper">카테고리 1</p>
-				<ul class="lower">
-					<li>하위카테고리 2</li>
+			<li v-for="(item, key) in category_list" v-if="item.parent === 0">
+				<p class="upper" @click="moveCategory(item.idx, item.name)">{{item.name}}</p>
+				<ul>
+					<li v-for="(lower, key) in category_list" v-if="lower.parent === item.idx">
+						<p class="lower" @click="moveCategory(lower.idx, lower.name)">{{ lower.name }}</p>
+					</li>
 				</ul>
 			</li>
 		</ul>
-		<!-- 나의 권한을 확인한 후 display 설정 css 필요 -->
-		<p class="category-option">
+		<p class="category-option" v-if="$store.state.group.myRelation.authority === 0">
 			<span><i class="fas fa-plus" @click="addCategory"></i></span>
 			<span><i class="fas fa-cog" @click="getList"></i></span>
 		</p>
@@ -45,6 +22,7 @@
 		},
 		data () {
 			return {
+				category_list: []
 			}
 		},
 		methods: {
@@ -53,8 +31,16 @@
 			},
 			getList () {
 				this.$store.commit('groupComp', {upper: 'category', lower: 'getList'})
+			},
+			moveCategory (idx, name) {
+				this.$store.commit('current_category', idx)
+				this.$store.commit('current_category_name', name)
 			}
 
+		},
+		async created() {
+			await this.$store.dispatch('readCategory', {commit: 'category_list'})
+			this.category_list = this.$store.state.group.category_list
 		}
 	}
 </script>

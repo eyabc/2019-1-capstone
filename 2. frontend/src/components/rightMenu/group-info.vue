@@ -14,7 +14,7 @@
 		</ul>
 		<ul class="member-info-btn">
 			<li v-if="relation === 0"><a class="title" @click.prevent=""># 이미 참여중인 그룹</a></li>
-			<li v-if="relation === 0 "><a class="title" @click.prevent="">대화 시작</a></li>
+			<!-- <li v-if="relation === 0 "><a class="title" @click.prevent="">대화 시작</a></li> -->
 			<li v-if="relation === false & item.permission === 0"><a class="title" @click.prevent="createdParticipant(item.default_authority, 0)">참여 하기</a></li>
 			<li v-if="relation === false & item.permission === 1"><a class="title" @click.prevent="createdParticipant(item.default_authority, 2)">참여 신청</a></li>
 			<li v-if="relation === 2"><a class="title" @click.prevent="cancel">참여 취소</a></li>
@@ -81,7 +81,7 @@
 				}
 				console.log(data)
 				this.$store.dispatch('createdParticipant', data)
-				this.$store.dispatch('getGroupMemberRelation')
+				this.$store.dispatch('getGroupMemberRelation', {commit: 'getGroupMemberRelation'})
 			},
 			cancel () {
 				const data = {
@@ -89,7 +89,7 @@
 					cgidx: this.item.idx,
 				}
 				this.$store.dispatch('deleteGroupParticipant', data)
-				this.$store.dispatch('getGroupMemberRelation')
+				this.$store.dispatch('getGroupMemberRelation', {commit: 'getGroupMemberRelation'})
 
 			}
 		}

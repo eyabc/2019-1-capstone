@@ -1,7 +1,7 @@
 <template>
 	<div class='chat-header'>
 		<span class="name" @click="chatContent">{{groupInfo.name}}</span>
-		<span class="category">카테고리 이름(구현 전)</span>
+		<span class="category">{{categoryName}}</span>
 		<span class="menu-icon" @click="setFolding(!menuFold)"><i class="fas fa-bars"></i></span>
 	</div>
 </template>
@@ -17,10 +17,19 @@
 				this.$parent.menuFold = val
 			},
 			chatContent () {
+				this.$store.commit('current_category', null)
 				this.$store.commit('groupComp', {upper: 'chatContent'})
+				this.$store.state.group.current_category_name = null
+			},
+		},
+		computed: {
+			categoryName () {
+				return this.$store.state.group.current_category_name
 			}
 		},
-		created() {
+		beforeDestroy () {
+			this.$store.commit('current_category_name', null)
+			
 		},
 		props: ['menuFold']
 	}

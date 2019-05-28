@@ -58,8 +58,8 @@
 					<li>
 						<div class="group-visibility">
 							<label>참여자 초기 권한</label>
-							<span class="dashed-btn width1" :class="{active:data.default_authority===1}"><a href="#" ref="public" @click.prevent="setData('default_authority',1)">읽기</a></span>
-							<span class="dashed-btn width1" :class="{active:data.default_authority===2}"><a href="#" ref="private" @click.prevent="setData('default_authority',2)">읽기/쓰기</a></span><br/>
+							<span class="dashed-btn width1" :class="{active:data.default_authority===2}"><a href="#" ref="public" @click.prevent="setData('default_authority',2)">읽기</a></span>
+							<span class="dashed-btn width1" :class="{active:data.default_authority===1}"><a href="#" ref="private" @click.prevent="setData('default_authority',1)">읽기/쓰기</a></span><br/>
 							<span class="dashed-btn width1 title new" :class="{active:data.permission===1}"><a href="#" ref="private" @click.prevent="setData('permission',1)" >참여 허가 필요</a></span><br/>
 						</div> 
 					</li>
@@ -165,6 +165,8 @@ export default {
       			alert('참여자 초기 권한을 지정하세요')
       		} else {
       			this.$store.dispatch('insertGroup', {data, data2})
+				this.$store.commit('activity', 'group')
+      			
       		}
 
       	},

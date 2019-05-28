@@ -1,16 +1,17 @@
 <template>
 	<div class="chat-footer">
 		<form>
-			<textarea
+			<textarea 
 			rows="1" 
 			class="chat-input"  
 			autocomplete="off" 
 			id="m"
 			v-model.trim="content"
 			data-gramm_editor="false"
-			ref="chatInput"
+			ref="chatInput" v-if="this.$store.state.groupComp.upper === 'chatContent'" 
 			></textarea>
-			<input type="submit" name="" value="send" @click.prevent="sendMessage">
+			<input ref="input_button" type="submit" name="" value="send" @click.prevent="sendMessage"
+			v-if="this.$store.state.groupComp.upper === 'chatContent'" >
 		</form>
 	</div>
 </template>
@@ -23,7 +24,8 @@
 		data(){
 			return {
 				groupInfo: this.$store.state.groupInfo,
-           		content: '',
+				content: '',
+				
 			}
 		},
 		computed: {
@@ -31,6 +33,22 @@
 				return this.$store.state.socket
 			}
 		},		
+		async mounted () {
+			if (this.$store.state.group.myRelation.authority === 2) {
+				this.$refs.chatInput.disabled = true
+				this.$refs.chatInput.value = '쓰기 권한이 없습니다.'
+				this.$refs.input_button.disabled = true
+			}
+
+			this.$el.addEventListener('input', this.resizeTextarea)
+		},
+		updated () {
+			if (this.$store.state.group.myRelation.authority === 2) {
+				this.$refs.chatInput.disabled = true
+				this.$refs.chatInput.value = '쓰기 권한이 없습니다.'
+				this.$refs.input_button.disabled = true
+			}
+		},
 		methods: {
 			resizeTextarea (event) {
 				if(100 < event.target.scrollHeight) {
@@ -62,22 +80,24 @@
 				}
 			},
 			sendMessage() {
-				this.getSocket.emit('send_msg', {
+				const datetime = new Date().getTime()
+				const data = {
 					cgidx: this.groupInfo.cgidx,
 					midx: this.$store.state.member.idx,
 					content: this.content,
 					nickname: this.$store.state.member.nickname,
-					datetime: new Date().getTime()
-				});
+					datetime: datetime,
+					category: this.$store.state.group.current_category
+				}
+				this.getSocket.emit('send_msg', data);
+				this.$store.dispatch('createChat', data)
 				this.content = '';
 				this.$refs.chatInput.focus()
 				this.getSocket.off('send_msg')
 				return false
 			}
 		},
-		mounted () {
-			this.$el.addEventListener('input', this.resizeTextarea)
-		},
+
 		beforeDestroy () {
 			this.$el.removeEventListener('input', this.resizeTextarea)
 		},

@@ -15,6 +15,21 @@ router.delete('/api/group-participant', async (req, res) => {
 	}
 	res.json(resultJSON)
 })
+router.get('/api/group-participant/:cgidx', async (req,res) => {
+	const sql = `SELECT A.*, B.nickname, B.profile_message, B.reg_date, B.place, B.lat, B.lng, B.info_visibility FROM group_participant A 
+	LEFT JOIN member B
+	ON A.midx = B.idx
+	WHERE A.cgidx = ?`
+	const resultJSON = { success: true }
+
+	try {
+		resultJSON.data = await execQuery(sql, [req.params.cgidx])
+	} catch (err) {
+		resultJSON.success = false
+		resultJSON.err = err.stack
+	}
+	res.json(resultJSON)		
+})
 
 /* #179 relation check between group and member */
 router.get('/api/group-participant/relation/:midx/:cgidx', async (req, res) => {
@@ -42,5 +57,26 @@ router.post('/api/group-participant/:midx/:cgidx', async (req, res) => {
 	res.json(resultJSON)
 })
 
-
+router.put('/api/participant-auth/:midx/:cgidx', async (req, res) => {
+	const sql = `UPDATE group_participant SET authority = ? WHERE midx = ? AND cgidx = ?`
+	const resultJSON = { success: true }
+	try {
+		await execQuery(sql, [req.body.authority, req.params.midx, req.params.cgidx])
+	} catch (err) {
+		resultJSON.success = false
+		resultJSON.err = err.stack
+	}
+	res.json(resultJSON)
+})
+router.put('/api/participant-request/:midx/:cgidx', async (req, res) => {
+	const sql = `UPDATE group_participant SET request = ? WHERE midx = ? and cgidx = ?`
+	const resultJSON = { success: true }
+	try {
+		await execQuery(sql, [req.body.request, req.params.midx, req.params.cgidx])
+	} catch (err) {
+		resultJSON.success = false
+		resultJSON.err = err.stack
+	}
+	res.json(resultJSON)
+})
 module.exports = router;
