@@ -8,7 +8,6 @@ router.get('/api/category/:cgidx', async (req, res) => {
 	const { cgidx } = req.params
 	try { 
 		resultJSON.data = await execQuery(sql, [cgidx])
-		console.log(resultJSON.data)
 	} catch (err) {
 		resultJSON.success = false
 		resultJSON.err = err.stack

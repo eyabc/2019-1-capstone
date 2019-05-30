@@ -94,8 +94,10 @@
 				this.content = '';
 				this.$refs.chatInput.focus()
 				this.getSocket.off('send_msg')
+				
 				return false
-			}
+			},
+			
 		},
 
 		beforeDestroy () {

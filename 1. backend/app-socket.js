@@ -23,22 +23,26 @@ module.exports = server => {
 				rooms[socket.room] = new Object()
 				rooms[socket.room].socket_ids = new Object()
 			}
-			rooms[socket.room].socket_ids[midx] = socket.id
-			console.log(rooms[socket.room])
-			// currentRoomId = data.cgidx;
-        	// data.socketId = socket.id;
+			if (rooms[socket.room].socket_ids[midx]===undefined) {
+				rooms[socket.room].socket_ids[midx] = {socket_id: socket.id, category: null }
+			}
+			io.to(socket.room).emit('socket_ids', rooms[socket.room])
         });
 		/** User Exit Room */
 		socket.on('exit_room', data => {
 			console.log("exit")
+			io.to(socket.room).emit('socket_ids', rooms[socket.room])
 			socket.leave(socket.room)
-		});
+		});	
 		// message 이벤트
 
 		socket.on('send_msg', (data) => {
 			console.log(data)
 			io.to(socket.room).emit('message emit', data);
 		});
+		socket.on('current category set', (data) => {
+			rooms[socket.room].socket_ids[data.midx].category = data.category
+		})
 	});
 
 }

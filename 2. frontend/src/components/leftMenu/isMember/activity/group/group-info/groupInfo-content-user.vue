@@ -19,11 +19,17 @@
 				myData: this.$store.state.group.myRelation
 			}
 		},
+		computed: {
+			getSocket () {
+				return this.$store.state.socket
+			}
+		},	
 		methods: {
 			exitGroup () {
 				this.$store.dispatch('deleteGroupParticipant', {midx: this.myData.midx, cgidx: this.myData.cgidx })
 				this.$store.commit('groupComp', false)
 				this.$store.commit('isMember', 'relation')
+				this.getSocket.emit('exit_room')
 			}
 		}
 	}
