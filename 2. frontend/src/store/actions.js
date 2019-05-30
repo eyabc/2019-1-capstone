@@ -193,6 +193,7 @@ const actions = {
 			headers: { 'Content-Type': 'application/json'},
 			body: JSON.stringify(payload)
 		})
+		state.chat_idx = json.idx
 	},
 	async readChat ({state, commit}, payload) {
 		const json = await $fetch(`/api/chat/${state.groupInfo.idx}`)

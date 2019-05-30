@@ -35,8 +35,15 @@
 			moveCategory (idx, name) {
 				this.$store.commit('current_category', idx)
 				this.$store.commit('current_category_name', name)
+				this.getSocket.emit('current category set',  { midx: this.$store.state.member.idx, category: idx})
+
 			}
 
+		},
+		computed: {
+			getSocket () {
+				return this.$store.state.socket
+			},
 		},
 		async created() {
 			await this.$store.dispatch('readCategory', {commit: 'category_list'})

@@ -26,6 +26,7 @@ const initState = {
 		category_key: false,
 		room: false,
 		current_category_name: null,
+		chat_idx: false,
 	},
 	participant: false,
 	filter: {
