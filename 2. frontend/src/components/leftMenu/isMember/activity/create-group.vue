@@ -4,7 +4,7 @@
 			<li class=""><a class="title" href="#"># 새 그룹 추가</a></li>
 		</ul>
 		<form class="member-info-set" method="post" @submit.prevent="insertGroup">
-			<div id="image-set-img">
+			<!-- <div id="image-set-img">
 				<a class="image-set-small-img image-set-img-item " @click="toggleShow" :class="{ none : data.image !=='' }" >그룹 대표 사진 선택 <br/> jpg/png </a>
 				<img class="image-set-small-img img" :src="data.image" >
 				<my-upload field="img" 
@@ -18,7 +18,7 @@
 				imgBgc="#000"
 				img-format="png" ></my-upload>
 				<br/><p class="dashed-btn"><a href="#" @click.prevent="initImage">이미지 삭제</a></p>
-			</div> 
+			</div>  -->
 			<div class="member-info-desc re-width">
 
 				<ul class="fields">
@@ -63,13 +63,13 @@
 							<span class="dashed-btn width1 title new" :class="{active:data.permission===1}"><a href="#" ref="private" @click.prevent="setData('permission',1)" >참여 허가 필요</a></span><br/>
 						</div> 
 					</li>
-					<li>
+<!-- 					<li>
 						<label class="input-label">
 							<span class="pre"><i class="fas fa-key"></i></span>
 							<input v-model="data.password" type="text" name="password" class="full-width" placeholder="비밀번호">
 						</label>
 					</li>
-
+ -->
 
 					<li>
 						<label class="input-label">
@@ -81,7 +81,7 @@
 							<p class="check-show">{{ data.place }}</p>
 						</label>
 					</li>
-					<input class="login-btn btn" type="submit" value="수정 완료">
+					<input class="login-btn btn" type="submit" value="생성 완료">
 				</ul>
 			</div>
 		</form>
@@ -165,8 +165,10 @@ export default {
       			alert('참여자 초기 권한을 지정하세요')
       		} else {
       			this.$store.dispatch('insertGroup', {data, data2})
-				this.$store.commit('activity', 'group')
-      			
+
+				this.$store.commit('activity', 'list')
+				this.$store.commit('isMember', 'relation')
+
       		}
 
       	},

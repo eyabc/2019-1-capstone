@@ -32,6 +32,8 @@ Vue.prototype.group_visibility = (visibility) => {
 	//{ 1 : 전체공개, 2 : 친구공개 }
 	return [0,'전체공개', '친구공개'][visibility]
 }
+
+
 Vue.use(VueGoogleMaps, {
 	load: {
 		key: 'AIzaSyBWjfwRSMOm94bojXMoZNjvgNM3cfU7yCY',
