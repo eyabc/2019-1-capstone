@@ -6,7 +6,7 @@
       <li><a href="#" @click.prevent="back">뒤로 가기</a></li>
     </ul>
     <form class="member-info-set" method="post" @submit.prevent="setMember">
-      <div id="image-set-img">
+      <!-- <div id="image-set-img">
         <a class="image-set-small-img image-set-img-item " @click="toggleShow" :class="{ none : imgDataUrl !=='' }" >프로필 사진 선택 <br/> jpg/png </a>
         <img class="image-set-small-img img" :src="imgDataUrl" >
         <my-upload field="img" 
@@ -19,8 +19,8 @@
         lang-type="en"
         imgBgc="#000"
         img-format="png" ></my-upload>
-        <br/><p class="dashed-btn"><a href="#" @click.prevent="initImage">이미지 삭제</a></p>
-      </div> 
+        <br/><p class="dashed-btn"><a href="#" @click.prevent="initImage">이미지 삭제</a></p> -->
+      <!-- </div>  -->
       <!-- <img class="image-set-small-img"src="./default-avatar.png" alt="img" /> -->
       <div class="member-info-desc re-width">
         <ul class="visibility">
